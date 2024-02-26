@@ -2,7 +2,7 @@
 
 
 ##개발자 양성과정 수업을 들으며 내용을 정리하기 위한 레파지토리 입니다.
-%nbsp;%nbsp;%nbsp;%nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 # 2월 26일 훈련 요약(HTML 화면 구성)
 
 &nbsp;
