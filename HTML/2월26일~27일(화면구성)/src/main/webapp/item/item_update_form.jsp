@@ -43,27 +43,76 @@ css/main.css
 		 
 		 </div>
 		 <!-- End Left Column -->
-		 
+<%
+String item_id = request.getParameter("item_id");
+String item_price = request.getParameter("item_price");
+String item_type = request.getParameter("item_type");
+String item_value = request.getParameter("item_value");
+String item_seller = request.getParameter("item_seller");
+%>		 
 		 <!-- Begin Right Column -->
 		 <div id="rightcolumn">
-상품수정 화면 	
+<h2>상품수정 화면</h2> 	
 <form action="<%= request.getContextPath() %>/item/item_list_update.jsp" method="post">
-상품명 : <input type="text" name="uid" value="" >			<br/>
-가 격 : <input type="text" name="upw" value="">		<br/>
-종  류 : <select name="ulevel">
-		  <option value="의류">의 류</option>
+상품명 : <input type="text" name="item_id" value="<%= item_id %>" >			<br/>
+가 격 : <input type="text" name="item_price" value="<%= item_price %>">		<br/>
+종  류 : <select name="item_type">
+<%if(item_type.equals("의류")){ %>
+		  <option value="의류">의류</option>
 		  <option value="식음료">식음료</option>
 		  <option value="잡화">잡화</option>
 		  <option value="가전">가전</option>
-		 
+ <%}else if(item_type.equals("식음료")){ %>
+ 		  <option value="식음료">식음료</option>
+		  <option value="의류">의류</option>
+		  <option value="잡화">잡화</option>
+		  <option value="가전">가전</option>
+<%}else if(item_type.equals("잡화")){ %>
+ 		  <option value="잡화">잡화</option>
+		  <option value="의류">의류</option>
+		  <option value="식음료">식음료</option>
+		  <option value="가전">가전</option>
+<%}else if(item_type.equals("가전")){ %>
+ 		  <option value="가전">가전</option>
+		  <option value="의류">의류</option>
+		  <option value="잡화">잡화</option>
+		  <option value="식음료">식음료</option>
+<%} %>		 
 		</select><br/>
-수  량 : <select name="ulevel">
+수  량 : <select name="item_value">
+	<%if(item_value.equals("1")){ %>
 		  <option value="1">1</option>
-		  <option value="1">2</option>
-		  <option value="1">3</option>
-		  <option value="1">4</option>
-		  <option value="1">5</option>	</select><br/>
-판매자 : <input type="text" name="" value="">	<br/>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+	<%}else if(item_value.equals("2")){ %>	
+		  <option value="2">2</option>
+		  <option value="1">1</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option> 
+	<%}else if(item_value.equals("3")){ %>	
+		  <option value="2">3</option>
+		  <option value="1">1</option>
+		  <option value="3">2</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>  
+	<%}else if(item_value.equals("4")){ %>	
+		  <option value="2">4</option>
+		  <option value="1">1</option>
+		  <option value="3">2</option>
+		  <option value="4">3</option>
+		  <option value="5">5</option>   
+	<%}else if(item_value.equals("5")){ %>	
+		  <option value="5">5</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">2</option>
+		  <option value="4">4</option>  
+	<%}%>
+		  	</select><br/>
+판매자 : <input type="text" name="item_seller" value="<%= item_seller %>">	<br/>
 <input type="submit" value="상품수정버튼"><br/>
 </form>	       
 		 

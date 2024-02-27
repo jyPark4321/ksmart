@@ -71,8 +71,7 @@ css/main.css
     <td>의류</td>
     <td>5</td>
     <td>사길동</td>
-    <td><a href="<%= request.getContextPath() %>/item/item_update_form.jsp">수정</a></td>
-    <td><a href="<%= request.getContextPath() %>/item/item_list_delete.jsp">삭제</a></td>
+   
   </tr>
 </table>
 		 

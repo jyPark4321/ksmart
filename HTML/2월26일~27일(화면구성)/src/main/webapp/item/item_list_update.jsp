@@ -65,23 +65,32 @@ css/main.css
     
   </tr>
   <tr>
-    <td>수정후_1</td>
-    <td>수정후_코트</td>
-    <td>1000</td>
+    <td>1</td>
+    <td>코트</td>
+    <td>100000</td>
     <td>의류</td>
     <td>5</td>
     <td>사길동</td>
-    <td><a href="<%= request.getContextPath() %>/item/item_update_form.jsp">수정</a></td>
-    <td><a href="<%= request.getContextPath() %>/item/item_list_delete.jsp">삭제</a></td>
+<%
+request.setCharacterEncoding("euc-kr");
+String item_id = request.getParameter("item_id");
+String item_price = request.getParameter("item_price");
+String item_type = request.getParameter("item_type");
+String item_value = request.getParameter("item_value");
+String item_seller = request.getParameter("item_seller");
+
+
+%>
   </tr>
   <tr>
     <td>2</td>
-    <td>커피</td>
-    <td>1500</td>
-    <td>식음료</td>
-    <td>7</td>
-    <td>오길동</td>
-    
+    <td><%= item_id %></td>
+    <td><%= item_price %></td>
+    <td><%= item_type %></td>
+    <td><%= item_value %></td>
+    <td><%= item_seller %></td>
+    <td><a href="<%= request.getContextPath() %>/item/item_update_form.jsp?item_id=<%= item_id%>&item_price=<%= item_price%>&item_type=<%= item_type%>&item_value=<%= item_value%>&item_seller=<%= item_seller%>">수정</a></td>
+    <td><a href="<%= request.getContextPath() %>/item/item_list_delete.jsp">삭제</a></td>
   </tr>
 </table>
 		 

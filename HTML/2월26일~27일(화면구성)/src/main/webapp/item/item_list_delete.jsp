@@ -64,24 +64,16 @@ css/main.css
     <th>판매자</th>
     
   </tr>
- <%--  <tr>
-    <td>수정후_1</td>
-    <td>수정후_코트</td>
+  <tr>
+    <td>1</td>
+    <td>코트</td>
     <td>1000</td>
     <td>의류</td>
     <td>5</td>
     <td>사길동</td>
-    <td><a href="<%= request.getContextPath() %>/item/item_update_form.jsp">수정</a></td>
-  </tr> --%>
-  <tr>
-    <td>2</td>
-    <td>커피</td>
-    <td>1500</td>
-    <td>식음료</td>
-    <td>7</td>
-    <td>오길동</td>
-    
+   
   </tr>
+  
 </table>
 		 
 		 </div>

@@ -34,8 +34,8 @@ css/main.css
          <div id="header">
 <a href="<%= request.getContextPath() %>/user/user_insert_form.jsp">01회원가입</a>					 
 <a href="<%= request.getContextPath() %>/user/user_list.jsp">02회원검색</a>					 
-<a href="#">03상품등록</a>					 
-<a href="#">04상품검색</a>					 
+<a href="<%= request.getContextPath() %>/item/Item_insert_form.jsp">03상품등록</a>					 
+<a href="<%= request.getContextPath() %>/item/Item_list.jsp">04상품검색</a>				 
 		 
 			   
 		 </div>
@@ -74,15 +74,30 @@ css/main.css
     <td><a href="<%= request.getContextPath() %>/user/user_update_form.jsp">수정</a></td>
     <td><a href="<%= request.getContextPath() %>/user/user_list_delete.jsp">삭제</a></td>
   </tr>
+   <%
+request.setCharacterEncoding("euc-kr");
+String uid = request.getParameter("uid");
+String upw = request.getParameter("upw");
+String ulevel = request.getParameter("ulevel");
+String uname = request.getParameter("uname");
+String uemail = request.getParameter("uemail");
+
+
+System.out.println(uid + "<---uid");
+System.out.println(upw + "<---upw");
+System.out.println(ulevel + "<---ulevel");
+System.out.println(uname + "<---uname");
+System.out.println(uemail + "<---uemail");
+%>
   <tr>
     <td>2</td>
-    <td>id002</td>
-    <td>수정후_pw002</td>
-    <td>수정후_판매자</td>
-    <td>수정후_이길동</td>
-    <td>수정후_email2@naver.com</td>
+    <td><%= uid%></td>
+    <td><%= upw%></td>
+    <td><%= ulevel%></td>
+    <td><%= uname%></td>
+    <td><%= uemail%></td>
     <td>
-<a href="<%= request.getContextPath() %>/user/user_update_form.jsp">수정버튼</a></td>
+<a href="<%= request.getContextPath() %>/user/user_update_form.jsp?uid=<%= uid%>&upw=<%= upw%>&ulevel=<%= ulevel%>&uname=<%= uname%>&uemail=<%= uemail%>">수정버튼</a>	
 <td><a href="<%= request.getContextPath() %>/user/user_list_delete.jsp">삭제</a></td>
   </tr>  
 </table>

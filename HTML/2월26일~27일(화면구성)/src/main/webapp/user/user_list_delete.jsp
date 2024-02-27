@@ -34,8 +34,8 @@ css/main.css
          <div id="header">
 <a href="<%= request.getContextPath() %>/user/user_insert_form.jsp">01회원가입</a>					 
 <a href="<%= request.getContextPath() %>/user/user_list.jsp">02회원검색</a>					 
-<a href="#">03상품등록</a>					 
-<a href="#">04상품검색</a>					 
+<a href="<%= request.getContextPath() %>/item/Item_insert_form.jsp">03상품등록</a>					 
+<a href="<%= request.getContextPath() %>/item/Item_list.jsp">04상품검색</a>				 
 		 
 			   
 		 </div>

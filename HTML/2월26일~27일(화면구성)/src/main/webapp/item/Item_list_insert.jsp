@@ -35,7 +35,7 @@ css/main.css
 <a href="<%= request.getContextPath() %>/user/user_insert_form.jsp">01회원가입</a>					 
 <a href="<%= request.getContextPath() %>/user/user_list.jsp">02회원검색</a>					 
 <a href="<%= request.getContextPath() %>/item/Item_insert_form.jsp">03상품등록</a>				 
-<a href="<%= request.getContextPath() %>/item/Item_list.jsp">04상품검색</a>					 
+<a href="<%= request.getContextPath() %>/item/Item_list_insert.jsp">04상품검색</a>					 
 		 
 			   
 		 </div>
@@ -52,7 +52,7 @@ css/main.css
 		 <!-- Begin Right Column -->
 		 <div id="rightcolumn">
 
-<h2>3-2 상품 추가 후 상품 리스트(1건)</h2>
+<h2>3-2 상품 추가 후 상품 리스트(2건)</h2>
 
 <table style="width:100%">
   <tr>
@@ -67,23 +67,33 @@ css/main.css
   <tr>
     <td>1</td>
     <td>코트</td>
-    <td>1000</td>
+    <td>100000</td>
     <td>의류</td>
     <td>5</td>
     <td>사길동</td>
-    <td><a href="<%= request.getContextPath() %>/item/item_update_form.jsp">수정</a></td>
-    <td><a href="<%= request.getContextPath() %>/item/item_list_delete.jsp">삭제</a></td>
+    
   
   </tr>
-    
+  <%
+request.setCharacterEncoding("euc-kr");
+String item_id = request.getParameter("item_id");
+String item_price = request.getParameter("item_price");
+String item_type = request.getParameter("item_type");
+String item_value = request.getParameter("item_value");
+String item_seller = request.getParameter("item_seller");
+
+
+%>
+ 
   <tr>
     <td>2</td>
-    <td>커피</td>
-    <td>1500</td>
-    <td>식음료</td>
-    <td>7</td>
-    <td>오길동</td>
-    
+    <td><%= item_id %></td>
+    <td><%= item_price %></td>
+    <td><%= item_type %></td>
+    <td><%= item_value %></td>
+    <td><%= item_seller %></td>
+    <td><a href="<%= request.getContextPath() %>/item/item_update_form.jsp?item_id=<%= item_id%>&item_price=<%= item_price%>&item_type=<%= item_type%>&item_value=<%= item_value%>&item_seller=<%= item_seller%>">수정</a></td>
+    <td><a href="<%= request.getContextPath() %>/item/item_list_delete.jsp">삭제</a></td>
   </tr>
 </table>
 		 
