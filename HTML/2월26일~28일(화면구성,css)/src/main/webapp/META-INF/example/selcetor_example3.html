@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style>
+ /* :hover = 요소에 마우스를 올려 놓았을 때를 선택 */
+section.example8 li:hover{
+	color:red;
+} 
+/*  :focus = 해당 요소에 키보드 포커스가 맞춰졌을 때 */
+section.example9 input:focus{
+	color:red;
+}
+ /* :active = 요소가 활성화 되었거나 클릭 되었을 때 */ 
+section.example10 li:active{
+	color:red;
+}
+ /* :first-child = 첫번쩨 요소에 해당 CSS를 적용한다. */ 
+ section.example11 li:first-child{
+	color:red;
+}
+ /* :last-child = 마지막에 해당 CSS를 적용한다.  */
+ section.example12 li:last-child{
+	color:red;
+}
+ /* :nth-child(숫자,even,odd) = n번째 요소에 CSS를 적용한다. */ 
+ section.example13 li:nth-child(odd){
+	color:red;
+}
+
+ section.example14 p:last-child, section.example14 li:last-child{
+ 	color:red;
+ }
+
+
+</style>
+</head>
+<body>
+<!-- <section class="example8">
+	<h1>:hover 예제</h1>
+		<ul>
+			<li>li 태그1</li>
+			<li>li 태그2</li>
+			<li>li 태그3</li>
+		</ul>
+</section>
+
+<section class="example9">
+	<h1>:focus 예제</h1>
+		<input type="text" >
+</section>
+
+<section class="example10">
+	<h1>:active 예제</h1>
+		<ul>
+			<li>li 태그1</li>
+			<li>li 태그2</li>
+			<li>li 태그3</li>
+		</ul>
+		
+</section>
+
+<section class="example11">
+	<h1>:first-child 예제</h1>
+	<ul>
+		<li>li 태그1</li>
+		<li>li 태그2</li>
+		<li>li 태그3</li>
+	</ul>
+</section>
+
+<section class="example12">
+	<h1>:last-child 예제</h1>
+	<ul>
+		<li>li 태그1</li>
+		<li>li 태그2</li>
+		<li>li 태그3</li>
+	</ul>
+</section>
+
+<section class="example13">
+	<h1>:nth-child 예제</h1>
+	<ul>
+		<li>li 태그1</li>
+		<li>li 태그2</li>
+		<li>li 태그3</li>
+	</ul>
+</section> -->
+
+<section class="example14">
+		<h1>가상클래스 연습</h1>
+		-----------------------------------------
+		<div>
+		
+			div1
+			<ul>
+				<li> div1의  li1</li>
+				<li> div1의  li2</li>
+				<li> div1의  li3</li>
+			</ul>
+  			<section>
+  			div의 section
+    			<p>div1의 section의  p1</p>
+    			<p>div1의 section의  p2</p>
+  			</section>
+  			<p>div1의 p</p>
+		</div>
+		-----------------------------------------
+		<div>
+			div2
+  			<p> div2의 p1</p>
+  			<p> div2의 p2</p>
+  		</div>
+
+		<p>section의 p1</p>
+		<p>section의 p2</p>
+		</section>
+</body>
+</html>

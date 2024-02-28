@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="EUC-KR">
+	<title>Insert title here</title>
+		<style>
+			section.example15 li::before{
+			content:'[';
+			}
+			section.example15 li::after{
+			content:']';
+			}
+			
+			section.example16 li::marker{
+			color:red;
+			}
+			
+			section.example17 input[type="text"]{
+			width: 50%;
+			}
+			section.example17 input[type="password"]{
+			width: 60%;
+			}
+			section.example17 input[type="email"]{
+			width: 70%;
+			}
+			section.example17 div[data="test-div"]{
+			width: 200px;
+			height: 100px;
+			background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<section class="example15">
+			<h1>::before 예제</h1>
+			<ul>
+				<li>li 태그1</li>
+				<li>li 태그2</li>
+				<li>li 태그3</li>
+			</ul>
+		</section>
+		
+		<section class="example16">
+			<h1>::marker 예제</h1>
+			<ul>
+				<li>li 태그1</li>
+				<li>li 태그2</li>
+				<li>li 태그3</li>
+			</ul>
+		</section>
+		
+		<section class="example17">
+			<h1>속성선택자 예제</h1>
+			<input type="text" name="text" > <br/>
+			<input type="password" name="password" > <br/>
+			<input type="email" name="email" > <br/>
+			<div data="test-div"></div> 
+			
+		</section>
+	</body>
+</html>
