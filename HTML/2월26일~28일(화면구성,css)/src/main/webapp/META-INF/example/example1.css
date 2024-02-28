@@ -1,0 +1,23 @@
+@charset "EUC-KR";
+
+
+
+	section.example1 *{
+			color:red;
+			} 
+			
+	section.example2 p{
+			color:red;
+			}
+	
+	section.example3 #pTag{
+			color:red;
+	} 
+	
+	section.example4 .divClass{
+			color:red;
+	} 			
+		
+	
+	
+  
