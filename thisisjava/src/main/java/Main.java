@@ -12,7 +12,17 @@ public class Main {
 		VariableEdu.charSample3();
 		VariableEdu.stringSample1();
 		VariableEdu.stringSample2();
-	
+		VariableEdu.stringSample3();
+		VariableEdu.prac_1jo();
+		VariableEdu.prac_2jo();
+		VariableEdu.numSample1();
+		VariableEdu.numSample2();
+		VariableEdu.castingSample1();
+		VariableEdu.castingSample2();
+		VariableEdu.scannerSample1();
+		
+		
 	}
+	
 
 }
