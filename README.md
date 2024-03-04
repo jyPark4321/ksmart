@@ -48,3 +48,20 @@
 > 설명: 가상선택자(Hover, Focous, Active, first-child, last-child, nth-child)
 >       가상요소선택자(before,after,marker)
 >       속성선택자
+
+# 3월 04일 훈련 요약(Java)
+
+
+
+### 1.오전수업
+
+
+> 설명: jdk설치,이클립스 기본 셋팅
+
+
+### 2.오후수업
+
+
+> 설명: 변수와 타입
+> 기본타입, 문자열타입
+> 변수 선언과 활용
