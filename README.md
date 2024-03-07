@@ -65,3 +65,35 @@
 > 설명: 변수와 타입
 > 기본타입, 문자열타입
 > 변수 선언과 활용
+
+# 3월 06일 훈련 요약(DataBase)
+
+
+
+### 1.오전수업
+
+
+> 설명: MySql,HeidiSQL 개발환경설정
+
+
+### 2.오후수업
+
+
+> 설명: DBMS 종류별 특징
+> DDL : 데이터베이스 생성
+> DML : SELECT, INSERT, UPDATE, DELETE 실습
+
+# 3월 07일 훈련 요약(DataBase)
+
+
+
+### 1.오전수업
+
+
+> 설명: SQL 별칭 AS, 논리연산자 BETWEEN 연산자, IN연산자, LIKE연산자 실습
+
+
+### 2.오후수업
+
+
+> 설명: DISTNCT, LIMIT, ORDER BY 실습
