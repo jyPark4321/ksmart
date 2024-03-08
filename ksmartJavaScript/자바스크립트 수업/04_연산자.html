@@ -10,28 +10,67 @@
 	<h2>산술연산자</h2>
 	- +, -, *, /, % <br>
 	<script type="text/javascript">
-		
+		const targetValue1 = 10;
+		const targetValue2 = 5;
+		let result = targetValue1 + targetValue2;
+		console.log(result);
+		result = targetValue1 - targetValue2
+		console.log(result);
+		result = targetValue1 * targetValue2
+		console.log(result);
+		result = targetValue1 / targetValue2
+		console.log(result);
+		result = targetValue1 % targetValue2 // 나눈 나머지를 도출
+		console.log(result);
+
 	</script>
 	
 	<h2>문자결합연산자</h2>
 	- '문자' + 1 , 1 + '문자' => 문자열 연결 <br>
 	<script type="text/javascript">
-   		
+   		console.log('가'+1); //문자결합
+   		console.log(1+'나'); //문자결합
+		console.log('1' + '2');
+		console.log(Number('1') + Number('2'));
 	</script>
 
 	<h2>대입 연산자 및 복합 대입 연산자</h2>
 	- 일반적인 산술연산자를 간소화시켜 쓰는 방식 <br>
 	- =, +=, -=, *=, /=, %=<br>
 	<script type="text/javascript">
+		// 대입(할당) 연산자 (변수에 값을 할당) vs DB(SQL) '=' : 비교, 할당
+		let variable = '값';
+
+		// 복합대입(할당) 연산자
+		let targetValue3 = 10;
+		targetValue3 += 5; // targetValue3 = targetValue3 + 5;
+		console.log(targetValue3);
+		targetValue3 -= 5; // targetValue3 = targetValue3 - 5;
+		console.log(targetValue3);
+		targetValue3 *= 5; // targetValue3 = targetValue3 * 5;
+		console.log(targetValue3);
+		targetValue3 /= 5; // targetValue3 = targetValue3 / 5;
+		console.log(targetValue3);
+		targetValue3 %= 5; // targetValue3 = targetValue3 % 5;
+		console.log(targetValue3);
 		
-
-
+		
 	</script>
 
 	<h2>증감연산자</h2>
 	- ++, -- <br>
 	<script type="text/javascript">
-		
+		let targetValue4 = 5, result3;
+		result3 = targetValue4++; // 1.변수부터 할당 2. 연산(1증가)
+		console.log(`result3:${result3}, targetValue4:${targetValue4}`);
+		result3 = targetValue4--; // 1.변수부터 할당 2. 연산(1감소)
+		console.log(`result3:${result3}, targetValue4:${targetValue4}`);
+		result3 = ++targetValue4; // 1.연산(1증가) 2. 변수에 할당
+		console.log(`result3:${result3}, targetValue4:${targetValue4}`);
+		result3 = --targetValue4; // 1.연산(1감소) 2. 변수에 할당
+		console.log(`result3:${result3}, targetValue4:${targetValue4}`);
+	
+
 	</script>
 
 	<h2>비교연산자</h2>
@@ -39,17 +78,45 @@
 	- ==(값만 비교), ===(값과 타입모두 비교),  !=, !== <br>
 	 <!-- >= , <=, >, <  -->
 	<script type="text/javascript">
-		
+		console.log('10' == 10); //단순 값만 비교
+		console.log('10' != 10); //단순 값만 비교
+		console.log('10' === 10);//값+자료형(데이터타입) 포함해서 비교
+		console.log('10' !== 10);//값+자료형(데이터타입) 포함해서 비교
+		console.log(Number('10') >= 10);
+		console.log('10' <= 10);
+		console.log(Number('10') > 10);
+		console.log('10' < 10);
 
 	</script>
 
 	<h2>논리연산자</h2>
 	- 2개 이상의 결괏값 혹은 비교연산자를 동시에 비교 <br>
-	- and -> 2개 이상의 비교값이 모두 참일 경우 참  <br>
-	- or -> 2개 이상 중 하나라도 참이면 참  <br>
-	- not -> 결괏값의 반대
+	- and(&&) -> 2개 이상의 비교값이 모두 참일 경우 참  <br>
+	- or(||) -> 2개 이상 중 하나라도 참이면 참  <br>
+	- not(!) -> 결괏값의 반대
 	
 	<script type="text/javascript">
+		const isBoolean1 =true;
+		const isBoolean2 =false;
+		const isBoolean3 = (3 >= 3);
+		const isBoolean4 = (4 > 4); 
+
+		console.log(true && true);
+		console.log(true || flase);
+		console.log(isBoolean1 && isBoolean1, '<---논리 연산자 &&');
+		console.log(isBoolean1 && isBoolean2, '<---논리 연산자 &&');
+		console.log(isBoolean1 && isBoolean2 && isBoolean3, '<---논리 연산자 &&');
+		console.log(	isBoolean1 
+					&& (isBoolean2 == isBoolean4) 
+					&& isBoolean3, 
+						'<---논리 연산자 &&');
+		console.log(isBoolean1 || isBoolean1, '<---논리 연산자 ||');
+		console.log(isBoolean1 || isBoolean2, '<---논리 연산자 ||');
+		console.log(isBoolean1 || isBoolean2 || isBoolean3, '<---논리 연산자 ||');
+		console.log(	isBoolean1 
+					|| (isBoolean2 == isBoolean4) 
+					|| isBoolean3, 
+						'<---논리 연산자 ||');
 		
 	</script>
 	
@@ -57,8 +124,34 @@
 	<h2>삼항조건연산자</h2>
 	- 조건식을 비교하여 참일 경우와 거짓일 경우 판별하여 각각의 값을 반환
 	<script type="text/javascript">
+		// (표현식:true, false) ? '참' : '거짓'
+		// 교과목 점수 60점 이상이면 pass, 60점 미만 fail;
+		const score = 59;
+		const passYN = (score >= 60) ? 'pass' : 'fail';
+		console.log(passYN);
 		
+		// 실습1. passYN의 값이 pass 일 경우 해당교과목을 이수하셨습니다.
+		//		 passYN의 값이 fail 일 경우 해당교과목을 미이수하셨습니다.
+		const passY = `해당교과목을 이수하셨습니다.`;
+		const passN = `해당교과목을 미이수하셨습니다.`;
+		let result4 = (passYN == 'pass') ? passY : passN;
+		console.log(result4);
+
+		
+
 	</script>
 
+
+	<h2>null 병합연산자</h2>
+		-구문 변수(값)??결과값 -> 변수의 값이 null 일 경우 우항의 값으로 반환<br>
+		- 변수(값)이 null이 아닌 경우는 변수에 담겨져있는 값 유지<br>
+		- ex) null? 'null일 경우 반환값';
+
+		<script>
+			const value = null;
+			const nullishValue = value??'우항의 값반환';
+			console.log(nullishValue);
+
+		</script>
 </body>
 </html>
