@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>자료형</title>
+	<link rel="icon" href="data:,">
+</head>
+<body>
+  <h1>자료형</h1>
+	- 값에 의하여 자료형이 결정된다.
+
+	<h2>typeof 자료형 확인</h2>
+	- typeof 키워드로 자료형을 확인 할 수 있다.
+	- parser 함수로 자료형을 변환 할 수 있다.
+
+	<h2>문자형</h2>
+	<script type="text/javascript">
+		//문자열
+		
+		let strValue1 = '한국스마트정보교육원';
+		let strValue2 = "한국스마트정보교육원";
+		let strValue3 = `한국스마트정보교육원`;
+		
+		//`` 백틱의 활용
+		const strValue4 = '개발자 51기';
+
+		const concatStr1 = strValue1 + ''+ strValue4;
+		console.log(concatStr1);
+		//${자바스크립트 코드를 작성하는 공간}
+		const concatStr2 = `${strValue1} ${strValue4}`;
+		console.log(concatStr1);
+
+		// 백틱사용하지 않고 다음과 같이 출력해보시오.
+		// strValue2 + strValue4 = '한국스마트정보교육원' '개발자 51기'
+		const concatStr3 = `'${strValue1}' '${strValue4}'`;
+		console.log(concatStr3);
+
+	
+
+	
+	</script>
+	
+	<h2>숫자형</h2>
+	<script type="text/javascript">
+		let num1 = 10;
+		let num2 = -10;
+		let num3 = 10.00;
+		let num4 = -10.00;
+		
+		// 특별한값
+		let num5 = Infinity; // 양의 무한대
+		let num6 = -Infinity; // 음의 무한대
+		let num7 = num1 * strValue1;
+		console.log(num7);
+
+		// 문자열 + 숫자
+		// 숫자 + 문자
+		console.log(num1 + strValue1);
+		console.log(num1 + '10');
+
+		//형변환
+		let strValue5 = String(10);
+		console.log(strValue5);
+
+		let num8 = Number('1000');
+		console.log(num8);
+
+	
+		
+	</script>
+	
+	<h2>논리형</h2>
+	- 논리형은 true 혹은 false 값이 담긴다.
+	<script type="text/javascript">
+		let isBoolean1 = true;
+		console.log(isBoolean1);
+		let isBoolean2 = false;
+		console.log(isBoolean2);
+		
+		//True False 구분하기 기억해야함.
+		console.log(Boolean(0), '<-- 0 boolean 형변환');
+		console.log(Boolean(1), '<-- 1 boolean 형변환');
+		console.log(Boolean(-1), '<-- -1 boolean 형변환');
+		console.log(Boolean('가'), '<-- 가 boolean 형변환');
+		console.log(Boolean(''), '<-- 가 boolean 형변환');
+		console.log(Boolean(undefined), '<-- 가 undefined 형변환');
+		console.log(Boolean(null), '<-- 가 null 형변환');
+
+	</script>
+	
+	<h2>null</h2>
+	- 변수는 존재하나, null로 할당된 상태 <br>
+	- null : '메모리에 할당된 공간을 더이상 참조하지 않겠다' 라는 의미 
+	<script type="text/javascript">
+		var nullValue = null; // 객체(참조데이터타입)을 참조하지 않을 때 할당
+		console.log(nullValue);
+	</script>
+	
+	<h2>undefined</h2>
+	- 변수는 존재하나(메모리에 할당된 공간), 초기값이 자바스크립트 엔진에 의해 undefined 값을 할당한 상태
+	<script type="text/javascript">
+	</script>
+	
+	<h2>typeof 연산자</h2>
+	- 문법 : typeof 값(변수); -> 값에 해당하는 자료형을 문자열로 반환
+	<script>
+		console.log(typeof strValue1);
+		console.log(typeof num1);
+		console.log(typeof isBoolean1);
+		console.log(typeof undefined);
+		// null typeof 연산을 했을 'object' 문자열 반환(초기 개발자 실수)
+		// null 확인하는 경우는 비교 연산자로 확인한다 (==)
+		console.log(typeof nullValue);
+	</script>
+</body>
+</html>

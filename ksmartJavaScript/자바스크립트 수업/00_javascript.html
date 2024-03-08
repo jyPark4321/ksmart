@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>자바스크립트란?</title>
+	<link rel="icon" href="data:,">
+</head>
+
+<body>
+	<h1>자바스크립트란?</h1>
+	- html 문서에서 동작을 담당한다. <br>
+	- script 태그 내부에 작성한다. <br>
+	- 외부 파일을 읽어 들여 실행도 가능하다. <br>
+	- html은 뼈대, css는 살을 이야기한다면, javascript는 행동(동작)을 이야기한다. <br>
+	- javascript는 script 태그를 열어 영역을 선언한다. <br>
+
+	<!-- 외부파일(js) 혹은 script는 주로 body 하단 위치 -->
+	<script src="js/ksmart51.js"></script>
+	<script type="text/javascript">
+		// 한줄주석 : 공부, 중요하게 남길경우 쓴다		
+		document.write('ksmart 51기');
+		/**
+		 * 여러줄 주석 : 함수의 기능을 작성할 때 주로 쓰여짐
+		 */
+		function printFn() {
+			console.log('콘솔 출력');
+		}
+		
+
+		printFn();
+	</script>
+
+</body>
+
+</html>
