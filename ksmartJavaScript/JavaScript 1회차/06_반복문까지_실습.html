@@ -23,8 +23,7 @@
 	<hr>
 	
 	<script type="text/javascript">
-		console.log('2 x 1 = 02\n2 x 2 = 04');
-		
+	
 		
 	</script>
 	
@@ -42,7 +41,14 @@
 	2 x 1 = 02<br>
 	<hr>
 	<script type="text/javascript">
-		
+		let initValue = 9;
+		let timesPrint2 = '';
+		while(initValue>0){
+			const multiple = (2*initValue<10) ? `0${2*initValue}` : 2*initValue;
+			timesPrint2 += `2 x ${initValue} = ${multiple}\n`
+			initValue-=1;
+		}
+			console.log(timesPrint2);
 	</script>
 	
 	<h1>for 실습</h1>
@@ -54,7 +60,25 @@
 	짝수들의 합: 2550
 	<hr>
 	<script type="text/javascript">
+		let evenSum = 0;
+		let evenNum = '';
+		let isFirst = true;
+
+		for(let i=1;i<101;i+=1){
+			if(i%2==0) {
+				evenSum += i;
+				if(isFirst){					
+						evenNum += `${i}`;
+						isFirst = false;
+						continue;
+					}
+				}
+				evenNum += `, ${i}`;
+			 }
+			 
 		
+		const evenPrint = `짝수: ${evenNum}\n짝수들의 합 : ${evenSum}`;
+		console.log(evenPrint);
 	</script>
 	
 	<h2>실습4</h2>
@@ -68,8 +92,19 @@
 	<hr>
 	
 	<script type="text/javascript">
-		let exPrint = '*\n**\n***\n****\n*****\n';
-		console.log(print6);
+		//let exPrint = '*\n**\n***\n****\n*****\n';
+		//console.log(print6);
+		let star = '';
+		let starPrint = ''
+		for(let i=0;i<6;i+=1){
+			for(let j=0;j<i;j+=1){
+				star += '*';
+			}
+			star += '\n'
+		}
+		console.log(star);
+
+		
 
 	</script>
 
@@ -166,7 +201,26 @@
 	<hr>
 
 	<script type="text/javascript">
-		
+		/* let num1 = 1;
+		let num2 = 2;
+		let timesPrint3 = '';
+		while(num1>10){
+			const multiple = (num2*num1<10) ? `0${num2*num1}` : num2*num1;
+			timesPrint2 += `${num2} x ${num1} = ${multiple}\n`
+			num1 += 1;
+			num2 += 1;
+			console.log(timesPrint3);
+		} */
+		for(let times = 2; times <10; times+=1){
+			let timesPrint =`--------${times}단----------\n`;
+			for(let digit=1;digit<10;digit+=1){
+				let result = times * digit;
+				let formatNum = (result<10)?`0${result}`:(result);
+				timesPrint += `${times}X${digit} = ${formatNum}\n`;
+			}
+			timesPrint += `---------------------\n`;
+			console.log(timesPrint);
+		}
 	</script>
 </body>
 </html>
