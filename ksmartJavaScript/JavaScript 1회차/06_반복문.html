@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="#" type="image/x-icon">
+	<title>반복문</title>
+</head>
+<body>
+	<h1>반복문 while</h1>
+	- 조건식만 지정되있다 <br>
+	- 초깃값, (조건식, 증감 : 블록 범위 안)
+	<script type="text/javascript">
+		/**
+		 *  변수 = 0;
+		 *  while (조건식){
+		 * 		변수 증감(반복 횟수 정해짐) // 조심!!!
+		 *  }
+		 * 
+		 * */
+	
+		
+	</script>
+
+	<h1>반복문 do while</h1>
+	- 1. do (코드를 먼저 실행), 2. 조건판단(반복여부)<br>
+	<script type="text/javascript">
+		/**
+		 * 1. 초깃값
+		 * 		변수 = 값;
+		 * 2. do {
+		 * 			실행코드
+		 * 3.	}while(조건);
+		 *   
+		 */
+		
+		
+	</script>
+	
+  <h1>반복문 for</h1>
+	- (초깃값, 조건식, 증감 : 블록 범위 안)
+	- 분리 가능
+	<script type="text/javascript">
+		// var는 함수스코프이기 때문에 블록을 벗어나도 참조가 가능
+		// 그렇기 때문에 let으로 선언한다.
+		for(let i=0; i<2;i++){
+			console.log(`${i+1}번 실행`);
+		}
+		//console.log(i);
+		let i = 0; //초기값
+		for(;i<2;){
+			console.log(`${i+1}번 실행`);
+			i+=1;
+		}
+	</script>
+	
+	<h1>break</h1>
+	- 해당 키워드를 만날 경우 반복이 중지된다.
+	<script type="text/javascript">
+		/* 인접하고 있는 블록을 빠져나온다.
+		{
+			break;
+		}
+		for(반복문 키워드) 가장 가까운 for(반복문 키워드)문의 블록을 빠져나온다.
+		*/
+		
+		for(let i=0;i<2;i+=1){
+			console.log(`i: ${i+1}번 실행`);
+		}
+		for(let i=0;i<2;i+=1){
+			console.log(`i:${i+1}번 실행`);
+			for(let j=0;j<2;j+=1){
+			if(j == 1) break;
+			console.log(`j: ${j+1}번 실행`);
+			}
+		}
+	</script>
+	
+	<h1>continue</h1>
+	- continue 키워드를 만나게 될 경우 다음 반복을 진행 (skip)
+	<script type="text/javascript">
+		/* 인접하고 있는 블록을 빠져나온다.
+		for
+		continue -> 아래에 위치한 코드는 실행x , 증감식으로 간다.
+		*/
+		for(let i=0;i<2;i+=1){
+			if(i == 1) continue;
+			console.log(`${i+1}번 실행`);
+		}
+	</script>
+
+	<h1>레이블 문</h1>
+	- 식별자가 붙은 문장<br>
+	- {}문, 반복문, switch문에서 사용한다.<br>
+	- 프로그램의 실행순서를 제어하는데 사용한다.<br>
+	- but, 레이블 문을 사용하면 프로그램의 흐름이 복잡해져서<br>
+	&ensp;&nbsp;가독성이 저하된다.
+	<script type="text/javascript">
+	block : {
+		let i = 0;
+		if(i == 0) break block;
+		console.log('레이블 문 코드 실행');
+	}
+
+	outerFor : for(let i=0;i<2;i+=1){
+				console.log(`i:${i+1}번 실행`);
+					for(let j=0;j<2;j+=1){
+					if(j == 1) break outerFor;
+					console.log(`j: ${j+1}번 실행`);
+					}
+				}
+	</script>
+</body>
+</html>

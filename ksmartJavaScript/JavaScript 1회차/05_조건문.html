@@ -6,6 +6,57 @@
   <link rel="icon" href="data:,">
 </head>
 <body>
+
+  <h2>scope</h2>
+  - 유효범위(블록) <br>
+  -  참조대상 식별자(변수, 함수의 이름과 같이 어떤대상을 다른 대상과 구분하여
+  식별할 수 있는 유일한 이름)를 찾아내기 위한 규칙<br>
+  - 유효범위: 1. 함수 스코프 2. 변수 스코프<br>
+   
+	<script>
+
+    console.log(str);
+    var str = '가';
+    //console.log(variable);
+    //let variable = '변수';
+
+		/**
+		 * 전역 변수 vs 지역변수
+		 * scope -> 유효범위 -> {}
+		 * scope : 전역(global), function, block
+		 * scope 영역 내에 선언된 변수는 지역변수
+		 * scope 영역 밖 상단에 선언된 변수는 전역변수
+		 * 
+		 * 전역변수 -> 유효범위 내에서 참조가능, 데이터는 유효 범위 내에서만 존재
+		 * 지역변수 -> 다른 유효범위에서 사용가능
+		 * 
+		 * 전역변수 vs 지역변수 우선순위 
+		 * let name
+		 * {
+		 * 		let name;
+		 * 		console.log(name, '전역변수와 지역변수 중 누구를 우선으로 참조할지?')
+		 * }
+		 */
+
+    // 호이스팅 let, const 된다
+
+    // 호이스팅이란?
+    // line by line 으로 실행하기 전에 전체코드를 먼저 읽고 
+    // 함수나 변수에 해당하는 부분을 미리 메모리에 적재하기 때문에 
+    // 밑에서 선언한 변수도 위에서 참조할 수 있다
+    // let const 블록스코프
+    // 블록을 만났을 때 호이스팅을 먼저 끌어올림
+    // let const 명확하게 보이진 않음
+    // let의 활용 ->> 선언후 밑에 라인으로 내려가서 사용하기 위해 등장함.
+
+      let name = '홍길동';  // 전역변수
+      {
+        console.log(name);  // 지역변수 우선순위
+        let name = '김철수';  // 지역변수
+      }
+
+	</script>
+  
   <h1>if, else if, else</h1>
   - if 안에 있는 조건식이 참인 경우 해당하는 if문, else if문을 실행 한다. 
   - 조건문(if, else if)에 모두 해당하지 않으면 else에 있는 statement3이 실행된다. 
@@ -23,21 +74,63 @@
       vs
       if(){ }
       if(){ }
-    */
+      
+      const char = 'A';
+      if(char == 'A'){
+        console.log('A 일치');
+      } else if(char == 'B'){
+        console.log('B 일치');
+      }else{
+        console.log('일치하는 문자가 없습니다.');
+      }
+      
+      if(char == 'A') console.log('A 일치');
+      if(char == 'B') console.log('B 일치');
+      if(char == 'A' && char == 'B') console.log('일치하는문자가없습니다');
+      
+      */
 
     /* 실습1. 83점일 경우 '해당과목의 학점은 B입니다' 출력하시오 */
     /* 100~90 A, 89~80 B, 79~70 C, 69~60 D, 59~ F */
     // 변수0  fix 유연x
-    
+      const score = 83;
+      let grade = '';
+      if(score >= 90 && score <= 100){
+        grade = 'A';
+      } else if(score >= 80){
+        grade = 'B';
+      } else if(score >= 70){
+        grade = 'C';
+      } else if(score >= 60){
+        grade = 'D';
+      } else {
+        grade = 'F';
+      }
+      const print = `해당과목의 학점은 ${grade}입니다.`;
+      console.log(print);
 
     /* 실습 2. database, javascript 이수점수가 다릅니다.
-              이수조건 : database(60), javascript(70) 
+              이수조건 : database(56), javascript(70) 
               database, javascript 점수를 입력했을시
               결과로  'database 점수: 56점 fail'
-                     'database 점수: 61점 pass'
+                     'javascript 점수: 70점 pass'
               를 출력하시오.*/
-    
-  </script>
+     
+      const subject1 = 'database';
+      const subject2 = 'javascript';
+
+      const subject1Score = 56;
+      const subject1Score = 70;
+
+      const passResult1 = `fail`;
+      const passResult2 = `fail`;
+
+      if(subject1 == 'database' && subject1Score >= 60){
+        passResult1 = 'pass';
+      } else if(subject2 == 'javascript' && subject2Score >= 70){
+        passResult2 = 'pass';
+      }    
+      </script>
 
   <h2>switch</h2>
 	- 값 1개를 여러번 동시에 비교(같은 값) 할 수 있는 문장 <br>
@@ -45,7 +138,7 @@
 	- break; -> switch 문 중단 <br>
 	- default; -> case의 값과 일치한 내용이 없을 경우 <br>
 	
-  <script type="text/javascript">
+ <script type="text/javascript">
     /*
     switch (변수) {
       case value:  //if (변수 == value) => true
@@ -61,7 +154,27 @@
 
     /* (switch) 실습1. 83점일 경우 '해당과목의 학점은 B입니다' 출력하시오 */
     /* 100~90 A, 89~80 B, 79~70 C, 69~60 D, 59~ F */ 
-    
+    const exScore = 83;
+    let exGrade = 'F';
+    switch(true){
+      case (exScore >= 90 && exScore <= 100 ):
+          exGrade = 'A';
+          break;
+          case (exScore >= 80 && exScore <= 89 ):
+           
+            exGrade = 'B';
+            break;
+      case (exScore >= 70 && exScore <= 79 ):
+            exGrade = 'C';
+              break;
+      case (exScore >= 60 && exScore <= 69 ):
+            exGrade = 'D';
+            break;
+    }
+    const exPrint = `해당과목의 학점은 ${exGrade}입니다.`;
+    console.log(exPrint);
+
+
 	</script>
 </body>
 </html>
