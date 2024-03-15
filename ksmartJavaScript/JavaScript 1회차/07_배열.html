@@ -14,7 +14,27 @@
 	- index는 0부터 시작된다. <br>
 	- 배열 객체에 담긴 대상을 요소(원소) 라고 한다.
 	<script type="text/javascript">
-		
+		// 배열생성
+		const arr = [];
+		console.log(arr);
+		const arr2 = new Array();
+		console.log(arr2);
+
+		//배열 생성하면 원소 초기화
+		const arr3 = ['홍길동','김철수'];
+		console.log(arr3);
+		const arr4 = new Array('홍길동','김철수');
+		console.log(arr4);
+
+		//숫자 하나일 경우
+		const arr5 = [2];
+		console.log(arr5);
+		const arr6 = new Array(2);
+		console.log(arr6);
+
+		// Javascript는 타입이 정해진 언어가 아니기 때문에 모든 데이터를 할당할 수 있다.
+		const arr7 = [1,'가',true,null,undefined, {},[],function(){}];
+		console.log(arr7);
 
 	</script>
 	
@@ -22,6 +42,24 @@
 	- 배열의 인덱스로 배열의 값에 접근 혹은 대입이 가능하다.
 	
 	<script type="text/javascript">
+		// call by value(값) vs call by referense(주소)
+		const num1 = 100;
+		const num2 = 100;
+		// 값을 호출하기 때문에 비교가능
+		console.log(num1 == num2,'<--call by value');
+		const compareArr1 = [100]; // 배열을 생성한 메모리 주소값이 할당
+		const compareArr2 = [100]; // 배열을 생성한 메모리 주소값이 할당
+		//단순하게 비교할 수 없다.
+		console.log(compareArr1 == compareArr2,'<--call by reference');
+		// 배열[index]
+		console.log(compareArr1[0] == compareArr2[0]);
+		// 배열의 요소 재할당
+		compareArr1[0] = 200;
+		console.log(compareArr2.length);
+		const length = compareArr2.length;
+		compareArr2[length]=200;
+		console.log(compareArr2);
+		
 		
 	</script>
 	
@@ -30,10 +68,47 @@
 	- length : 배열의 크기를 알수 있는 속성 <br>
 	- push() : 배열에 값을 삽입하는 메서드 <br>	
 	- pop() : 배열의 마지막 요소 제거 후 제거된 요소 반환<br>
+	- unshift() : 배열의 처음 요소로 값을 삽입하는 메소드<br>
+	- shift() : 배열의 처음 요소 제거 후 제거된 요소 반환<br>
 	- splice(삭제를 시작할 인덱스, 삭제할 요소수) : 특정배열 요소 삭제 <br>
 	- Array.isArray(배열 변수명) : 배열 여부 확인<br>	
 	<script type="text/javascript">
+		const targetArray = [100,200,300,400];
+		console.log(targetArray.length,'<-- 배열의 크기를 가진 속성');
 		
+		//push(): 변경된 배열의 크기를 반환
+		let pushReturn = targetArray.push(500,600); 
+		console.log(targetArray);
+		console.log(pushReturn);
+
+		//pop(): 배열에서 제거된 마지막요소를 반환
+		let popReturn = targetArray.pop();
+		console.log(targetArray);
+		console.log(popReturn);
+		
+		//unshift() : 변경된 배열의 크기를 반환
+		let unshiftReturn = targetArray.unshift(10,20,30);
+		console.log(targetArray);
+		console.log(unshiftReturn);
+
+		//shift() : 배열에서 제거된 첫번째 요소를 반환
+		let shiftReturn = targetArray.shift();
+		console.log(targetArray);
+		console.log(shiftReturn);
+
+		//splice() : 배열의 요소를 제거, 추가
+		//splice(삭제를 시작할 인덱스,인덱스로부터 몇개를 삭제 숫자)
+		//삭제된 요소를 새로운 배열에 담아서 반환
+		let spliceReturn = targetArray.splice(2,3);
+		console.log(targetArray);
+		console.log(spliceReturn);
+		console.log(Array.isArray(spliceReturn)); 
+
+		//splice(추가시킬 인덱스, 0, 추가할 데이터);
+		spliceReturn = targetArray.splice(2,0,40,50);
+		console.log(targetArray);
+		console.log(spliceReturn);
+
 	</script>
 
 	<h2>얕은복사 vs 깊은복사</h2>
