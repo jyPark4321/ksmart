@@ -13,7 +13,11 @@
 	실습. 아래의 배열의 요소에 접근하여 콘솔에 차례대로 출력 하도록 하시오.
 	<script type="text/javascript">
 		const arr1 = ['손흥민', '김민재', '황희찬', '황의조', '이강인', '김승규'];
-		
+		let arrPrint = '';
+		for(var i = 0 ; i <=arr1.length; i+=1){
+			arrPrint += arr1[i];
+		}
+		console.log(arr1);
 		
 	</script>
 
@@ -21,7 +25,14 @@
 	실습. 아래의 배열의 요소에 접근하여 이름만 콘솔에 차례대로 출력 하도록 하시오.
 	ex) 손흥민, 황희찬, 이강인, 김승규
 	<script type="text/javascript">
+		/*
+			javascript에서 배열안의 요소의 타입을 확인하고 출력하는방법
+			filter()메소드를 이용해서 
+			item => typeof item이 'string' 이면 그값을 저장
+		*/
 		const arr2 = [4, '손흥민', 1, '황희찬', 2, '이강인', '김승규', 3, undefined, null, true];
+			const stringArray = arr2.filter(item => typeof item === 'string');
+		console.log(stringArray);
 		
 	</script>
 
@@ -30,6 +41,12 @@
 	실습. 추출한 짝수만 evenArray 참조변수(배열)에 담으시오
 	<script type="text/javascript">
 		var nArr = [13,15,20,22,35,50,70,99];
+		const evenArray = nArr.filter(number => number % 2 === 0);
+		let evenSumPrint = 0;
+		for(let i = 0;i<evenArray.length;i++){
+			evenSumPrint += evenArray[i];
+		}
+		console.log(evenSumPrint);
 		
 	</script>
 
@@ -40,6 +57,17 @@
 	실습. 아래의 배열에 학생의 점수가 담겨 있다. 60점 이상인 학생 수를 구하시오.
 	<script type="text/javascript">
 		var nArr01 = [60, 70, 55, 60, 80, 99];
+		let sumScore = 0; 
+		let avrScore = 0;
+		for(let i = 0;i<nArr01.length;i++){
+			sumScore += nArr01[i];
+			avrScore = sumScore/(i+1);
+		}
+		const nArr60 = nArr01.filter(number => number >= 60);
+		let countArr = nArr60.length; 
+
+		console.log(`학생들의 평균 점수 : ${avrScore.toFixed(2)}`);
+		console.log(`60점 이상인 학생 수 : ${countArr}`);
 		
 
 	</script>
@@ -48,6 +76,15 @@
 	실습. 0~1000까지 홀수인 숫자만 배열에 담으시오. 홀수들의 합산을 구하시오.
 	<script type="text/javascript">
 		var nArr01 = [];
+		var sumArr01 = 0;
+		for(i=0;i<1001;i++){
+			if(i % 2 !== 0){
+				nArr01[i] = i;
+				sumArr01 += i;
+			}
+		}
+		console.log(sumArr01);
+		console.log(nArr01);
 		
 	</script>
 
@@ -103,6 +140,13 @@
 				html +='  </tbody>';
 			  html +='</table>';
 				*/
+	const rows = 3;
+	const cols = 3;
+	const result = [];
+	for (let i = 0; i < student.length; i += cols) {
+   		 result.push(student.slice(i, i + cols));
+	}
+	console.log(result);
 				
 	</script>
 
