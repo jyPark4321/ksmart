@@ -13,15 +13,16 @@
 	실습. 아래의 배열의 요소에 접근하여 콘솔에 차례대로 출력 하도록 하시오.
 	<script type="text/javascript">
 		// 내 풀이
-		const arr1 = ['손흥민', '김민재', '황희찬', '황의조', '이강인', '김승규'];
+		const arr1 = ['손흥민', '김민재', '황희찬', '황의조',  '김승규'];
 		let arrPrint = '';
-		for(var i = 0 ; i <=arr1.length; i+=1){
+		for(let i = 0 ; i <=arr1.length; i+=1){
 			arrPrint += arr1[i];
 		}
 		console.log(arr1);
-
 		// 선생님 풀이
-		
+		for(const name of arr1){
+			console.log(name);
+		}
 	</script>
 
 	<h2>실습2</h2>
@@ -34,9 +35,24 @@
 			item => typeof item이 'string' 이면 그값을 저장
 		*/
 		// 내풀이
-		const arr2 = [4, '손흥민', 1, '황희찬', 2, '이강인', '김승규', 3, undefined, null, true];
+		const arr2 = [4, '손흥민', 1, '황희찬', 2,  '김승규', 3, undefined, null, true];
 			const stringArray = arr2.filter(item => typeof item === 'string');
 		console.log(stringArray);
+		
+		// 반복문을 사용해서 풀기
+		let ex2Print = '';	
+		let isFirst = true;
+		for(const element of arr2){
+			if(typeof element == 'string'){
+				if(isFirst){
+					ex2Print += element;
+					isFirst = false;
+					continue;
+				}
+				ex2Print +=  `, ${element}`;
+			}
+			}
+			console.log(ex2Print);
 		// 선생님풀이
 	</script>
 
@@ -52,8 +68,17 @@
 			evenSumPrint += evenArray[i];
 		}
 		console.log(evenSumPrint);
-
+		//쉽게 풀어보기 
+		ex3Print = 0;
+		for(let element of nArr){
+			if(element%2 == 0){
+				ex3Print += element;
+				continue;	
+			}
+		}
+		console.log(`쉽게풀어보기 : ${ex3Print}`);
 		// 선생님 풀이
+		
 
 	</script>
 
@@ -64,20 +89,31 @@
 	실습. 아래의 배열에 학생의 점수가 담겨 있다. 60점 이상인 학생 수를 구하시오.
 	<script type="text/javascript">
 		// 내풀이
-		var nArr01 = [60, 70, 55, 60, 80, 99];
+		const scoreArray = [60, 70, 55, 60, 80, 99];
 		let sumScore = 0; 
 		let avrScore = 0;
-		for(let i = 0;i<nArr01.length;i++){
-			sumScore += nArr01[i];
+		for(let i = 0;i<scoreArray.length;i++){
+			sumScore += scoreArray[i];
 			avrScore = sumScore/(i+1);
 		}
-		const nArr60 = nArr01.filter(number => number >= 60);
-		let countArr = nArr60.length; 
+		const score60 = scoreArray.filter(number => number >= 60);
+		let countArr = 0; 
 
 		console.log(`학생들의 평균 점수 : ${avrScore.toFixed(2)}`);
 		console.log(`60점 이상인 학생 수 : ${countArr}`);
-		
+	
 		//선생님 풀이
+		let scoreTotal = 0;
+		let passCnt = 0;
+
+		for(const score of scoreArray){
+			scoreTotal += score;
+			if(score>=60) passCnt += 1;
+		}
+
+		const scorePrint = `학생들의 평균점수
+		${(scoreTotal/scoreArray.length).toFixed(2)}\n 60점이상인 학생의 수 : ${passCnt}`;
+		console.log(scorePrint);
 
 	</script>
 
@@ -85,15 +121,26 @@
 	실습. 0~1000까지 홀수인 숫자만 배열에 담으시오. 홀수들의 합산을 구하시오.
 	<script type="text/javascript">
 		//내풀이
-		var nArr01 = [];
+		const oddArr = [];
 		var sumArr01 = 0;
 		for(let i=1;i<1001;i+=2){
 			
-				nArr01.push(i) ;
+				oddArr.push(i);
 				sumArr01 += i;
 		}
-		console.log(`홀수를 배열에 담기 : ${nArr01}`);
-		console.log(`홀수들의 합 : ${sumArr01}`);
+		console.log(`홀수를 배열에 담기 1 : ${oddArr}`);
+		console.log(`홀수들의 합 1 : ${sumArr01}`);
+		// 다른풀이
+		
+		var sumArr01 = 0;
+		for(let i=0;i<1001;i+=1){
+			if(i%2 == 1){
+				oddArr.push(i);
+				sumArr01 += i;
+			}
+		}
+		console.log(`홀수를 배열에 담기 2 : ${oddArr}`);
+		console.log(`홀수들의 합 2 : ${sumArr01}`);
 
 		//선생님풀이
 		
@@ -123,8 +170,8 @@
 						'세세뇽', '요리스', '에릭다이어', '벤데이비스',
 						'산체스', '손흥민'
 					  ]; 
-				/*
-				var html = '<table border="1" style="width:400px;">';
+				
+				/*var html = '<table border="1" style="width:400px;">';
 				html +='	<thead>';
 				html +='		<tr>';
 				html +='			<th style="width:calc(400px/3)">1조</th>';
@@ -149,16 +196,37 @@
 				html +=`			<td>${student[8]}</td>`;
 				html +='		</tr>';											
 				html +='  </tbody>';
-			  html +='</table>';
-				*/
-	//내풀이
-	const rows = 3;
-	const cols = 3;
-	const result = [];
-	for (let i = 0; i < student.length; i += cols) {
-   		 result.push(student.slice(i, i + cols));
-	}
-	console.log(result);
+			  html +='</table>';*/
+			  
+			  
+			  		  
+			  //내풀이
+			const colSize = 6;
+			let html = `<table border="1" style="width:400px;">`;
+			let thead = `<thead><tr>`;
+			let tbody = `<tbody style="text-align:center;"><tr>`;
+				for(let i = 0; i<student.length; i+=1){
+					//1.th구현
+					if(i < colSize){
+						thead += `<th style="width:calc(400px/${colSize})">${i+1}조</th>`;
+					}
+					//2.td구현
+					if ((i != 0) && (i % colSize == 0)) {
+						tbody += `</tr><tr>`;
+					}
+					//3.tr구현
+					tbody += `<td>${student[i]}</td>`;
+					//4.미정구현
+					if(i == (student.length -1) &&
+						student.length % colSize > 0	){
+						const size = colSize - (student.length % colSize);
+						const colspan = size>1?`colspan="${size}"` : '';
+						tbody += `<td ${colspan}>미정</td>`;		
+					}
+				}
+				html += `${thead}</tr>${tbody}</tr></table>`;
+			 
+			document.write(html);
 
 	//선생님풀이
 				
@@ -170,11 +238,43 @@
 	최고의 점수를 받은 학생의 명을 출력하도록 하시오.
 	<h2>최소의 점수를 받은 학생의 명을 출력하시오.</h2>
 	<script type="text/javascript">
-		var scoreArr = [70,60,70,80,55,80];
-		var studentArr = ['A', 'B', 'C', 'D', 'E','F'];
-		
 		//내풀이
+		/*
+			풀이계획
+			scoreArr를 순회하면서 가장 큰값을 찾고 그값의 인덱스를 저장
+			위에서 저장된 인덱스에 해당하는 배열에 저장된 값을 출력
+		*/
+		const scoreArr = [70,60,70,80,55,80];
+		const studentArr = ['A', 'B', 'C', 'D', 'E','F'];
+		let maxScore = scoreArr[0];
+		let minScore = scoreArr[0];
 
+		const maxStudent = [];
+		const minStudent = [];
+
+		
+		for (let i = 1; i < scoreArr.length; i += 1) {
+			if (maxScore < scoreArr[i]) {
+				maxScore = scoreArr[i];
+				maxStudent.splice(0);
+				maxStudent.push(studentArr[i]);
+			} else if(maxScore == scoreArr[i]){
+				maxStudent.push(studentArr[i]);
+			}
+			
+
+			if(minScore > scoreArr[i]){
+				minScore = scoreArr[i];
+				minStudent.splice(0);
+				minStudent.push(studentArr[i]);
+			}else if(minScore === scoreArr[i]){
+				minStudent.push(studentArr[i]);
+			}
+		}
+		console.log(maxStudent);
+		console.log(minStudent);
+
+		
 		//선생님풀이
 		
 	</script>
