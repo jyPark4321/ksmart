@@ -137,6 +137,30 @@
 		let result4 = (passYN == 'pass') ? passY : passN;
 		console.log(result4);
 
+		// 실습2.사용자가 로그인 시 해당 아이디가 존재하지 않으면 
+		//  아이디 :  `해당 아이디가 존재하지 않습니다.`
+		//	비밀번호 : `입력하신 비밀번호가 일치하지 않습니다.`
+		// 	로그인 성공시 id001님 로그인 하셧습니다.
+		const inputId = 'id001';
+		const inputPw = 'pw001';
+		
+		const dbId = 'id001';
+		const dbPw = 'pw002';
+		// 내풀이
+		let idResult = (inputId === dbId)? true:'해당 아이디가 존재하지 않습니다.';
+		let pwResult = (inputPw === dbPw)? true:'입력하신 비밀번호가 일치하지 않습니다.';
+		let loginResult = ((idResult==true)&&(pwResult==ture))?`${inputId}님 로그인 하셧습니다.`:'로그인실패';
+		
+		console.log(idResult);
+		console.log(pwResult);
+		console.log(loginResult);
+		
+		//선생님풀이
+		const loginResult2 =(inputId == dbId)
+							? (inputPw == dbPw)
+								? `${inputId}님 로그인 하셧습니다.`
+								: '입력하신 비밀번호가 일치하지 않습니다.'
+							: '해당아이디가 존재하지 않습니다.';
 		
 
 	</script>

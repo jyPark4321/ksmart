@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <title>객체</title>
+</head>
+<body>
+    <h1>객체 참조 변수</h1>
+	- 객체의 주소를 담은 변수
+	<script type="text/javascript">
+		
+	</script>
+
+    <h1>객체</h1>
+    - 메모리에 등록된 데이터(자료구조, 함수, 메서드) <br>
+    - 객체는 속성과 메서드를 가지고 있다. <br>
+    - 생성된 객체를 대입한 변수는 참조 변수라고 하며, 객체의 주소값을
+      가지고 있다.<br>
+    - 프로퍼티 : 객체의 상태를 나타는 값<br>
+    - 메소드 : 프로퍼티를 참조하고 조작(값을 변경)할 수 있는 기능(동작)<br>
+
+    <h2>객체 선언</h2>
+    <script type="text/javascript">
+        
+    </script>
+
+    <h2>객체 속성이나 메서드 접근(실행)</h2>
+    - 속성에 접근하였다면 값을 가지고 오거나 대입 할 수 있다. <br>
+    - 메서드는 실행 할 수 있다. <br>
+    <script type="text/javascript">
+       
+    </script>
+
+    <h2>체이닝 기법</h2>
+    - 도트 연산자를 활용하여 객체 멤버에 접근하는 방법 <br>
+    - 마지막에 호출된 메서드나 속성이 객체라면 도트 연산자를 활용하여
+      마지막 도달된 객체 멤버에 접근 할 수 있다. <br>
+    
+    <script type="text/javascript">
+        const bookObj = {
+            storeName : '한국스마트서점',
+            bookNameArr : [ 
+                            '이것이 자바다',
+                            '10분 sql', 
+                            '토비의 스프링', 
+                            '클린코드', 
+                            '이펙티브 자바', 
+                            '자바스크립트 딥다이브'
+                          ],
+            bookInfoArr : [
+                {bookName : '이것이 자바다', price : 30000},
+                {bookName : '10분 sql', price : 20000},
+                {bookName : '토비의 스프링', price : 60000},
+                {bookName : '클린코드', price : 30000},
+                {bookName : '이펙티브 자바', price : 30000},
+                {bookName : '자바스크립트 딥다이브', price : 45000}
+            ]
+        }
+        // 실습 1. 한국스마트서점에 이펙티브 자바 책이 존재하면 
+        // '이펙티브 자바 책이 있습니다.' 존재하지 않으면 '책이 없습니다.'라고 
+        // 콘솔에 출력하시오.
+        let findBookName = '이펙티브 자바';
+        //findBookName = '자바의 정석';
+        
+
+        // 실습2. 서점에서 이것이 자바다, 이펙티브 자바를 구입했다. 
+        //        얼마를 지불해야하는지 콘솔에 출력하시오.
+        let barCode1 = '이것이 자바다';
+        let barCode2 = '이펙티브 자바';
+
+        const purchaseList = [];
+        let priceTotal = 0;
+
+        console.log(`지불하실 총 금액은 ${priceTotal}원 입니다.`);
+    </script>
+    
+    <h1>객체 this</h1>
+	
+	<h2>this</h2>
+	- this -> 객체 자신
+	
+	<script type="text/javascript">
+        
+	</script>
+</body>
+</html>

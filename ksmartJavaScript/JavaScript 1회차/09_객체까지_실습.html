@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+	<title>객체 실습</title>
+</head>
+<body>
+    <h1>객체 실습</h1>
+	
+	<h2>실습1</h2>
+	실습. myObj의 addArr메서드를 3번 실행시켰더니
+	myObj의 arr 속성 배열에 '홍길동', '유관순', '이순신' 이라는 문자열이
+	차례대로 담겼다. 위의 문구처럼 문자열이 담길 수 있도록 메서드 내의 코드를 완성하시오.
+	<script type="text/javascript">
+		const myObj = {
+						
+					  }
+		myObj.addArr('홍길동');
+		myObj.addArr('유관순');
+		myObj.addArr('이순신');
+		console.log(myObj.arr);
+	</script>
+
+	<h2>실습2</h2>
+	실습. 자동차 주행시 주행내역과 총주행 거리를 구하시오. <br>
+	위 문구대로 실행될 수 있도록 코드를 완성하고 결괏값을 출력하시오.
+	<script type="text/javascript">
+		const car = {
+					color : 'red',
+					model : 'K5',
+					moveHistory : [],
+					totalMove : 0
+				  }
+		car.move(50).move(100).move(70);
+		console.log(`주행내역: ${car.moveHistory}`);
+		console.log(`총 주행거리:  ${car.getTotalMove()}km`);
+	</script>
+
+	
+	<h2>실습3</h2>
+	실습. nObj의 getAvg메서드를 호출 하였더니 nObj의 nArr 배열 속성 요소의
+	평균값이 리턴되었다. 위 문구대로 실행될 수 있도록 코드를 완성하고 결괏값을 출력하시오.
+	<script type="text/javascript">
+		const nObj = {
+				 		nArr : [10,20,30,40,50]
+					 }
+		console.log(nObj.getAvg());
+	
+	</script>
+	
+	<h3>실습4</h3>
+	실습. getMaxScoreStudent 메서드 호출 시 최고의 점수를 받은 학생의 명을 리턴하고
+	그 결괏값을 출력하도록 하시오.
+	<script type="text/javascript">
+		const studentObj = {
+							score : [
+										{studentName : '홍길동', score : 30},
+										{studentName : '이순신', score : 60},
+										{studentName : '유관순', score : 80},
+										{studentName : '고길동', score : 70},
+										{studentName : '홍길순', score : 80}
+									]
+							};
+		
+		console.log(studentObj.getMaxScoreStudent());
+	
+	</script>
+	
+	<h2>실습5</h2>
+	실습. 아래의 실행코드에서 에러가 발생하지 않도록 메서드 내의 코드를 완성하시오.
+	<script type="text/javascript">
+		const numObj = {
+				 			nArr : []
+					 	}
+		
+		let n = numObj.addN(10).addN(10).addN(10).addN(10).addN(10).sum();
+		
+		console.log(n, '50 결괏값');
+		
+	</script>
+	<h2>실습6</h2>
+	실습. 아래는 구매에 따른 마일리지 적립 서비스이다. 실행코드에서 에러가 발생하지 않도록 메서드 내의 코드를 완성하시오.<br>
+	조건. 구매에 따른 내역이 히스토리에 등록되어야한다.(프로퍼티명: history)
+	<script type="text/javascript">
+		/*
+			현재날짜)
+			let date = new Date();
+			let year = date.getFullYear();
+			let month = date.getMonth() + 1;
+			let day = date.getDate();
+			let time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+			let currentDate = `${year}-${month}-${day} ${time}`;
+
+			예시:) 
+			mileageService.addMileage('id001',100000);
+			mileageService.addMileage('id002',90000);
+			mileageService.addMileage('id001',110000);
+			mileageService.addMileage('id003',80000);
+			mileageService.addMileage('id004',50000);
+
+			console.log(mileageService.addMileage('id001',100000).getMemberInfo('id001'));
+			console.log(mileageService.getMemberInfo('id002'));
+			console.log(mileageService.getMemberInfo('id003'));
+			console.log(mileageService.getMemberInfo('id004'));
+			console.log(mileageService.history);
+
+			======================출력==========================
+			{ memberId: 'id001', currentMileage: 9170, memberLevel: 'VIP' }
+			{ memberId: 'id002', currentMileage: 1270, memberLevel: 'SILVER' }
+			{ memberId: 'id003', currentMileage: 3320, memberLevel: 'GOLD' }
+			{ memberId: 'id004', currentMileage: 5250, memberLevel: 'FLATINUM' }
+			[
+				{
+					memberId: 'id001',
+					status: '누적',
+					mileage: 700,
+					date: '2024-03-22 21:46:27'
+				},
+				{
+					memberId: 'id002',
+					status: '누적',
+					mileage: 270,
+					date: '2024-03-22 21:46:27'
+				},
+				{
+					memberId: 'id001',
+					status: '누적',
+					mileage: 770,
+					date: '2024-03-22 21:46:27'
+				},
+				{
+					memberId: 'id003',
+					status: '누적',
+					mileage: 320,
+					date: '2024-03-22 21:46:27'
+				},
+				{
+					memberId: 'id004',
+					status: '누적',
+					mileage: 250,
+					date: '2024-03-22 21:46:27'
+				},
+				{
+					memberId: 'id001',
+					status: '누적',
+					mileage: 700,
+					date: '2024-03-22 21:46:27'
+				}
+			]
+		
+		*/
+		const mileageService = {
+									memberList : [
+													{memberId : 'id001', currentMileage: 7000, memberLevel: 'VIP'},
+													{memberId : 'id002', currentMileage: 1000, memberLevel: 'SILVER'},
+													{memberId : 'id003', currentMileage: 3000, memberLevel: 'GOLD'},
+													{memberId : 'id004', currentMileage: 5000, memberLevel: 'FLATINUM'},
+													{memberId : 'id005', currentMileage: 7000, memberLevel: 'BRONZE'},
+													{memberId : 'id006', currentMileage: 7000, memberLevel: 'GOLD'},
+													{memberId : 'id007', currentMileage: 7000, memberLevel: 'DIAMOND'}
+												],
+									reserveReferenceTable : [
+																{memberLevel: 'VIP',      ratio: 0.007},
+																{memberLevel: 'DIAMOND',  ratio: 0.006},
+																{memberLevel: 'FLATINUM', ratio: 0.005},
+																{memberLevel: 'GOLD',     ratio: 0.004},
+																{memberLevel: 'SILVER',   ratio: 0.003},
+																{memberLevel: 'BRONZE',   ratio: 0.001}
+															],
+									history : []
+
+								};
+		mileageService.addMileage('id001',100000);
+		mileageService.addMileage('id002',90000);
+		mileageService.addMileage('id001',110000);
+		mileageService.addMileage('id003',80000);
+		mileageService.addMileage('id004',50000);
+
+		console.log(mileageService.addMileage('id001',100000).getMemberInfo('id001'));
+		console.log(mileageService.getMemberInfo('id002'));
+		console.log(mileageService.getMemberInfo('id003'));
+		console.log(mileageService.getMemberInfo('id004'));
+		console.log(mileageService.history);
+		
+	</script>
+</body>
+</html>
