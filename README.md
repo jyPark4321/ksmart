@@ -177,3 +177,19 @@
 
 
 > 설명: 참조 실습, + API 활용 실습
+
+# 3월 27일 훈련 요약(DataBase)
+
+
+
+### 1.오전수업
+
+
+> 설명: 정규화 실습
+>      
+
+
+### 2.오후수업
+
+
+> 설명: Stored Program, Stored Program 종류, CASE문, if문 
