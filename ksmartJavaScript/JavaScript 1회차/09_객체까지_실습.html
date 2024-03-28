@@ -15,13 +15,27 @@
 	myObj의 arr 속성 배열에 '홍길동', '유관순', '이순신' 이라는 문자열이
 	차례대로 담겼다. 위의 문구처럼 문자열이 담길 수 있도록 메서드 내의 코드를 완성하시오.
 	<script type="text/javascript">
+		//내 풀이 방법
 		const myObj = {
-						
-					  }
+  					arr: [],
+  					addArr: function(name) {
+    				this.arr.push(name);
+    				return this.arr;
+  					}
+				};
 		myObj.addArr('홍길동');
 		myObj.addArr('유관순');
 		myObj.addArr('이순신');
 		console.log(myObj.arr);
+
+		//선생님이 푼 방법
+		/* const myObj = {
+  					
+				};
+		myObj.addArr('홍길동');
+		myObj.addArr('유관순');
+		myObj.addArr('이순신');
+		console.log(myObj.arr); */
 	</script>
 
 	<h2>실습2</h2>
@@ -32,8 +46,16 @@
 					color : 'red',
 					model : 'K5',
 					moveHistory : [],
-					totalMove : 0
-				  }
+					totalMove : 0,
+					move: function(distance) {
+    					this.moveHistory.push(distance);
+    					this.totalMove += distance;
+    					return this; // 메서드 체이닝을 위해 this를 반환합니다.
+  					},
+  					getTotalMove: function() {
+    					return this.totalMove;
+  					}
+		 };
 		car.move(50).move(100).move(70);
 		console.log(`주행내역: ${car.moveHistory}`);
 		console.log(`총 주행거리:  ${car.getTotalMove()}km`);
@@ -45,7 +67,16 @@
 	평균값이 리턴되었다. 위 문구대로 실행될 수 있도록 코드를 완성하고 결괏값을 출력하시오.
 	<script type="text/javascript">
 		const nObj = {
-				 		nArr : [10,20,30,40,50]
+				 		nArr : [10,20,30,40,50],
+						getAvg : function(){
+							let sum = 0;
+							for(var i = 0;i<this.nArr.length;i++){
+								 sum += this.nArr[i];
+							}
+							var avg = sum/this.nArr.length;
+							return avg;
+						}
+
 					 }
 		console.log(nObj.getAvg());
 	
@@ -62,7 +93,20 @@
 										{studentName : '유관순', score : 80},
 										{studentName : '고길동', score : 70},
 										{studentName : '홍길순', score : 80}
-									]
+									],
+									getMaxScoreStudent: function() {
+   										let maxScoreStudent = this.score[0];
+
+    									for (let i = 1; i < this.score.length; i++) {
+											if (this.score[i].score > maxScoreStudent.score) {
+											maxScoreStudent = this.score[i];
+      										} else if (this.score[i].score === maxScoreStudent.score){
+												maxScoreStudent.push(this.score[i]);
+											}
+    									}
+
+    									return maxScoreStudent;
+  									}
 							};
 		
 		console.log(studentObj.getMaxScoreStudent());
