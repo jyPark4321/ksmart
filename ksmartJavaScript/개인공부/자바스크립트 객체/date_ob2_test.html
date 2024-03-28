@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var today = new Date(); //today라는 객체 생성
+        var nowYear = today.getFullYear(); //nowYear에 today객체에 연도정보를 가져옴
+
+        var theDate = new Date(nowYear,11,31); // theDate 객체를 생성하는데 현재 연도정보에 올해 연말 날짜정보를 저장
+        var diffDate = theDate.getTime() - today.getTime();// 남은날 = 특정날짜 - 현재날짜(밀리초 단위)
+
+        var result = Math.ceil(diffDate/(60*1000*60*24)); // 소수점 첫째 자리 에서 무조건 올림
+        //1초는 1000ms
+        //1분(60초)은 1000*60
+        //1시간(60분)은 1000*60*60
+        //1일(24시간)은 1000*60*60*24
+        document.write("연말 D-day : "+result+ "일 남았습니다.");
+    </script>
+</body>
+</html>
