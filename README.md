@@ -189,7 +189,7 @@
 >      
 
 
-### 2.오후수업
+### 2.오후수업 : 함수, 트리거 연습
 
 
 > 설명: Stored Program, Stored Program 종류, CASE문, if문 
