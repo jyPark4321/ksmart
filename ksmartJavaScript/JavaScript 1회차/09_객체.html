@@ -11,7 +11,11 @@
     <h1>객체 참조 변수</h1>
 	- 객체의 주소를 담은 변수
 	<script type="text/javascript">
-		
+        // arr변수에 담겨진 값은 주소(객체가 생성된 메모리주소)
+        // arr => 참조 변수
+        // call by reference
+		const arr = ['ksmart51'];
+        console.log(typeof arr); //객체임 
 	</script>
 
     <h1>객체</h1>
@@ -19,19 +23,101 @@
     - 객체는 속성과 메서드를 가지고 있다. <br>
     - 생성된 객체를 대입한 변수는 참조 변수라고 하며, 객체의 주소값을
       가지고 있다.<br>
-    - 프로퍼티 : 객체의 상태를 나타는 값<br>
-    - 메소드 : 프로퍼티를 참조하고 조작(값을 변경)할 수 있는 기능(동작)<br>
+    - 프로퍼티(속성) : 객체의 상태를 나타는 값<br>
+    - 메소드 : 프로퍼티(속성)를 참조하고 조작(값을 변경)할 수 있는 기능(동작)<br>
 
     <h2>객체 선언</h2>
     <script type="text/javascript">
+        const obj1 = {};
+        console.log(typeof obj1); //객체 생성 good
+        const obj2 = new Object(); // new생성자 함수를 호출하여 객체생성
+        console.log(typeof obj2); // 이러한 방법이 권장되지는 않는다.
+
+        //객체 속성 및 속성을 선언
+        //ex:) {키(속성) : 값 }
+        const obj3 = {
+            /*
+                키(속성) 선언시 유의할 점
+                1. 카멜표기법, 소문자로 시작해서 구분되는 단어마다 대문자로 표기.
+                2. 예약어 사용하지 않아야 한다.
+                3. 중복된 키(속성명) 사용하지 않아야 한다. -> 맨마지막에 선언된 속성으로 덮어짐.
+                4. 숫자 사용x(문자열만 사용o).
+                5. 가급적 특수기호 사용 금지. : 스네이크 표기법, 대시바 (css 클래스 표기)
+            */
+            name : '홍길동',
+            age : 20,
+            // 1 : '일', 이렇게 사용하지 말자
+            getName : function(){
+                return this.name;
+            },
+            'birth-day' : '2005-07-11'
+        };
+        console.log(obj3);
         
+        // 객체를 먼저 생성하고 동적으로 속성을 추가하는 방법
+        const obj4 = {};
+        obj4.name = '홍길동'; // {}밖이기 때문에 값을 할당할 때 `:` 대신 `=` 를 사용한다.
+        obj4.age = 20;
+        //obj4['1'] = '일'; //이러한 형태는 안되용
+        obj4.getName = function(){
+            return this.name;
+        }
+        obj4['birth-day'] = '2005-07-11';
+        obj4.arr = ['ksmart51']; //객체안에 프로퍼티로 배열을 저장
+        console.log(obj4);
     </script>
 
     <h2>객체 속성이나 메서드 접근(실행)</h2>
     - 속성에 접근하였다면 값을 가지고 오거나 대입 할 수 있다. <br>
     - 메서드는 실행 할 수 있다. <br>
     <script type="text/javascript">
-       
+        //객체.속성명만 작성시 속성의 값을 반환
+        console.log(obj3.name);
+        //없는 속성명을 접근시 ? 값을 반환할까? undefiend
+        console.log(obj3.nmae);
+        //속성의 값이 배열이라면?
+        console.log(obj4.arr[0]);
+        //특수기호를 포함한 키(속성명)을 접근시에는 무조건 ['키']로만 접근이 가능 .은 생략
+        console.log(obj3['birth-day']);
+        console.log(obj4['arr'][0]);
+        
+        //객체 송성에 함수가 할당되어있으면 ()호출연산자로 호출이 가능하다.
+        console.log(obj3.getName());
+
+        //객체 관련 연산자
+        // in 연산자 : 객체 안에 속성 존재 여부를 확인하는 연산자
+        console.log('name' in obj3); 
+        
+        // delete 연산자 : 객체 안에 특정 속성을 동적으로 제거하는 연산자
+        delete obj3.age;
+        console.log(obj3);
+
+        // ?. 옵셔널체이닝 연산자
+        // 객체 상태에서 없는 속성을 접근하면 undefined 반환 
+        let obj5 = {name : '홍길동'};
+        //obj5 = null;
+        console.log(obj5?.name);
+
+        // ?? 널리쉬연산자
+        // undefined 혹은 null 일경우 우항의 값을 반환
+        const value1 = undefined;
+        const value2 = null;
+        console.log(value1??'초기값');
+        console.log(value2??'초기값');
+
+        // 혼합 사용하면
+        console.log(obj5?.name??'홍길동');
+
+        // for in 구문
+        const forInObj = {
+            name : '홍길동',
+            age : 20
+        };
+        //객체 순회 반복문(for(속성이 바인딩될 변수명 in 객체이름))
+        for(const key in forInObj){
+            console.log(`속성: ${key}, 값:${forInObj[key]}`);
+        }
+
     </script>
 
     <h2>체이닝 기법</h2>
@@ -63,7 +149,16 @@
         // '이펙티브 자바 책이 있습니다.' 존재하지 않으면 '책이 없습니다.'라고 
         // 콘솔에 출력하시오.
         let findBookName = '이펙티브 자바';
+        let bookNamePrint = '';
         //findBookName = '자바의 정석';
+        for(let i = 0;i<bookObj.bookNameArr.length;i++){
+            if(findBookName === bookObj.bookNameArr[i]){
+                bookNamePrint = '이펙티브 자바 책이 있습니다';
+                break;
+        } else bookNamePrint = '책이 없습니다.';
+        }
+        console.log(bookNamePrint);
+
         
 
         // 실습2. 서점에서 이것이 자바다, 이펙티브 자바를 구입했다. 
@@ -72,9 +167,27 @@
         let barCode2 = '이펙티브 자바';
 
         const purchaseList = [];
-        let priceTotal = 0;
+        let priceTotal1 = 0;
+        for(let i = 0;i<bookObj.bookNameArr.length;i++){
+            if(barCode1 === bookObj.bookNameArr[i]){
+                priceTotal1 += bookObj.bookInfoArr[i].price;
+            }else if(barCode2 === bookObj.bookNameArr[i]){
+                priceTotal1 += bookObj.bookInfoArr[i].price;
+                break;
+            }
+        }
 
-        console.log(`지불하실 총 금액은 ${priceTotal}원 입니다.`);
+        
+        let priceTotal2 = 0;
+        for(const bookInfo of bookObj.bookInfoArr){
+            const bookName = bookInfo.bookname;
+            if(barCode1 == bookName || barCode2 == bookName){
+                purcharseList.push(bookInfo);
+                priceTotal2 += bookInfo.price;
+            }
+        }
+
+        console.log(`지불하실 총 금액은 ${priceTotal2}원 입니다.`);
     </script>
     
     <h1>객체 this</h1>
@@ -83,7 +196,32 @@
 	- this -> 객체 자신
 	
 	<script type="text/javascript">
-        
+        const thisObj = {
+            name : '홍길동',
+            age : 20,
+            idol : ['뉴진스','NCT','세븐틴','핑클','녹색지대','god'],
+            getThis : function(){
+                return this;
+            },
+            getIdol : function(cnt){
+                
+                const idolArr = this.idol;
+                const returnArr = [];
+                /*
+                for(let i = 0;i<cnt;i++){
+                    returnArr.push(idolArr[i]);
+                }*/
+               
+                for(const element of idolArr){
+                    if(returnArr.length == cnt) break;
+                    returnArr.push(element);
+                }
+                return returnArr;
+            }
+            
+        }
+        console.log(thisObj.getIdol(3));
+        console.log(thisObj.getThis().getThis().getThis().getIdol(3));
 	</script>
 </body>
 </html>

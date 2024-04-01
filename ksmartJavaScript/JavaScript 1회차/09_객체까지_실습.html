@@ -27,20 +27,30 @@
 		myObj.addArr('유관순');
 		myObj.addArr('이순신');
 		console.log(myObj.arr);
+		
+		
+		
 
 		//선생님이 푼 방법
 		/* const myObj = {
-  					
+  					arr = [],
+					addArr(name){
+						this.arr.push(name);
+					}
 				};
 		myObj.addArr('홍길동');
 		myObj.addArr('유관순');
 		myObj.addArr('이순신');
-		console.log(myObj.arr); */
-	</script>
+		console.log(myObj.arr); 
 
+		차이점 : 함수에 리턴값을 줘야할거 같아서 return을 했는데 생각해보니 굳이 필요없다
+		*/
+	</script>
+	
 	<h2>실습2</h2>
 	실습. 자동차 주행시 주행내역과 총주행 거리를 구하시오. <br>
 	위 문구대로 실행될 수 있도록 코드를 완성하고 결괏값을 출력하시오.
+	
 	<script type="text/javascript">
 		const car = {
 					color : 'red',
@@ -50,7 +60,7 @@
 					move: function(distance) {
     					this.moveHistory.push(distance);
     					this.totalMove += distance;
-    					return this; // 메서드 체이닝을 위해 this를 반환합니다.
+    					return this; // 메서드 체이닝을 위해 this를 반환
   					},
   					getTotalMove: function() {
     					return this.totalMove;
@@ -67,17 +77,17 @@
 	평균값이 리턴되었다. 위 문구대로 실행될 수 있도록 코드를 완성하고 결괏값을 출력하시오.
 	<script type="text/javascript">
 		const nObj = {
-				 		nArr : [10,20,30,40,50],
-						getAvg : function(){
-							let sum = 0;
-							for(var i = 0;i<this.nArr.length;i++){
-								 sum += this.nArr[i];
-							}
-							var avg = sum/this.nArr.length;
-							return avg;
-						}
+				nArr : [10,20,30,40,50],
+				getAvg : function(){
+					let sum = 0;
+					for(var i = 0;i<this.nArr.length;i++){
+						 sum += this.nArr[i];
+					}
+					var avg = sum/this.nArr.length;
+					return avg;
+				}
 
-					 }
+		}
 		console.log(nObj.getAvg());
 	
 	</script>
@@ -87,27 +97,27 @@
 	그 결괏값을 출력하도록 하시오.
 	<script type="text/javascript">
 		const studentObj = {
-							score : [
-										{studentName : '홍길동', score : 30},
-										{studentName : '이순신', score : 60},
-										{studentName : '유관순', score : 80},
-										{studentName : '고길동', score : 70},
-										{studentName : '홍길순', score : 80}
-									],
-									getMaxScoreStudent: function() {
-   										let maxScoreStudent = this.score[0];
+							score : [	
+								{studentName : '홍길동', score : 30},
+								{studentName : '이순신', score : 60},
+								{studentName : '유관순', score : 80},
+								{studentName : '고길동', score : 70},
+								{studentName : '홍길순', score : 80}
+							],
+							getMaxScoreStudent: function() {
+   								let maxScoreStudent = this.score[0];
 
-    									for (let i = 1; i < this.score.length; i++) {
-											if (this.score[i].score > maxScoreStudent.score) {
-											maxScoreStudent = this.score[i];
-      										} else if (this.score[i].score === maxScoreStudent.score){
+    							for (let i = 1; i < this.score.length; i++) {
+									if (this.score[i].score > maxScoreStudent.score) {
+										maxScoreStudent = this.score[i];
+      								} else if (this.score[i].score === maxScoreStudent.score){
 												maxScoreStudent.push(this.score[i]);
-											}
-    									}
+										}
+    							}
 
-    									return maxScoreStudent;
-  									}
-							};
+    							return maxScoreStudent;
+  							}
+						};
 		
 		console.log(studentObj.getMaxScoreStudent());
 	
