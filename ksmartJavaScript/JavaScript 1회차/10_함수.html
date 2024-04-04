@@ -30,29 +30,58 @@
 	<script type="text/javascript">
 		let num1 =1;
 		let num2 =2;
-		let result = num1 + num2;
+		let result = fn(num1,num2);
+		console.log(result);
 		let num3 =3;
 		let num4 =4;
-		let result = num3 + num4;
+		result = fn(num3 , num4);
+		console.log(result);
 		let num5 =5;
 		let num6 =6;
-		let result = num5 + num6;
+		result = fn(num5 , num6);
+		console.log(result);
+		console.log(fn());//javascript의 함수는 인수가 없어도 호출 가능
 
-		
+		//매개변수가 있는 일반함수
+		function fn(digit1,digit2){
+			return digit1 * digit2;
+		}
 
+		function returnFn(){
+
+		}
+		//함수호출시 함수의 반환값이 없을 경우 undefined 반환
+		const fnResult = returnFn();
+		console.log(fnResult);
 	</script>
 	
 	<h3>익명함수 및 함수 호출</h3>
 	- 익명함수는 대입을 해야 선언이 가능하다. <br>
 	- 익명함수는 위에서 선언이 되어 있어야 아래서 호출이 가능하다.(호이스팅 기술 x)
 	<script type="text/javascript">
+		//fn1(); 익명함수는 위에서 선언이 되어있어야 한다.
+		const fn1 = function(){
+			console.log("익명함수호출");
+		}
+		//실행단계가 지나고 나서야 호출이 가능하다.
+		fn1();
 		
+		// 화살표함수 (ES6문법 이상 선언가능)
+		const arrowFn1 = () => {
+			console.log('화살표함수1 호출');
+		}; // 함수선언식이 값으로 표현
+		const arrowFn2 = () => console.log('화살표함수2 호출');
+
+		arrowFn1();
+		arrowFn2();
 	</script>
 	
 	<h2>즉시 실행 함수</h2>
 	- 함수 선언과 동시에 함수호출
 	<script type="text/javascript">
-		
+		(function (){
+			console.log('즉시실행 함수');
+		})();
 
 	</script>
 	
@@ -66,6 +95,14 @@
 	- rest 파라미터 : 함수에 전달된 인수들의 목록을 배열로 전달받는 매개변수
     - (...rest) => {} : 화살표함수에는 arguments 속성을 가질 수 없다.
 	<script type="text/javascript">
+		function fn2(){
+			console.log('함수 fn2 호출');
+		}
+
+		function fn2(name) {
+			console.log('함수 호출');
+		}
+		fn2();
 		
 		/*
 			- 스프레드 문법(전개 문법) -
@@ -76,7 +113,7 @@
 			2. 배열의 리터럴의 요소
 			3. 객체 리터럴의 프로퍼티 목록
 		*/
-
+		
 	</script>
 	
 	<h2>return</h2>
