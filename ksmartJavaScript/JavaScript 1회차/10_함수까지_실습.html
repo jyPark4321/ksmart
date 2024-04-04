@@ -30,8 +30,18 @@
 	실습. 아래의 실행코드에서 에러가 발생하지 않도록 메서드 내의 코드를 완성하여라.
 	<script type="text/javascript">
 		const nObj = {
-				nArr : []
-				
+				nArr : [],
+				addN(digit){
+					this.nArr.push(digit);
+					return this;
+				},
+				sum(digit){
+					let total = 0;
+					for(const num of this.nArr){
+					total += num;
+					}
+					return total;
+				}
 		}
 		var result = nObj.addN(10).addN(10).addN(10).addN(10).addN(10).sum()
 		console.log(result, '결과값');
@@ -41,9 +51,24 @@
 	실습. 아래의 실행 코드를 보고 선언부를 완성하여라.
 	<script type="text/javascript">
 		const obj = {
-			
+			addArr(arr1, arr2, arr3) {
+				let totalResult = 0;
+
+				for (const sum of arr1) {
+					totalResult += sum;
+				}
+				for (const sum of arr2) {
+					totalResult += sum;
+				}
+				for (const sum of arr3) {
+					totalResult += sum;
+				}
+
+				return totalResult;
+			}
 		}
-		var result = obj.addArr([10,20,30],[40,50,60],[70,80,90]);
+
+		var result = obj.addArr([10, 20, 30], [40, 50, 60], [70, 80, 90]);
 		console.log(result, '결과값');
 		
 	</script>
@@ -55,9 +80,11 @@
 		function recurDeepCopy(target){
 			let copy;
 			if(Array.isArray(target)){
-				
+				for(const idx of target){
+					copy.push(recurDeepCopy(idx));
+				}
 			}else{
-				
+				copy = target;
 			}
 			return copy;
 		}

@@ -102,8 +102,29 @@
 		function fn2(name) {
 			console.log('함수 호출');
 		}
-		fn2();
-		
+		fn2(); //동일한 함수명이 존재할 경우 맨마지막에 선언된 함수 호출
+
+		function print() {
+			console.log('호출가능');
+			console.log(arguments);
+			if(arguments.length > 0){
+
+				let value= '';
+				for(const arg of arguments){
+					if(typeof arg == 'number'){
+						value += `${arg}기 `
+					}else{
+						value += arg;
+					}
+				}
+				console.log(value);
+			}else{
+				console.log('콘솔출력');
+			}
+			//console.log(`${gisu}기 ${name}`);
+		}
+		print(51,'홍길동');
+		print();
 		/*
 			- 스프레드 문법(전개 문법) -
 			배열 혹은 유사배열의 요소들(집합)을 개별적인 값의 목록으로 만듦
@@ -113,7 +134,27 @@
 			2. 배열의 리터럴의 요소
 			3. 객체 리터럴의 프로퍼티 목록
 		*/
-		
+		const arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+		const copyArr= [...arr];
+		console.log(`${arr}`);
+		console.log(`${copyArr}`);
+		const obj = {'name' : '홍길동'};
+		const copyObj = {...obj};
+		console.log(obj);
+		console.log(copyObj);
+
+		const restFn = (...rest) => {
+			console.log(rest);
+		}
+		restFn(...arr);
+
+		// 콜백함수
+		function main(callbackFn) {
+			callbackFn();
+		}
+		main(function(){
+			console.log('콜백함수 호출');
+		});
 	</script>
 	
 	<h2>return</h2>
@@ -121,20 +162,56 @@
 	- 함수를 호출 하는곳에 값을 전달 할 수 있다. <br>
 	- 함수를 강제 종료 한다. <br>
 	<script type="text/javascript">
-		
+		//매개변수가 하나일 경우에 한해서 괄호를 생략가능하다.
+		const arrowFn3 = digit => {
+			console.log('return 키워드 전 구문 실행');
+			return 16; //return 키워드를 만나면 함수 바로 종료, return시 반환값이 없는 경우는 undefined값이 반환 된다
+			console.log('return 키워드 후 구문');
+		}
+		const returnValue = arrowFn3(); //호출한 곳에 반환값이 남는다.
+		console.log(returnValue);
+		const returnObj = name => {
+			return {
+				'name' : name
+			}
+		}
+		console.log(returnObj('홍길동'));
 		/*
 			디스트럭처링(구조분해 할당)
 			- 구조 분해 할당이란 어떤 것을 복사한 이후 변수로
 			  기존 자료를 분해한 후 할당하는 것을 의미
 			  그렇다고 기존 자료형이 수정 파괴되지 않는다.
 		*/ 
-		
+		const studentArr = [51,'고윤영'];
+		const [ksGisu,StudentName] = studentArr;
+		console.log(ksGisu);
+		console.log(StudentName);
+		console.log(studentArr);
+
+		const {idol} = {'idol' : '녹색지대',
+						'notidol' : '청색지대'};
+		console.log(idol);
+
+		const returnObjFn = name => {
+			return {name};
+		}
+		console.log(returnObjFn('흑색지대'));
+
 	</script>
 	
 	<h2>함수 return</h2>
 	<h3>고차함수</h3>
 	- 고차함수: 함수를 반환하는 함수를 말한다.
 	<script type="text/javascript">
+		function reFn(){
+			return function rereFn(){
+				console.log('반환된 함수 정의문 호출');
+			}
+		}
+		//reFn()()()()()()(); <--이런 이상한 경우도 가능한데?
+		const returnFnVal = reFn();
+		returnFnVal();
+		
 		
 	</script>
 	
@@ -144,13 +221,39 @@
 	- 동적 스코프 : 함수가 호출되는 시점(어디에서 호출?)에 따라 상위 스코프 결정
 	- 렉시컬 스코프 : 함수가 정의되는 시점(어디에서 정의?)에 따라 상위 스코프 결정
 	<script type="text/javascript">
-		
+		let num = 10;
+		function outFn(params) {
+			let num = 20;
+			callFn();
+		}
+		function callFn() {
+			console.log(num);
+		}
+		outFn();
 	</script>
     
   <h1>함수 - 재귀호출</h1>
 	- 함수 내부에서 나 자신을 호출 
 	<script type="text/javascript">
-    
+		function factorial(num) {
+			if(num < 0){
+				const inputErr = '음수는 입력하지말라고'
+				return  inputErr;
+			}
+			else if(num == 0){
+				return 1;
+			}else{
+				return num * factorial(num-1);
+			}
+		}
+		console.log(factorial(-1));
+
+		function recurFn(cnt){
+			console.log('함수 내부에서 나 자신을 호출');
+			if(cnt == 0) return;
+			recurFn(cnt-1);
+		}
+		recurFn(5)
 	</script>
 </body>
 </html>
