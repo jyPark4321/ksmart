@@ -57,7 +57,7 @@
 					model : 'K5',
 					moveHistory : [],
 					totalMove : 0,
-					move: function(distance) {
+					move(distance) {
     					this.moveHistory.push(distance);
     					this.totalMove += distance;
     					return this; // 메서드 체이닝을 위해 this를 반환
@@ -67,7 +67,7 @@
   					}
 		 };
 		car.move(50).move(100).move(70);
-		console.log(`주행내역: ${car.moveHistory}`);
+		console.log(`주행내역: ${car.moveHistory} `);
 		console.log(`총 주행거리:  ${car.getTotalMove()}km`);
 	</script>
 
@@ -105,13 +105,14 @@
 								{studentName : '홍길순', score : 80}
 							],
 							getMaxScoreStudent: function() {
-   								let maxScoreStudent = this.score[0];
+   								let maxScoreStudent = [];
+								maxScoreStudent = this.score[0];
 
-    							for (let i = 1; i < this.score.length; i++) {
+    							for (let i = 0; i < this.score.length; i++) {
 									if (this.score[i].score > maxScoreStudent.score) {
 										maxScoreStudent = this.score[i];
       								} else if (this.score[i].score === maxScoreStudent.score){
-												maxScoreStudent.push(this.score[i]);
+												maxScoreStudent[i+1] =this.score[i];
 										}
     							}
 
@@ -127,11 +128,23 @@
 	실습. 아래의 실행코드에서 에러가 발생하지 않도록 메서드 내의 코드를 완성하시오.
 	<script type="text/javascript">
 		const numObj = {
-				 			nArr : []
+				 			nArr : [],
+							addN(num){
+								this.nArr.push(num);	
+								return this;
+							},
+							sum(){
+								let numSum = 0;
+								for(const num of this.nArr){
+									numSum += num;
+								}
+								return numSum;
+							}
 					 	}
 		
 		let n = numObj.addN(10).addN(10).addN(10).addN(10).addN(10).sum();
-		
+		console.log(numObj.nArr);
+		console.log(numObj.sum());
 		console.log(n, '50 결괏값');
 		
 	</script>
@@ -207,37 +220,88 @@
 		
 		*/
 		const mileageService = {
-									memberList : [
-													{memberId : 'id001', currentMileage: 7000, memberLevel: 'VIP'},
-													{memberId : 'id002', currentMileage: 1000, memberLevel: 'SILVER'},
-													{memberId : 'id003', currentMileage: 3000, memberLevel: 'GOLD'},
-													{memberId : 'id004', currentMileage: 5000, memberLevel: 'FLATINUM'},
-													{memberId : 'id005', currentMileage: 7000, memberLevel: 'BRONZE'},
-													{memberId : 'id006', currentMileage: 7000, memberLevel: 'GOLD'},
-													{memberId : 'id007', currentMileage: 7000, memberLevel: 'DIAMOND'}
-												],
-									reserveReferenceTable : [
-																{memberLevel: 'VIP',      ratio: 0.007},
-																{memberLevel: 'DIAMOND',  ratio: 0.006},
-																{memberLevel: 'FLATINUM', ratio: 0.005},
-																{memberLevel: 'GOLD',     ratio: 0.004},
-																{memberLevel: 'SILVER',   ratio: 0.003},
-																{memberLevel: 'BRONZE',   ratio: 0.001}
-															],
-									history : []
+			memberList : [
+							{memberId : 'id001', currentMileage: 7000, memberLevel: 'VIP'},
+							{memberId : 'id002', currentMileage: 1000, memberLevel: 'SILVER'},
+							{memberId : 'id003', currentMileage: 3000, memberLevel: 'GOLD'},
+							{memberId : 'id004', currentMileage: 5000, memberLevel: 'FLATINUM'},
+							{memberId : 'id005', currentMileage: 7000, memberLevel: 'BRONZE'},
+							{memberId : 'id006', currentMileage: 7000, memberLevel: 'GOLD'},
+							{memberId : 'id007', currentMileage: 7000, memberLevel: 'DIAMOND'}
+						],
+			reserveReferenceTable : [
+										{memberLevel: 'VIP',      ratio: 0.007},
+										{memberLevel: 'DIAMOND',  ratio: 0.006},
+										{memberLevel: 'FLATINUM', ratio: 0.005},
+										{memberLevel: 'GOLD',     ratio: 0.004},
+										{memberLevel: 'SILVER',   ratio: 0.003},
+										{memberLevel: 'BRONZE',   ratio: 0.001}
+									],
+			history : [],
+			addMileage(memberId, payment){
+				// 1. 회원정보 조회
+				const memberInfo = this.getMemberInfo(memberId);
+				if(memberInfo){ // null, 0, undefined -> false
+					// 2. 회원등급
+					const memberLevel = memberInfo.memberLevel;
+					const ratio = this.getRatioByMemberLevel(memberLevel);
+					// 3. 등급에 맞는 적립금액 계산
+					let mileage = payment * ratio;
+					memberInfo.currentMileage += mileage;
+					// 4. history 추가(log 객체)
+					const historyLog = {
+											'memberId': memberId,
+											'status': '누적',
+											'mileage': mileage,
+											'date': this.getDate()
+					}
+					this.history.push(historyLog);
+				}
+				return this;
+			},
+			getDate(){
+				const date = new Date();
+				let year = date.getFullYear();
+				let month = date.getMonth() + 1;
+				let day = date.getDate();
+				let time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+				let currentDate = `${year}-${month}-${day} ${time}`;
+				return currentDate;
+			},
+			getRatioByMemberLevel(memberLevel){
+				let ratio = 0;
+				for(const reserveReference of this.reserveReferenceTable){
+						if(memberLevel == reserveReference.memberLevel){
+							ratio = reserveReference.ratio;
+							break;
+						}
+				}
+				return ratio;
+			},
+			getMemberInfo(memberId){
+				let memberInfo;
+				const memberList = this.memberList;
+				for(const member of memberList){
+					if(member.memberId == memberId){
+						memberInfo = member;
+						break;
+					}
+				}
+				return memberInfo;
+			}
+		};
+mileageService.addMileage('id001',100000);
+mileageService.addMileage('id002',90000);
+mileageService.addMileage('id001',110000);
+mileageService.addMileage('id003',80000);
+mileageService.addMileage('id004',50000);
 
-								};
-		mileageService.addMileage('id001',100000);
-		mileageService.addMileage('id002',90000);
-		mileageService.addMileage('id001',110000);
-		mileageService.addMileage('id003',80000);
-		mileageService.addMileage('id004',50000);
-
-		console.log(mileageService.addMileage('id001',100000).getMemberInfo('id001'));
-		console.log(mileageService.getMemberInfo('id002'));
-		console.log(mileageService.getMemberInfo('id003'));
-		console.log(mileageService.getMemberInfo('id004'));
-		console.log(mileageService.history);
+console.log(mileageService.addMileage('id001',100000).getMemberInfo('id001'));
+console.log(mileageService.getMemberInfo('id002'));
+console.log(mileageService.getMemberInfo('id003'));
+console.log(mileageService.getMemberInfo('id004'));
+console.log(mileageService.history);
+		
 		
 	</script>
 </body>
