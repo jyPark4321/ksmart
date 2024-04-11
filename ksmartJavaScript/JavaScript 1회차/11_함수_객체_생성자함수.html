@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체 생성자 함수</title>
+</head>
+<body>	
+	<h1>객체 생성자 함수</h1>
+	- 객체를 구조화 시켜서 객체화 시키는 방법 <br>
+	- 객체 생성자 함수를 선언 후에 new 연산자를 활용하여 객체화 시킨다. <br>
+	- 객체 생성자 함수명은 파스칼 표기법으로 한다. <br>
+	- 객체 생성자 함수 내부의 정의(멤버)는 this 키워드로 한다. <br>
+	- 멤버(필드, 메서드) 선언을 this키워드로 정의시 객체화 되었을 경우 외부에서 접근가능 <br>
+	- var, let 키워드로 내부 멤버 정의시 외부에서는 접근이 불가능하다. <br>
+	
+	<h2>객체 생성자 함수 선언과 호출</h2>
+	<script type="text/javascript">
+		function User() {
+			//1. 함수 선언문 : 생성자 함수 선언
+				//property(속성)을 선언하는 방법
+				this.userName = '고윤영';
+				// 객체 생성 시 속성접근은 무조건 public이기에 
+				// private를 구현하기 위해 문법적으로 구현한다.
+				let userPw = 'pw001'; 
+				//인스턴스 메소드를 선언하는 방법
+				this.getUserName = () => {
+					return this.userName;
+				}
+				// 인스턴스 메소드
+				this.getUserPw = () => {
+					return userPw;
+				}
+			}
+		
+		console.log(User());
+		console.log(new User());
+		const user = new User();
+		console.log(user.getUserPw());
+		
+		const UserFn = function () {
+			let _userPw = 'pw001'; // private 해당하는 변수를 선언시 변수명 앞에 _ 붙임
+			this.userName = '고윤영';
+			this.getUserPw = function(){
+				return _userPw;
+			}
+			this.getUserName = function(){
+				return this.userName;
+			}
+		}
+		console.log(UserFn());
+		console.log(new UserFn());
+		const user2 = new UserFn();
+		console.log(user2.getUserPw());
+
+		class userClass{
+			userName = "고윤영";
+			#userPw = 'pw001'; // 나이스샵 (private) 구현 가능 
+			#userId = 'id001';
+			getUserName(){
+				return this.userName;
+			}
+			getUserPw(){
+				return this.#userPw; // 클래스 내부에서는 나이스샵으로 선언한 속성 접근 가능
+			}
+			// 접근자 property(속성) 선언 : get set
+			get userId(){ 
+				return this.#userId;
+			}
+			set userId(userId){
+				this.#userId = userId;
+			}
+		}
+		const user3 = new userClass();
+		console.log(user3);
+		console.log(user3.userPw);
+		console.log(user3.getUserName(),'<---');
+		console.log(user3.getUserPw());
+		user3.userId = 'id002';
+		console.log(user3.userId);
+
+		//1. 객체 생성이 가능한 키워드 : function
+		console.log({User});
+		console.log({UserFn});
+
+		//2. 객체 생성이 불가능 함수 : () => {} 화살표함수
+		const UserArrow = () => {};
+		console.log(new UserArrow());
+
+		</script>
+	
+	<h2>인수가 있는 객체 생성자 함수</h2>
+	<script type="text/javascript">
+		function UserArg(name,age,email){
+			this.name = name;
+			this.age = age;
+			let _email = email;
+			this.getName = function(){
+				return this.name;
+			}
+			this.setName = function(name){
+				this.name = name;
+			}
+			this.getAge = function(){
+				return this.age;
+			}
+			this.setAge = function(age){
+				this.age = age;
+			}
+			this.getEmail=function(email){
+				return _email;
+			}
+		}
+
+		const userArg1 = new UserArg('이희상',27,'희상@ksmart.or.kr');
+		console.log(userArg1);
+		console.log(userArg1.getEmail());
+
+		class UserClassArg{
+			#email; //클래스에서 private접근제한 설정
+			// 생성자
+			constructor(name,age,email){
+				this.name = name;
+				this.age = age;
+				this.#email = email;
+			}
+			getName(){
+				return this.name;
+			}
+			setName(name){
+				this.name = name;
+			}
+			getAge(){
+				return this.age;
+			}
+			setName(age){
+				this.age = age;
+			}
+			getEmail(){
+				return this.#email;
+			}
+			setEmail(email){
+				this.#email = email;
+			}
+			//접근자 property : set get
+			get email(){
+				return this.#email;
+			}
+			set email(email){
+				this.#email = email;
+			}
+		}
+		const userArg2 = new UserClassArg('이희상',27,'희상@희상.com');
+		console.log(userArg2);
+		console.log(userArg2.getEmail());
+		console.log(userArg2.email);
+
+	</script>
+	
+	<h2>메모리 절약을 위한 프로토타입(prototype) 사용</h2>
+	- 원형 : 객체를 만들기위한 구조를 가진 생성자 함수 <br>
+	- 원형에 메서드를 추가 할 수 있는 키워드 <br>
+	- 객체화시 생성되지 않는 메서드를 호출을 할 수 있다. 
+	  -> 프로토타입으로 원형에 메서드 추가가 되었을 경우 <br>
+	- 원형에 추가된 메서드를 객체화된 대상들이 상속을 받는다.
+	
+	<script type="text/javascript">
+		const user4 = new User();
+		console.log(user4);
+		console.log(user4.userAge);
+		User.prototype.userAge = 40;
+		User.prototype.getUserAge = function(){
+			return this.userAge;
+		}
+		const user5 = new User();
+		console.log(user5.userAge);
+		console.log(user5.getUserAge());
+
+		Array.prototype.getSum = function(){
+			let total = 0; 
+			for(const element of this){
+				total += element;
+			}
+			return total;
+		}
+		const arr = [1, 2, 3, 4, 5];
+		const sumResult = arr.getSum();
+		console.log(arr.getSum());
+
+		//클래스에서 상속 (자바랑 매우 유사하다)
+		class Course{
+			name = 'ICT융합 자바/스프링 개발자 양성과정';
+			getName(){
+				return this.name;
+			}
+		}
+		class Round extends Course {
+			constructor(gisu){
+				super();
+				this.gisu = gisu;
+			}
+			getGisu(){
+				return this.gisu;
+			}
+			//메소드 오버라이딩
+			getName(){
+				return `${super.getName()} ${this.gisu}기`;
+			}
+		}
+		const round = new Round(51);
+		console.log(round);
+		console.log(round.getName());
+		// instanceof 연산자 : 생성된 객체가 우항의 원형타입 동일 여부 확인
+		console.log(round instanceof Round);
+		console.log(round instanceof Course);
+		console.log(round instanceof Array);
+		
+
+	</script>
+	
+</body>
+</html>

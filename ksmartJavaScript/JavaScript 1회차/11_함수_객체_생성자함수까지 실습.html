@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체 생성자 함수 실습</title>
+</head>
+<body>	
+	<h2>실습1</h2>
+	실습. 사람의 이름, 키, 몸무게를 입력받아  체중체크 객체를 생성하고 사람 별로 정상체중을 확인하는 메소드를 만들고 호출하시오.<br>
+	정상체중 예시) (키 - 100) * 0.9 <br>
+	체중미달 예시) (키 - 100) * 0.9 - 5 <br>
+	체중초과 예시) (키 - 100) * 0.9 + 5 <br>
+	호출 예시) hongGilDongA = new CheckWeight('홍길동A', 172, 73);
+	출력 예시) 정상체중입니다, 체중미달입니다, 체중초과입니다.
+	<script>
+		class CheckWeight{
+			constructor(name, height, weight){
+				this.name = name;
+				this.height = height;
+				this.weight = weight;
+			}			
+			getResult(){
+				const n = this.name;
+				const h = this.height;
+				const w = this.weight;
+				const bmi = (h-100)*0.9;
+				let result = '';
+				if(w>bmi+5){
+					result = '체중초과입니다.';
+				} else if (w<bmi+5 && w>bmi-5){
+					result = '정상체중입니다';
+				} else if(w<bmi-5){
+					result = '체중미달입니다';
+				}
+				else {
+					result = '잘못된 입력입니다.';
+				}
+				return result;
+			}
+		}
+
+		const hongGilDongA = new CheckWeight('홍길동A', 172, 69);
+		const hongGilDongB = new CheckWeight('홍길동B', 172, 73);
+		console.dir(hongGilDongA)
+		console.dir(hongGilDongB)
+		console.log(hongGilDongA.getResult());   
+		console.log(hongGilDongB.getResult());   
+	</script>
+
+	<h2>실습2</h2>
+	실습. 사람의 이름, 국어점수, 영어점수를 입력받아  학생 점수객체를 생성하고 학생의 평균을 확인하는 메소드를 만들고 호출하시오.<br>
+	출력예시)<br>
+	getTestInfo() 호출시<br> 
+	이름: 홍길동<br>
+	국어: 100점<br>
+	영어: 80점<br>
+	getTestAvg() 호출시<br> 
+	이름: 홍길동, 평균점수: 90점
+	
+	<script>
+		const TestScore = function(name,kor,eng){
+			this.name = name;
+			this.kor = kor;
+			this.eng = eng;
+			
+			this.getTestInfo = function(){
+				let result=`이름: ${this.name}\n국어: ${this.kor}\n영어: ${this.eng}`;
+				return result;
+			}
+			this.getTestAvg = function(){
+				let result = ``;
+				result = `${this.name}님의 평균 점수는 ${((this.kor+this.eng)/2)}`;
+				return result;
+			}
+		}
+		const kimMinSu = new TestScore("김민수",80,90);
+		const hongGilDong = new TestScore("홍길동",100,80);
+		console.log(kimMinSu.getTestInfo());
+		console.log(kimMinSu.getTestAvg());
+		console.log(hongGilDong.getTestInfo());
+		console.log(hongGilDong.getTestAvg());
+
+		
+
+		// 실습. Array에 getSum를 선언하고 [100,200,300]의 배열 요소들의 합산을 반환하는 getSum() 메소드를 호출하시오.
+		Array.prototype.getSum = function(){
+			let total = 0;
+			for(const element of this){
+				total += element;
+			}
+			return total;
+		}
+		
+		const arr1 = [100,200,300];
+		const arr2 = [10,20,30];
+		const arr3 = [1,2,3];
+		const arr4 = [1000,2000,3000];
+		
+		console.log(arr1.getSum());
+		
+
+	</script>
+</body>
+</html>

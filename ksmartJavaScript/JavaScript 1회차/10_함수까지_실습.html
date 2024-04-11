@@ -31,7 +31,7 @@
 	<script type="text/javascript">
 		const nObj = {
 				nArr : [],
-				addN(digit){
+				 addN(digit){
 					this.nArr.push(digit);
 					return this;
 				},
@@ -51,7 +51,7 @@
 	실습. 아래의 실행 코드를 보고 선언부를 완성하여라.
 	<script type="text/javascript">
 		const obj = {
-			addArr(arr1, arr2, arr3) {
+			addArr(...arr) {
 				let totalResult = 0;
 
 				for (const sum of arr1) {
@@ -63,6 +63,8 @@
 				for (const sum of arr3) {
 					totalResult += sum;
 				}
+				
+		
 
 				return totalResult;
 			}
@@ -77,8 +79,8 @@
 	실습. 아래는 배열의 깊이만큼 깊은 복사를 재귀함수호출로 구현한 함수정의문이다.
 	다음 함수의 코드를 완성하시오.
 	<script>
-		function recurDeepCopy(target){
-			let copy;
+		const recurDeepCopy = target => {
+			let copy = [];
 			if(Array.isArray(target)){
 				for(const idx of target){
 					copy.push(recurDeepCopy(idx));
@@ -91,6 +93,14 @@
 
 		const targetArr = [1,[2,[3,[4,[5]]]]];
 		const deepCopy = recurDeepCopy(targetArr);
+
+		console.log(Array.isArray(deepCopy));
+		console.log(Array.isArray(deepCopy[1]));
+
+		console.log(deepCopy);
+		document.write(deepCopy);
+	
+		document.write(`${deepCopy}`);
 
 		console.log(`깊은복사후 배열: ${deepCopy}`);
 		console.log(`객체의 주소 비교: ${deepCopy == targetArr}`);
