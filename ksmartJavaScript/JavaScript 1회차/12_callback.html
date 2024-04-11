@@ -15,7 +15,74 @@
 	  등록해놓은 함수를 실행하면서 인수로 얻어진 값을 던져준다.
 	  
 	<script type="text/javascript">
-		
+		const num1 = 1;
+		const num2 = 2;
+		const result = num1 + num2;
+		console.log(result);
+
+	
+		/*  const printFn = () => console.log('B작업 실행');
+
+		function process(callbackFn){
+			setTimeout(function(){
+				console.log('A작업 실행');
+				callbackFn();
+			},3000);
+		}
+		process(printFn);  */
+
+
+		/* function process(callbackFn) {
+			console.log('A작업 실행');
+			callbackFn();
+		}
+		process(function(){
+			console.log('B작업 실행');
+		})
+ */
+
+		function sumFn(callbackFn) {
+			let result = 10;
+			console.log('result 처리 완료');
+			callbackFn(result);
+		}
+		sumFn(function(result){
+			console.log('콜백함수 호출');
+			console.log(`결과값:${result}`);
+			
+		});
+
+
+		// 20씩 누적될 수 있는 함수를 선언해보세요
+		function exSumFn(digit,callbackFn) {
+			setTimeout(function(){
+				digit += 20;
+				callbackFn(digit);
+			},1000);
+		}
+		exSumFn(0,function(result){
+			console.log(`결과값 : ${result}`);			
+			exSumFn(result,function(result){
+				console.log(`결과값 : ${result}`);			
+				exSumFn(result,function(result){
+					console.log(`결과값 : ${result}`);			
+					exSumFn(result,function(result){
+						console.log(`결과값 : ${result}`);			
+						exSumFn(result,function(result){
+							console.log(`결과값 : ${result}`);			
+							exSumFn(result,function(result){
+								console.log(`결과값 : ${result}`);			
+							});
+						});
+					});
+				});
+			});
+		});
+
+
+	
+
+
 	</script>
 	
 	<h2>이벤트와 비동기화 코드 예</h2>
