@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>내장객체 실습</title>
+<link rel="shortcut icon" href="#" type="image/x-icon">
+</head>
+<body>
+	<h1>내장객체 - 날짜객체 실습</h1>
+	<h2>실습1</h2>
+	실습. 아래에 선언된 날짜 객체에서 이틀 후의 날짜 정보로 변경하여 결괏값을
+	 출력하시오.
+	2024-04-18 
+    <!-- 출력: 2024년 04월 20일 (토) -->
+	<script type="text/javascript">
+		
+
+		const targetDate = new Date('2024-04-18');
+		const resultDate = targetDate + 2;
+		console.log(resultDate);
+		
+
+
+	</script>
+	
+	<h2>실습2</h2>
+	실습. 오늘 날짜에서 2024-04-01 날의 차이를 계산하도록 하시오.
+	<!-- 입력하신 날짜는 20일 이후 날짜입니다. -->
+	<!-- 입력하신 날짜는 20일 이전 날짜입니다. -->
+	<script type="text/javascript">
+		const currentDay = new Date();
+		const targetDate2 = new Date('2024-04-01');
+		
+	</script>
+	
+	<h2>실습3</h2>
+	실습. 아래의 배열에 날짜정보가 담겨있다 오늘 날짜 보다 큰 날짜 객체의 
+	정보는 몇개인지 출력하시오.
+	<script type="text/javascript">
+		const dateArray = [
+			new Date('2022-06-21'),
+			new Date('2024-04-25'),
+			new Date('2022-11-25'),
+			new Date('2021-12-21'),
+			new Date('2024-07-22')
+		];
+		
+		
+
+	</script>
+	<h1>문자열 객체 실습</h1>
+	<h2>실습4</h2>
+	실습. 아래의 회원 중 덕진동에 사는 회원의 이름을 출력하시오.
+	<script type="text/javascript">
+		const userArray = [
+			{userName : '홍길동', userAddr : '전주시 덕진동 227'},
+			{userName : '고길동', userAddr : '전주시 서노송동 88'},
+			{userName : '유관순', userAddr : '전주시 덕진동 1길 774'},
+			{userName : '이순신', userAddr : '전주시 반월동 3길 55'}
+		]
+		
+	</script>
+	
+	<h2>실습5</h2>
+	실습. 아래의 메일 주소가 담긴 배열이 있다. 메일 주소의 문자열을 활용하여 사이트의 명을
+	찾아 출력하도록 하시오.
+	(abc@naver.com -> naver)
+	<script type="text/javascript">
+		const mailArray = [
+			'abc123@naver.com',
+			'abc456@daum.net',
+			'ksmart@gmail.com',
+			'ksmart123@hot.co.kr'
+		]
+
+		
+		
+		
+	</script>
+	
+	<h2>실습6</h2>
+	실습. 아래의 url과 결괏물을 확인하고 최종 결괏물이 나올 수 있도록 코드를 완성하시오.
+	<script type="text/javascript">
+		let myUrl = 'http://localhost:8080/user/userList?userCode=00001&userNum=10';
+
+		
+		// 출력물
+		// {userCode : 00001, userNum : 10}
+		console.log(userInfo);
+		// 출력물
+		// [{userCode : 00001}, {userNum : 10}]
+		
+		console.log(resultArr);
+
+	</script>
+	
+    <h2>실습7</h2>
+    실습. data 포털에서 단기예보를 요청하여 
+        다음과 같이 JSON포맷 데이터를 응답받았다.
+        오늘 날짜에 일치하는 하늘상태, 습도, 온도를 객체에 담아 반환하시오.
+    <script>
+        // 반환예시 : {'하늘상태':'맑음', '습도':'75%', '온도':'15℃'}
+        /**
+         * category: SKY(하늘상태), TMP(온도), REH(습도)
+         * SKY VALUE 예시
+         *   1 : 맑음
+         *   3 : 구름많음
+         *   4 : 흐림
+         */ 
+        const response = [
+                        {"baseDate":"20231117","baseTime":"1400","category":"SKY","fcstDate":"20231122","fcstTime":"1900","fcstValue":"4","nx":63,"ny":89},
+                        {"baseDate":"20231117","baseTime":"1400","category":"PTY","fcstDate":"20231122","fcstTime":"1900","fcstValue":"2","nx":63,"ny":89},
+                        {"baseDate":"20231117","baseTime":"1400","category":"POP","fcstDate":"20231122","fcstTime":"1900","fcstValue":"60","nx":63,"ny":89},
+                        {"baseDate":"20231117","baseTime":"1400","category":"WAV","fcstDate":"20231122","fcstTime":"1900","fcstValue":"0","nx":63,"ny":89},
+                        {"baseDate":"20231117","baseTime":"1400","category":"PCP","fcstDate":"20231122","fcstTime":"1900","fcstValue":"강수없음","nx":63,"ny":89},
+                        {"baseDate":"20231117","baseTime":"1400","category":"TMP","fcstDate":"20231122","fcstTime":"1900","fcstValue":"10","nx":63,"ny":89},
+                        {"baseDate":"20231117","baseTime":"1400","category":"REH","fcstDate":"20231122","fcstTime":"1900","fcstValue":"75","nx":63,"ny":89},
+                        {"baseDate":"20231117","baseTime":"1400","category":"SKY","fcstDate":"20231123","fcstTime":"1900","fcstValue":"4","nx":63,"ny":89},
+                        {"baseDate":"20231117","baseTime":"1400","category":"PTY","fcstDate":"20231123","fcstTime":"1900","fcstValue":"2","nx":63,"ny":89},
+                        {"baseDate":"20231117","baseTime":"1400","category":"POP","fcstDate":"20231123","fcstTime":"1900","fcstValue":"60","nx":63,"ny":89},
+                        {"baseDate":"20231117","baseTime":"1400","category":"WAV","fcstDate":"20231123","fcstTime":"1900","fcstValue":"0","nx":63,"ny":89},
+                        {"baseDate":"20231117","baseTime":"1400","category":"PCP","fcstDate":"20231123","fcstTime":"1900","fcstValue":"강수없음","nx":63,"ny":89},
+                        {"baseDate":"20231117","baseTime":"1400","category":"TMP","fcstDate":"20231122","fcstTime":"1900","fcstValue":"15","nx":63,"ny":89},
+                        {"baseDate":"20231117","baseTime":"1400","category":"REH","fcstDate":"20231123","fcstTime":"1900","fcstValue":"75","nx":63,"ny":89}
+                        ];
+
+    </script>  
+	
+
+	
+
+</body>
+</html>

@@ -86,20 +86,83 @@
 	</script>
 	
 	<h2>이벤트와 비동기화 코드 예</h2>
-	<button type="button" id="myBtn">클릭</button>
+	<button type="button" id="myBtn">+1</button>
+	<button type="button" id="myBtn2">+5</button>
+	<button type="button" id="myBtn3">+10</button>
+	클릭횟수 : <label id="cntLabel">0</label>
 	<script type="text/javascript">
+		console.log({document});
+		const $myBtn = document.getElementById('myBtn');
+		const $myBtn2 = document.getElementById('myBtn2');
+		const $myBtn3 = document.getElementById('myBtn3');
+		
+		const $cntLabel = document.getElementById('cntLabel');
+		console.log({$myBtn});
+		let cnt = 0;
+		
+		function updateCount(value) {
+			cnt += value;
+			$cntLabel.textContent = cnt;
+		}
 
+		$myBtn.addEventListener('click', function() {
+			++cnt;
+			updateCount(0);
+		});
+
+		$myBtn2.addEventListener('click', function() {
+			updateCount(5);
+		});
+
+		$myBtn3.addEventListener('click', function() {
+			updateCount(10);
+		});
 	</script>
 	
 	<h2>콜백 함수 예시</h2>
+	<input type="text" id="memberId" name="memberId" value=""/>
+	<button type="button" id="idCheck">중복아이디체크</button>
 	<script type="text/javascript">
+		const $memberId = document.getElementById('memberId');
+		const $idCheck = document.getElementById('idCheck');
+		//console.log({$memberId});
+		//console.log($memberId.value);
+		$idCheck.addEventListener('click', function(){
+			const memberId = $memberId.value;
+			console.log(typeof memberId);
+			//실습. 아이디 중복체크
+			//dbId 배열의 요소와 사용자가 입력한 아이디가
+			//일치하지 않으면 -> 회원 가입이 불가한 아이디입니다. 경고창 노출
+			//일치하면 -> 회원가입이 가능한 아이디입니다. 경고창 노출
+			//입력하지 않으면  -> 회원 아이디를 입력해주세요. 경고창 노출
+			const dbId = ['id001', 'id002','id003','id004'];
+			let msg = '회원 아이디를 입력해주세요.';
+			if(memberId){
+				msg = '회원가입이 가능한 아이디 입니다.';
+				for(const id of dbId){
+					if(memberId == id){
+						msg = '회원 가입이 불가한 아이디입니다.';
+						break;
+					}
+				}
+			}
+			alert(msg);
+			
+			// alert(memberId);
+		});
 		
 	</script>
 	
 	<h2>이벤트 콜백데이터 활용 예제</h2>
 	<div id="myText" style="position: absolute;">한국스마트정보교육원</div>
 	<script type="text/javascript">
-		
+		const $myText = document.getElementById('myText');
+		/*
+		document.addEventListener('mousemove',function(){
+			$myText.style.left = event.x + 'px';
+			$myText.style.top = event.y + 'px';
+		});
+		*/
 	</script>
 
 </body>
