@@ -73,8 +73,21 @@
 		
 		// 난수 추출 Math.random() 1~45 1게임 : 6 
 		// 실습1. 로또 번호 추출 (중복번호 없이)
-		Math.floor(Math.random()*(최대값-최소값+1))+최소값;
+		// 1게임당 1천원 
 		
+		
+		const lottoArr = [];
+		
+
+		while(lottoArr.length<6){
+			const lottoNum = Math.floor(Math.random()*45)+1;
+			if(!lottoArr.includes(lottoNum)){
+				lottoArr.push(lottoNum);
+			}
+		
+		}
+
+		console.log(lottoArr);
 	</script>
 
 	<h2>배열 객체</h2>
