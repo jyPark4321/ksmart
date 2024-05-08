@@ -256,6 +256,15 @@
 			// reduce 메소드 (callback(초기값,순회하는요소,순회하는 요소 index,arr){},초기값);
 			// reduce((acc,cur,idx,arr),init);
 			// 누적하는 메소드
+			Array.prototype.reduceLike = function(callback, initialValue){
+   			 let accumulator = initialValue !== undefined ? initialValue : this[0];
+    
+   				 for(let i = initialValue !== undefined ? 0 : 1; i < this.length; i++){
+       				 accumulator = callback(accumulator, this[i], i, this);
+    			}
+    
+    			return accumulator;
+			}
 			const reduceArr = [1,2,3,4];
 
 			let total = 0;
@@ -263,49 +272,87 @@
 				total += reduceArr[i]
 			}
 			console.log(total);
-			reduceArr.reduce(function(acc,cur,idx,arr){
+			const totalResult = reduceArr.reduce(function(acc,cur,idx,arr){
 				console.log(`누적:${acc},요소:${cur},인덱스:${idx},배열:${arr}`);
 				return acc+cur;
 			},0);
-			console.log(total);
+			console.log(totalResult);
 			//reduceLike메소드를 확장하여 reduce를 구현하시오.
-			Array.prototype.reduceLike = function(callback){
-				const redueLikeArr = [];
-				for(element)
-			}
+			 Array.prototype.reduceLike = function(callback,init){
+				let acc = init;
+			
+				for(let i = 0 ; i<this.length; i+=1){
+					if(i==0 && acc === undefined){
+						acc = this[i];
+					}else{
+						acc = callback(acc,this[i],i,this);
+					}		
+				}
+				return acc;		
+			} 
+
+			const reduceLikeTotal = reduceArr.reduceLike(function(acc,cur,idx,arr){
+				console.log(`누적:${acc},요소:${cur},인덱스:${idx},배열:${arr}`);
+				return acc+cur;
+			});
+			console.log(reduceLikeTotal);
 	</script>
 	 
 	<h2>문자열 객체</h2>
 	- 문자열을 생성하면 문자열 객체이다. 
 	- 문자열을 생성하면 문자열 객체의 메서드를 사용 할 수 있다.
 	<script type="text/javascript">
-				
+		let exStr1 = new String('ksmart51');
+		let exStr2 = 'ksmart51';
+		console.log(exStr1);
+		console.log(exStr2);
 		
 		//indexOf : 찾으려는 문자열의 첫번째 인덱스번호를 반환한다.
-		
+		let exStr3 = '51기 경력자같은 신입개발자 51기';
+		let exStrResult3 = exStr3.indexOf('경력자'); 
+		console.log(exStrResult3);
+		console.log(exStrResult3 > -1);
 
 		// lastIndexOf : 찾으려는 문자열의 대상 문자열 뒤부터 찾아 
 		//              인덱스번호 반환
-		
+		let exStr4 = '51기 경력자같은 신입개발자 51기';
+		let exStrResult4 = exStr4.lastIndexOf('신');
+		console.log(exStrResult4);
 		
 		// match 문자열을 왼쪽부터 찾을 문자와 일치하는 문자를 찾아 찾은 문자를 반환
-		
+		let exStr5 = '51기 경력자같은 신입개발자 51기';
+		let exStrResult5 = exStr5.match(/51기/gi);
+		console.log(exStrResult5);
 
 		// replace 문자열을 왼쪽부터 검색한뒤 두번째 인수값으로 교체
-		
-
+		let exStr6 = '51기 경력자같은 신입개발자 51기';
+		let exStrResult6 = exStr6.replace('51','오십일');
+		let exStrResult7 = exStr6.replaceAll('51','오십일');
+		console.log(exStr6);
+		console.log(exStrResult6);
+		console.log(exStrResult7);
 		// search 문자열에서 왼쪽부터 찾을 문자와 일치하는 문자를 찾아
 		// 제일 먼저 일치하는 인덱스번호를 반환합니다.
-		
+		let exStr7 = '51기 경력자같은 신입개발자 51기';
+		exStrResult7 = exStr6.search('51');
+		console.log(exStrResult7);
 
 		// subString(시작할 인덱스, 종료 인덱스)
-		
+		let exStr8 = '51기 경력자같은 신입개발자 51기';
+		let exStrResult8 = exStr8.substring(4);
+		console.log(exStrResult8);
+		exStrResult8 = exStr8.substring(4,7);
+		console.log(exStrResult8);
 
 		// substr(시작할 인덱스, 추출할 문자갯수)
-		
+		let exStr9 = '51기 경력자같은 신입개발자 51기';
+		let exStrResult9 = exStr9.substr(4,7);
+		console.log(exStrResult9);
 
 		// split(구분자) 문자 ->구분자를 기준으로 새로운 배열 반환
-		
+		let exStr10 = '51기 경력자같은 신입개발자 51기';
+		let exStrResult10 = exStr10.split('경력자같은');
+		console.log(exStrResult10);
 
 		// String은 유사배열이기에 length 프로퍼티를 가진다.
 		
