@@ -353,17 +353,35 @@
 		let exStr10 = '51기 경력자같은 신입개발자 51기';
 		let exStrResult10 = exStr10.split('경력자같은');
 		console.log(exStrResult10);
+		exStrResult10 = exStr10.split('51');
+		console.log(exStrResult10);
+		exStrResult10 = exStr10.split('');
+		console.log(exStrResult10);
+		exStrResult10 = exStr10.split(' ');
+		console.log(exStrResult10);
+		exStrResult10 = exStr10.split('  ');
+		console.log(exStrResult10);
 
 		// String은 유사배열이기에 length 프로퍼티를 가진다.
-		
+		let exStr11 = '51기 경력자같은 신입개발자 51기';
+		console.log(exStr11.length);
 
 		// trim : 좌 우 해당되는 공백만 제거
-		
-
+		let exStr12 = '      51기 경력자같은 신입개발자 51기          ';
+		let exStrResult12 = exStr12.trim(); 
+		console.log(exStr12);
+		console.log(exStrResult12);
 		// 전체 문자열의 공백 제거
+		exStrResult12 = exStr12.replaceAll(' ','');
+		console.log(exStrResult12 + '<--replaceAll');
 		
-		
+		// replace(정규식)
+		exStrResult12 = exStr12.replace(/\s/g,'');
+		console.log(exStrResult12+'<--replace 정규식사용');
 
+		// split,join
+		exStrResult12 = exStr12.split(' ').join('');
+		console.log(exStrResult12+'<--split,join 정규식사용');
 
 		
 	</script>

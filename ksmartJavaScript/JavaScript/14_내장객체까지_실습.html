@@ -16,8 +16,20 @@
 		
 
 		const targetDate = new Date('2024-04-18');
-		const resultDate = targetDate + 2;
-		console.log(resultDate);
+		const transDate = num => num > 9 ? num : `0${num}`;
+		let formatDate = function(targetDate, num) {
+    		targetDate.setDate(targetDate.getDate() + num);
+   			const year = targetDate.getFullYear();
+    		const month = transDate(targetDate.getMonth()+1);
+    		const date = transDate(targetDate.getDate());
+    		const day = targetDate.getDay();
+    		const dayOfWeek = ['일', '월', '화', '수', '목', '금', '토', '일'];
+    		const printDate = `${year}년 ${month}월 ${date}일 (${dayOfWeek[day]})요일`;
+
+            return printDate;
+		}
+
+			console.log(formatDate(targetDate, 2));
 		
 
 
@@ -30,6 +42,14 @@
 	<script type="text/javascript">
 		const currentDay = new Date();
 		const targetDate2 = new Date('2024-04-01');
+		const diff = currentDay-targetDate2;
+		const resultDate = parseInt(diff/(60*1000*60*24));
+		if(diff > 0){
+			console.log(`입력하신 날짜는 ${resultDate}일 이전 날짜입니다.`);
+		}
+		else{
+			console.log(`입력하신 날짜는 ${Math.abs(resultDate)}일 이후 날짜입니다.`);
+		}
 		
 	</script>
 	
@@ -44,8 +64,21 @@
 			new Date('2021-12-21'),
 			new Date('2024-07-22')
 		];
-		
-		
+		//멍청한 나의 방법
+		const currentDate2 = new Date();
+		const resultFn = function (arr) {
+			for(const element of arr){
+				var countNum = 0;
+				if(currentDate2 < element){
+					countNum += 1;
+				}
+			}
+			return countNum;
+		}
+		console.log(resultFn(dateArray));
+		//내장함수 시간이니 내장함수를 이용해보자 fillter
+		const dateFilter = dateArray.filter(date => date>currentDate2);
+		console.log(dateFilter.length);
 
 	</script>
 	<h1>문자열 객체 실습</h1>
@@ -58,6 +91,11 @@
 			{userName : '유관순', userAddr : '전주시 덕진동 1길 774'},
 			{userName : '이순신', userAddr : '전주시 반월동 3길 55'}
 		]
+		const resultName = userArray.filter(userInfo => userInfo.userAddr.includes('덕진동'))
+						.map(userInfo => userInfo.userName)
+						.sort()
+						.join(', ');
+		console.log(resultName);
 		
 	</script>
 	
@@ -72,7 +110,17 @@
 			'ksmart@gmail.com',
 			'ksmart123@hot.co.kr'
 		]
+		testResult = mailArray[0].substring(mailArray[0].indexOf('@')+1,mailArray[0].indexOf('.'));
+		console.log(testResult);
+		const siteNaumFn = email => {
+			return email.substring(email.indexOf('@')+1,email.indexOf('.'))
+		}
+		const resultEmail = mailArray.map(email => siteNaumFn(email))
+									 .join(', ');
 
+							
+							
+		console.log(resultEmail);
 		
 		
 		
@@ -83,14 +131,40 @@
 	<script type="text/javascript">
 		let myUrl = 'http://localhost:8080/user/userList?userCode=00001&userNum=10';
 
+		let queryParam = myUrl.substring(myUrl.indexOf('?')+1);
+		const userInfo = {};
+		let resultObj = queryParam.split('&')
+								  .reduce((acc,cur) => {
+									const param = cur.split('=');
+									acc[param[0]] = param[1];
+									return acc;
+								  },userInfo);
 		
+
 		// 출력물
 		// {userCode : 00001, userNum : 10}
+		
+		
 		console.log(userInfo);
 		// 출력물
 		// [{userCode : 00001}, {userNum : 10}]
-		
+		const resultArr = queryParam.split('&')
+								  	.map(param => {
+										const obj = {};
+										const parseParam = param.split('=');
+										obj[parseParam[0]] = parseParam[1];
+										return obj;
+									})
 		console.log(resultArr);
+
+		//3번째 방법
+		const urlObj = new URL(myUrl);
+		const keyArr = [...urlObj.searchParams.keys()];
+		keyArr.forEach(item => {
+			const value = urlObj.searchParams.get(item);
+			console.log(`pk: ${item}, pv: ${value}`);
+		})
+		console.log(keyArr);
 
 	</script>
 	
@@ -123,7 +197,72 @@
                         {"baseDate":"20231117","baseTime":"1400","category":"TMP","fcstDate":"20231122","fcstTime":"1900","fcstValue":"15","nx":63,"ny":89},
                         {"baseDate":"20231117","baseTime":"1400","category":"REH","fcstDate":"20231123","fcstTime":"1900","fcstValue":"75","nx":63,"ny":89}
                         ];
+		console.log(response);	
+		const result7Obj = {};
+		const result7 = response.reduce((acc, crr) => {
+			if(crr.fcstDate === '20231123')
+				if(crr.category === 'SKY'){
+					if(crr.fcstValue === '4'){
+						acc = "흐림";
+					} else if (crr.fcstValue === '3'){
+						acc = "구름많음";
+					} else {
+						acc = "맑음";
+					}
+				} else if(crr.category === 'TMP'){
+					acc = `${crr.fcstValue}`
+				}
+   			 return acc;
+			},result7Obj);
 
+			console.log(result7);
+		
+			
+			// 선생님 풀어방법
+			//fcstDate : 20231123
+		const rsObj = {};
+		const rs = response.filter(item => {
+			const cateArr = ['SKY','TMP','REH'];
+			return item.fcstDate == '20231123' && cateArr.includes(item.category)
+		})
+		rs.forEach(item => {
+			const cate = item.category;
+			rsObj[cate] = item.fcstValue;				
+			
+		})		
+		console.log(rsObj);		   
+		console.log(rs);
+		const parseFcst = {};
+		response.reduce((acc,cur)=>{
+			if(cur.fcstDate == '20231123'){
+				const cate = cur.category;
+				let value = cur.fcstValue;
+				switch (cate) {
+					case 'SKY':
+						if(value == '1'){
+							value = '맑음';
+						}else if(value == '3'){
+							value = '구름많음';
+						}else{
+							value = '흐림';
+						}
+						acc['하늘상태'] = value;
+						break;
+
+					case 'TMP':
+						acc['온도'] = `${value}℃`
+						break;
+
+					case 'REH':
+						acc['습도'] = `${value}%`
+						break;
+				}
+				
+			}
+			return acc;
+		},parseFcst);
+		console.log(parseFcst);
+		
     </script>  
 	
 
