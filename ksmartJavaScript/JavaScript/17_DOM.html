@@ -27,7 +27,8 @@
     <!-- 요소노드: div, 어트리뷰트 노드: class, 텍스트노드: ks51 -->
     <div id="ksmart51gi">ks51</div>
     <script>
-
+      const $ksmart1 = document.getElementById('ksmart51gi');
+      console.log($ksmart1);
     </script>
 
     <h1>요소노드 취득</h1>
@@ -40,7 +41,18 @@
       <li id="ks301">한국스마트정보교육원 강의실301</li>
       <li id="ks302">한국스마트정보교육원 강의실302</li>
     </ul>
+    <input type="text" name="memberName" id="memberName" value="홍길동">
     <script>
+      const $ks302 = document.getElementById('ks302');
+      console.log($ks302);
+      console.log($ks302.textContent);
+
+      const $memberName = document.getElementById('memberName');
+      console.log({$memberName});
+      if(!$memberName.value) console.log('빈문자열');
+
+      const $ks303 = document.getElementById('ks303');
+      console.log($ks303,'id에 일치하는 요소가 없을 시에는 null 반환');
 
     </script>
 
@@ -69,7 +81,17 @@
       <li class="ksmart">교직원실</li>
     </ul>
     <script>    
-        
+       const $ksmart = document.getElementsByClassName('ksmart');
+       console.log($ksmart);
+      for(let i=0;i<$ksmart.length;i+=1){
+        console.log($ksmart[i].textContent);
+      }
+      const arr = [];
+      for(let i=0;i<$ksmart.length;i+=1){
+        arr[i] = $ksmart[i];
+      }
+      console.log(arr);
+      
     </script>
 
     <h2>CSS 선택자를 이용한 요소노드 취득</h2>
@@ -106,7 +128,11 @@
          *               (ex: <div><div></div><label class="exLabel"/><label /></div>)
          *                => div>div~label
          */
-        
+        const $ks301 = document.querySelector('.ksmart301');
+        console.log($ks301);
+        const $ks304 = document.querySelector('.ksmart304');
+        console.log($ks304);
+
     </script>
     <h3>querySelectorAll</h3>
     - document.querySelectorAll(css선택자);<br>
