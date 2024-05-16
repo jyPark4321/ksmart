@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>브라우저 객체 실습</title>
+<link rel="icon" href="data:,">
+</head>
+<body>
+	<h1>브라우저 객체 실습</h1>
+	
+	<h2>실습1</h2>
+	실습. 1초마다 n이라는 변수에 값이 1씩 증가하는 코드를 작성하시오.
+	또한 10초마다 사용자에게 진행여부를 확인하고 진행시에는 n값 증가 
+	진행 취소시 n값 진행 중단을 되도록 하시오.
+	
+	<script type="text/javascript">
+	 	let n = 0;
+		const intervalFn = setInterval(function(){
+			++n; 
+			console.log(n);
+			if(n%10==0){
+				const isConfirm = confirm("진행여부");
+				if(!isConfirm){
+					clearInterval(intervalFn);
+				}
+			}
+		}, 1000); 
+	</script>
+	
+	<h2>실습2</h2>
+	실습. times h3태그의 텍스트노드에 1초마다 현재 시간을 출력하도록 하시오.
+	(출력양식 : AM 10시 28분 30초)
+	<h3 id="times" class="class" aria-current="date" aria-describedby="asdf"></h3>
+
+	<script type="text/javascript">
+		
+		
+		const $times = document.querySelector('#times');
+		const numberFormat = num => (num < 10) ? `0${num}`:num;
+		const curTime = function(){
+			const today = new Date(); 
+			const hours = numberFormat(today.getHours() % 12 ? today.getHours() % 12 : 12);
+			const minutes = numberFormat(today.getMinutes() < 10 ?  today.getMinutes() : today.getMinutes());
+			const second = numberFormat(today.getSeconds());
+			const ampm = today.getHours() >= 12 ? 'PM' : 'AM';
+			const date = `${ampm} ${hours}시:${minutes}분:${second}초`;
+			return date;
+		}
+		const increaseTime = setInterval(function(){ 
+			$times.textContent = curTime();			
+		}, 1000);
+		
+		
+	
+		
+	</script>
+</body>
+</html>

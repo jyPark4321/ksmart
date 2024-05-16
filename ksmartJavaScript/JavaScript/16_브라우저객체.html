@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:,">
+    <title>브라우저객체(BOM)</title>
+</head>
+<body>
+    <h1>브라우저 객체</h1>
+	- 최상위 객체는 window 객체이다. <br>
+	- window 하위 객체 <br>
+      - document(문서영역) <br>
+      - location(주소창) <br>
+      - history(방문기록, 페이지이동) <br>
+      - navigator(사용자의 브라우저 정보, 운영체제의 정보) <br>
+      - screen(사용자 디바이스 정보) <br>
+	- window 식별자는 생략이 가능하다. <br>
+
+	<h2>window 메서드</h2>
+        
+    <script type="text/javascript">
+       console.log({window}); // window 식별자는 생략이 가능
+       console.log({document});
+       console.log(closed);
+
+    </script>
+
+	<h3>open(), close()</h3>
+	- open('새창 주소', '창 생성 방식', '새창 식별자(이름)', '새창 옵션') -> 새창 <br>
+	- close() ->  창 닫기 <br>
+    - 새창 생성 방식<br>
+      1. _self -- 현재 탭에서 생성 
+      2. _blank  -- 새 창 생성
+    - 새창의 옵션 <br>
+      1. width = '픽셀값' -- 윈도우의 가로 너비를 설정<br>
+      2. height = '픽셀값' -- 윈도우의 세로 너비를 설정<br>
+      3. left = '픽셀값' -- 윈도우의 왼쪽 위치를 설정<br>
+      4. top = '픽셀값' -- 윈도우의 위쪽 위치를 설정<br>
+      5. location = (yes or no) -- 윈도우 주소창 노출 여부<br>
+      6. scrolbars = (yes or no) -- 윈도우 스크롤바 노출 여부<br>
+      7. menubar = (yes or no)  -- 윈도우 메뉴바 노출 여부<br>
+      8. toolbar = (yes or no)  -- 윈도우 툴바 노출 여부<br>
+      9. status = (yes or no)  -- 윈도우 상태줄 노출 여부<br>
+      10. resizable = (yes or no)  -- 윈도우 사이즈변경 가능 여부<br>
+	<script type="text/javascript">
+        //target 속성 값(_self:현재창, _blank: 새창)
+        //open('https://www.naver.com','_blank','left=100px,top=100px,width=400px,height;400px');
+    </script>
+
+    <h3>alert</h3>
+    - 사용자에게 경고문구 혹은 알림문구 띄울때 사용되는 메서드
+
+    <script type="text/javascript">
+        const alertMsg = '특정 메시지';
+        //alert(alertMsg);
+
+
+    </script>
+
+    <h3>prompt</h3>
+    - 사용자에게 하나의 문자열의 값을 받을 수 있는 메서드
+    <script type="text/javascript">
+        
+        // 실습1. 이름과 javscript 점수, DATABASE 점수를 입력받아서
+        //       이름: 홍길동, JAVASCRIPT점수: 80점, DATABASE : 80점, 평균: 80점
+
+        //내 풀이방법 
+
+        /*const nameValue = prompt('당신의 이름을 입력하세요?');
+        const jsScore = parseInt(prompt('자바스크립트 점수'));
+        const dbScore = parseInt(prompt('데이터베이스 점수'));
+        const scoreAvr = (jsScore+dbScore)/2;
+        console.log(`이름: ${nameValue}, JAVASCRIPT점수: ${jsScore}, DATABASE점수: ${dbScore}, 평균: ${scoreAvr}점`);*/
+
+        
+
+        
+    </script>
+
+    <h3>confirm</h3>
+    - 사용자에게 진행여부를 확인할 수 있는 메서드
+
+    <script type="text/javascript">
+
+        /*
+        const isDel = confirm('진행할깝쇼?');
+        console.log(`isDel = ${isDel}`);
+        let isDelAlert = '삭제 취소되었습니다.'
+        if(isDel){
+            isDelAlert = '삭제되었습니다.';
+        }
+        alert(isDelAlert);
+        */
+
+    </script>
+
+    <h3>setInterval, clearInterval</h3>
+    - 정해진 시간 주기 마다 등록된 함수를 실행
+    <input type="text" id="test" />
+    <script type="text/javascript">
+        /*
+        let i = 0;
+        const intervalFn = setInterval(function(){
+            console.log(++i);
+            if(i == 2){
+            clearInterval(intervalFn);
+            }
+        },1000);
+        */
+    </script>
+
+    <h3>setTimeout, clearTimeout</h3>
+    - 정해진 시간 후에 등록된 함수 실행
+    <script type="text/javascript">
+        console.log('A코드실행');
+        const setTimeFn = setTimeout(function(){
+            console.log('B코드실행');
+        },1000);
+        clearTimeout(setTimeFn);
+        console.log('C코드실행');
+    </script>
+
+    <h2>location</h2>
+    - 현재 url(주소)의 정보를 가지고 있는 객체 <br>
+    - 프로토콜, 포트, 호스트 등의 정보를 가지고 있다. <br>
+    - location.href = '주소 (절대 경로 혹은 상대 경로)' 값 대입시 대입된 경로로 이동
+    <button id="locationBtn" type="button">네이버로이동</button>
+    <button id="reloadBtn" type="button">새로고침</button>
+
+    <script type="text/javascript">
+        console.log({location});
+        console.log(location.href);
+        console.log(location.pathname);
+        const $locationBtn = document.querySelector('#locationBtn');
+        $locationBtn.onclick = function(){
+            location.href = 'https://www.naver.com'
+          
+        }
+        const $reloadBtn = document.querySelector('#reloadBtn');
+        $reloadBtn.onclick = function(){
+            location.reload();
+          
+        }
+    </script>
+    
+    <h2>history</h2>
+    - 방문이력의 정보를 가진 객체
+    <button id="backBtn" type="button">뒤로가기</button>
+    <button id="fowardBtn" type="button">앞으로가기</button>
+    <button id="goBtn" type="button">history.go</button>
+    <script type="text/javascript">
+        console.log({history});
+        const $backBtn = document.querySelector('#backBtn');
+        const $fowardBtn = document.querySelector('#fowardBtn');
+        const $goBtn = document.querySelector('#goBtn');
+        $backBtn.onclick = function(){
+            history.back();
+        }
+        $fowardBtn.onclick = function(){
+            history.forward();
+        }
+        $goBtn.onclick = function(){
+            history.go(-2);
+        }
+
+        
+    </script>
+
+    <h2>navigator</h2>
+    - os 및 브라우저 정보를 가지고 있는 객체<br>
+    - appCodeName: 클라이언트의 브라우저 코드명 반환<br>
+    - appName: 클라이언트의 브라우저 이름을 반환<br>
+    - userAgent: 클라이언트의 브라우저와 운영체제 종합 정보를 제공.<br>
+    <script type="text/javascript">
+        console.log({navigator});
+    </script>
+
+    <h2>screen</h2>
+    - 디바이스의 크기 정보<br>
+    - width: 화면의 너빗값을 반환<br>
+    - height: 화면의 높잇값을 반환<br>
+    - availWidth: 작업표시줄을 제외한 화면의 너빗값 반환<br>
+    - availHeight: 작업표시줄을 제외한 화면의 높잇값 반환<br>
+    - colorDepth: 사용자 모니터가 표현 가능한 컬러 bit를 반환<br>
+    <script type="text/javascript">
+        console.log({screen});
+    </script>
+
+    <h2>document</h2>
+    - html 문서의 정보를 가지고 있는 객체 
+    <script type="text/javascript">
+      
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:,">
+    <title>어트리뷰트 노드 조작</title>
+</head>
+<body>
+    <h1>어트리뷰트 노드</h1>
+    - HTML 요소는 여러 개의 어트리뷰트 (속성)을 가질 수 있다.<br>
+    - 어트리뷰트이름 = '어트리뷰트값' 형식으로 정의<br>
+    - 모든 요소노드는 Element.prototype.attribute로 취득 가능<br>
+    - attribute 프로퍼티는 getter만 존재하는 읽기 전용 접근자 프로퍼티<br>
+    - NamedNodeMap 객체 반환<br>
+
+    <h1>어트리뷰트 종류</h1>
+    - 글로벌 어트리뷰트 : id, class, style, title, data-* 등<br>
+    - 이벤트 핸들러 어트리뷰트: onclick, onchange, onfocus, onblur, oninput 등<br><br>
+    
+    <input type="text" id="ksmart" value="한국스마트정보교육원 신입개발자">
+    
+    <script>
+      
+    </script>
+
+    <h2>HTML 어트리뷰트 조작</h2>
+    - attributes 프로퍼티는 getter만 존재하므로 변경할 수 없다<br>
+    - 요소노드에서 메소드를 통해 조작 가능<br>
+    - Element.prototype.getAttribute / Element.prototype.setAttribute<br>
+    - getAttribute('속성') = 값 반환<br>
+    - setAttribute('속성', '값')<br>
+
+    <input type="text" id="ksStudent" value="경력자같은 신입개발자"/>
+
+    <form >
+        <input type="text" name="memberId" value="ksmart51"/>
+        <!-- reset:폼 안에 있는 입력을 받을수 있는 요소들의 초깃값으로 되돌린다 -->
+        <input id="confirmBtn" type="button" value="확인"/>
+        <input type="reset" value="취소"/>
+    </form>
+
+    <script>
+       
+    </script>
+
+    <h2>어트리뷰트 propertie vs DOM propertie</h2>
+    - 어트리뷰트 propertie(초기상태 값 유지)<br>
+    - DOM propertie(동적, 최신상태)<br>
+    
+    <input type="text" id="ks50Student" value="개발자 51기">
+    <button type="button" id="exBtn">프로퍼티 확인</button>
+    
+    <script>
+        
+    </script>
+
+    <h2>data 어트리뷰트와 dataset 프로퍼티</h2>
+    - HTML 요소에 정의한 사용자 정의 어트리뷰트와 자바스크립트 간에 데이터를 
+        교환<br>
+    - data 어트리뷰트의 값은 dataset 프로퍼티로 취득가능<br>
+    - 해당 요소에 특정한 데이터를 잠시 저장하는 용도<br>
+
+    <button id="addGoodsBtn" 
+            type="button"
+            data-seller-id="id001" 
+            data-goods-code="g001"
+            data-goods-name="모니터" 
+            data-goods-price="1000000">상품등록</button>
+    
+    <div class="ex-data"></div>
+    <script>
+        
+        
+        // 실습1. ex-data 클래스 요소에 다음과 같이 텍스트노드를 삽입하시오.
+        // goodsCode:"g001", goodsName: "모니터", goodsPrice:"1000000", sellerId:"id001"
+        
+    </script>
+    <br>
+    <!-- 실습. data속성을 값을 활용하여 아래 #teamUl요소 안 list완성하시오-->
+    <!-- ex:) teamName : 우리는 하나다 -->
+    <button id="teamBtn"
+            type="button"
+            data-team-name="우리는 하나다"
+            data-team1="김영희"
+            data-team2="이철수"
+            data-team3="홍길동"
+            >팀구성</button>
+    <ul id="teamUl">
+    </ul>
+    <script type="text/javascript">
+        
+    </script>
+   
+    <h2>스타일</h2>
+
+    <h3>인라인 스타일 조작</h3>
+    - HTMLElement.prototype.style: setter와 getter 모두 존재하는 접근자 프로퍼티<br>
+    <div class="ksmart-team">
+        <div>
+            <span>배려와 존중이 넘치는 한국스마트정보교육원</span>
+            <ul>
+                <li>가이드: 이형열 선생님</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        
+    </script>
+
+    <h2>클래스 조작</h2>
+    <h3>className</h3>
+    - HTMLElement.prototype.className: setter와 getter 모두 존재하는 접근자 프로퍼티<br>
+    - 클래스 변경 : replace('변경할 클래스명', '새로운 클래스명')<br>
+
+    <p class="p-ksmart">한국스마트정보교육원 51기</p>
+    
+    <script>
+
+    </script>
+
+    <h3>classList</h3>
+    - HTMLElement.prototype.classList: setter와 getter 모두 존재하는 접근자 프로퍼티<br>
+    - 클래스 추가 : add('클래스명')<br>
+    - 클래스 삭제 : remove('클래스명')<br>
+    - 특정 클래스 가져오기 : item('index 번호')<br>
+    - 특정 클래스 포함여부 : contains('클래스명')<br>
+    - 클래스 변경 : replace('변경할 클래스명', '새로운 클래스명')<br>
+    - 클래스 제거 및 추가 : toggle('대상 클래스명') #대상 클래스명과 일치하는 클래스명 삭제하고 일치하는 클래스명이 없으면 추가<br>
+                           ex: toggle('클래스명') <br>
+                               인수 1개 일 경우 클래스명이 없을 경우 추가, 클래스명이 있을 경우 삭제 <br>
+                               toggle('클래스명', boolean) <br>
+                               인수 2개 일 경우 true:클래스명 추가, false: 클래스명 삭제 <br>
+        
+    <p class="ksmart-dev">글로벌 최상위 1% ICT 전문가</p>
+    <script>
+        
+        
+        /**
+         *  toggle('클래스명')
+         *    - 인수로 삽입된 클래스명이 존재할 경우 삭제
+         *    - 인수로 삽입된 클래스명이 존재하지 않을 경우 추가
+         *  toggle('클래스명', boolean(비교연산자))
+         *    - 두번째 인수 값이 true : 추가
+         *    - 두번째 인수 값이 false : 삭제
+         */
+        
+    </script>
+
+</body>
+</html>

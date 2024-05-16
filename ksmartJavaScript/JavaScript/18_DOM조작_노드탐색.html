@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:,">
+    <title>DOM 노드 탐색</title>
+</head>
+<body>
+    <h1>DOM 노드탐색</h1>
+    - 요소노드를 취득한 다음, 취득한 요소노드를 기점으로 부모, 형제, 자식 노드 탐색
+    <script>
+       
+    </script>
+    <h2>자식노드 탐색</h2>
+    - 자식노드를 탐색하기위해서 탐색 프로퍼티 사용<br>
+    - childNodes: 자식노드를 모두 탐색 후 NodeList에 담아 반환(요소노드뿐만 아니라 텍스트노드포함) <br>
+    - children: 자식중 요소노드만 탐색 후 HTMLCollection에 담아 반환<br>
+    - firstChild: 첫번째 자식 노드 반환(요소노드, 텍스트노드)<br>
+    - lastChild: 마지막 자식 노드 반환(요소노드, 텍스트노드)<br>
+    - firstElementChild: 첫번째 자식 요소 노드 반환<br>
+    - lastElementChild: 마지막 자식 요소 노드 반환<br>
+    - querySelector('css선택자') : 탐색한 노드를 기준으로 css선택자와 일치하는 자식노드 반환
+                                   선택자가 곁칠 경우 가장 첫번째 노드 반환<br>
+    - querySelectorAll('css선택자') : 탐색한 노드를 기준으로 css선택자와 일치하는 자식노드들 반환<br>
+    
+    <ul id="ksmart">
+        <li class="ksmart301">강의실 301호</li>
+        <li class="ksmart302">강의실 302호</li>
+    </ul>
+
+    <script>
+       
+    </script>
+
+    <h2>자식 노드 존재 여부 확인</h2>
+    - hasChildNodes(): true(존재), false(존재하지않음) 반환 <br>
+    - 특정자식 노드 탐색<br>
+    - 부모노드 접근 후 자식노드 탐색 <br>
+    
+    <ul id="ks">
+        <li class="ks50">한국스마트정보교육원50기</li>
+        <li class="ks51">한국스마트정보교육원51기</li>
+    </ul>
+
+    <script>
+
+    </script>
+
+    <h2>부모노드 탐색</h2>
+    - parentNode : 탐색한 노드를 기준으로 부모노드 탐색<br>
+    - 최종단의 노드는 텍스트 노드 이므로 부모가 텍스트 노드인 경우는 없다.<br>
+    - closest('css선택자') : 탐색한 노드를 기준으로 css선택자와 일치하는 
+                             가장 가까운 조상을 탐색, 
+                             노드가 없을 경우 null 반환<br>
+    <div>
+        <p id="pText">한국스마트정보교육원</p>
+    </div>
+    <div id="div1">
+        <div id="div2">
+            <label id="label1">한국스마트정보교육원50기</label>
+        </div>
+    </div>
+    <script>
+
+    </script>
+
+    <h2>형제 노드 탐색</h2>
+    - previousSibling: 이전 형제노드 반환(요소노드뿐만 아니라 텍스트노드포함) <br>
+    - nextSibling: 다음 형제노드 반환 반환(요소노드뿐만 아니라 텍스트노드포함)<br>
+    - previousElementSibling: 이전 형제 요소 노드 반환<br>
+    - nextElementSibling: 다음 형제 요소 노드 반환<br>
+    - 노드 탐색 후 없을 시 null 반환<br>
+    
+    <ul id="ksmartRoom">
+        <li class="room301">강의실 301호</li>
+        <li class="room302">강의실 302호</li>
+        <li class="teacher-room">교직원실</li>
+        <li class="counseling-room">상담실</li>
+    </ul>
+
+    <script>
+       
+    </script>
+
+</body>
+</html>

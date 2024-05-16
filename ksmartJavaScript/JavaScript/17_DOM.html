@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:,">
+    <title>문서객체(DOM)</title>
+</head>
+<body>
+    <h1>문서객체(DOM) 노드 타입</h1>
+    <h2>문서노드</h2>
+    - DOM 트리의 최상위에 존재하는 루트 노드 document 객체를 가리킨다.<br>
+    - document 객체: 브라우저가 렌더링한 HTML 문서 전체를 가리키는 객체<br>
+    - window.document 혹은 document로 참조<br>
+    - 요소, 어트리뷰트(속성), 텍스트노드 접근시 문서 노드를 통해야함
+    <h2>요소노드</h2>
+    - HTML 요소를 가리키는 객체<br>
+    - 부자관계를 가짐(부모노드와 연결)<br>
+    - 문서의 구조를 표현<br>
+    <h2>어트리뷰트 노드</h2>
+    - HTML 요소의 속성을 가리키는 객체<br>
+    - 어트리뷰트 노드는 부모노드와 연결되어 있지않음<br>
+    - 요소의 속성을 변경시 요소노드에 먼저 접근<br>
+    <h2>텍스트 노드</h2>
+    - HTML 요소의 텍스트를 가리키는 객체<br>
+    - 요소노드는 문서의 구조표현 VS 텍스트 노드는 문서의 정보 표현<br>
+    <!-- <div class="ksmart">ks51</div> -->
+    <!-- 요소노드: div, 어트리뷰트 노드: class, 텍스트노드: ks51 -->
+    <div id="ksmart51gi">ks51</div>
+    <script>
+
+    </script>
+
+    <h1>요소노드 취득</h1>
+	  - HTML의 구조나 내용 또는 스타일 등을 동적으로 조작하려면 먼저 요소 노드를 취득<br>
+    
+    <h2>id를 이용한 요소노드 취득</h2>
+    - document.getElementById(요소 id);<br>
+    - 반드시 문서노드를 통해 호출<br>    
+    <ul>
+      <li id="ks301">한국스마트정보교육원 강의실301</li>
+      <li id="ks302">한국스마트정보교육원 강의실302</li>
+    </ul>
+    <script>
+
+    </script>
+
+    <h2>태그 이름을 이용한 요소노드 취득</h2>
+    - document.getElementsByTagName(태그이름);<br>
+    - 모든 요소를 취득시에는 인수로 '*'를 전달<br>
+    - 반드시 문서노드를 통해 호출<br>
+    - HTMLCollection 객체에 담겨 반환<br>
+    <ul>
+      <li>ksmart301</li>
+      <li>ksmart302</li>
+      <li>ksmart교직원실</li>
+    </ul>
+    <script>
+
+    </script>
+
+    <h2>class를 이용한 요소노드 취득</h2>
+    - document.getElementsByClassName(클래스이름);<br>
+    - 반드시 문서노드를 통해 호출<br>
+    - HTMLCollection 객체에 담겨 반환<br>
+    
+    <ul>
+      <li class="ksmart">강의실 301호</li>
+      <li class="ksmart">강의실 302호</li>
+      <li class="ksmart">교직원실</li>
+    </ul>
+    <script>    
+        
+    </script>
+
+    <h2>CSS 선택자를 이용한 요소노드 취득</h2>
+    <h3>querySelector</h3>
+    - document.querySelector(css선택자);<br>
+    - 인수로 전달된 css 선택자를 만족시키는 하나의 요소 노드를 탐색하여 반환<br>
+    - 인수로 전달된 css 선택자를 만족시키는 요소 노드가 여러 개인 경우 첫번째 요소 반환<br>
+    - 인수로 전달된 css 선택자를 만족시키는 요소 노드가 존재하지 않는 경우 null 반환<br>
+    - 인수로 전달된 css 선택자가 문법에 맞지 않은 경우 DOMException 에러 발생<br>
+    <ul>
+      <li class="ksmart301">ksmart301-0</li>
+      <li class="ksmart301">ksmart301-1</li>
+      <li class="ksmart302">ksmart302</li>
+    </ul>
+    <script>
+        /**
+         * css 선택자
+         * 1) * : 모두 선택
+         * 2) 태그이름 : 태그 선택 (ex: input => input태그선택)
+         * 3) # : 요소의 id 속성 (ex: <label id="exLabel"> => #exLabel)
+         * 4) . : 요소의 class 속성 (ex: <label class="exLabel"> => .exLabel)
+         * 5) 태그[속성=값] : 해당 태그의 속성값 일치하는 요소 선택
+         *                (ex: <label class="exLabel"> => label[class="exLabel"])
+         * 6) 태그 태그 : 첫번째 태그의 자손요소 중 두번째 태그 선택 (자손선택)
+         *                (ex: <div><div><label class="exLabel"/></div></div>)
+         *                 => div label
+         * 7) 태그>태그 : 첫번째 태그의 자식요소 중 두번째 태그 선택 (자식선택)
+         *               (ex: <div><div><label class="exLabel"/></div></div>)
+         *                 => div>div>label
+         * 8) 태그+태그 : 첫번째 태그의 형제요소 바로 다음에 위치한 두번째 태그 한개 선택
+         *               (ex: <div><div></div><label class="exLabel"/></div>)
+         *                => div>div+label
+         * 9) 태그~태그 : 첫번째 태그의 형제요소 다음에 위치한 두번째 태그 다중 선택
+         *               (ex: <div><div></div><label class="exLabel"/><label /></div>)
+         *                => div>div~label
+         */
+        
+    </script>
+    <h3>querySelectorAll</h3>
+    - document.querySelectorAll(css선택자);<br>
+    - 인수로 전달된 css 선택자를 만족시키는 요소 노드가 존재하지 않는 경우 빈 NodeList 반환<br>
+    - 인수로 전달된 css 선택자가 문법에 맞지 않은 경우 DOMException 에러 발생<br>
+    <ul>
+      <li class="ksmart-course">한국스마트정보교육원IT과정</li>
+      <li class="ksmart-course">ksIT과정</li>
+      <li class="ksmart-course">ksmartIT과정</li>
+    </ul>
+    <script>
+        
+    </script>
+
+    <h2>특정 요소노드 취득 여부 확인</h2>
+    <h3>matches</h3>
+    - document.querySelector(css선택자).matches(css선택자);<br>
+    - 선택한 요소가 다른 css 선택자문법의 요소로 취득할 수 있는지 확인<br>
+    - li.ksmart50 == li[class="ksmart50"]
+    <ul id="ksmart">
+      <li class="ksmart50">50기</li>
+      <li class="ksmart51">51기</li>
+      <li class="ksmart52">52기</li>
+    </ul>
+    <script>
+        
+    </script>
+</body>
+</html>
