@@ -9,7 +9,9 @@
     <h1>DOM 노드탐색</h1>
     - 요소노드를 취득한 다음, 취득한 요소노드를 기점으로 부모, 형제, 자식 노드 탐색
     <script>
-       
+       const $body = document.querySelector('body');
+       console.log($body);
+       console.log($body.parentNode);
     </script>
     <h2>자식노드 탐색</h2>
     - 자식노드를 탐색하기위해서 탐색 프로퍼티 사용<br>
@@ -27,9 +29,39 @@
         <li class="ksmart301">강의실 301호</li>
         <li class="ksmart302">강의실 302호</li>
     </ul>
-
+    <div id="ksmartDiv"></div>
     <script>
-       
+       const $ksmart = document.getElementById('ksmart');
+       // childNodes 모든 노드를 Nodelist에 담아 반환
+       // 들여쓰기에 사용된 공백도 text로써 노드에 포함된다.
+       const $ksNodes = $ksmart.childNodes;
+       console.log($ksNodes);
+       // firstChild 모든 자식 노드 중에서 첫번째 자식노드 반환
+       // 역시 들여쓰기에 사용된 공백이 text로써 노드에 포함되서 반환된다.
+       console.log($ksmart.firstChild);
+       // lastChild 모든 자식 노드 중에서 마지막 자식노드반환
+       // 역시 들여쓰기에 사용된 공백이 text로써 노드에 포함되서 반환된다.
+        console.log($ksmart.lastChild);
+        // 요소 노드만 HTMLCollection에 담아 반환
+        const $ksEles = $ksmart.children;
+        console.log($ksEles);
+        console.log($ksmart.firstElementChild,'요소노드중 첫번째 자식 노드 를 반환');
+        console.log($ksmart.lastElementChild,'요소노드중 마지막 자식 노드를 반환');
+    
+       const $ksmartDiv = document.querySelector('#ksmartDiv');
+       // 자식노드가 없을 시 어떤 자료형 반환?
+       const $ksDivNods = $ksmartDiv.childNodes;
+       console.log($ksDivNods,'비어있는 NodeList[]');
+       const $ksDivEles = $ksmartDiv.children;
+       console.log($ksDivEles,'비어있는 HTMLCollection[]');
+       const $ksDivFirstNode = $ksmartDiv.firstChild;
+       console.log($ksDivFirstNode,'null반환');
+       const $ksDivFirstEle = $ksmartDiv.firstElementChild;
+       console.log($ksDivFirstEle,'null반환');
+
+
+
+
     </script>
 
     <h2>자식 노드 존재 여부 확인</h2>
@@ -41,8 +73,15 @@
         <li class="ks50">한국스마트정보교육원50기</li>
         <li class="ks51">한국스마트정보교육원51기</li>
     </ul>
+    <div id="ksDiv">
+    </div>
 
     <script>
+        const $ks = document.getElementById('ks');
+        const $ksDiv = document.querySelector('#ksDiv');
+        // childNodes (모든 자식노드를 포함하여 존재여부 판단,공백 노드 포함)
+        console.log($ks.hasChildNodes());
+        console.log($ksDiv.hasChildNodes());
 
     </script>
 
