@@ -47,6 +47,13 @@
         console.log($ksEles);
         console.log($ksmart.firstElementChild,'요소노드중 첫번째 자식 노드 를 반환');
         console.log($ksmart.lastElementChild,'요소노드중 마지막 자식 노드를 반환');
+
+        //자식노드를 CSS 선택자를 통해서 취득할 수 있다.
+        const $li = $ksmart.querySelector('li');
+        const $liEles = $ksmart.querySelectorAll('li');
+
+        console.log($li);
+        console.log($liEles);
     
        const $ksmartDiv = document.querySelector('#ksmartDiv');
        // 자식노드가 없을 시 어떤 자료형 반환?
@@ -100,6 +107,21 @@
         </div>
     </div>
     <script>
+        const $pTagParent = document.getElementById('pText').parentNode;
+        console.log($pTagParent);
+
+        const $label1 = document.querySelector('#label1');
+        const $div2 = $label1.parentNode;
+        const $div1 = $label1.parentNode.parentNode;
+        console.log($div2);
+        console.log($div1);
+
+        //조상을 탐색하는 방법
+        //closest(css선택자) : css선택자에 일치하는 가장 인접한 조상노드 반환
+        const $cDiv2 = $label1.closest('div');
+        const $cDiv1 = $label1.closest('div#div1');
+        console.log($cDiv2);
+        console.log($cDiv1);
 
     </script>
 
@@ -118,7 +140,20 @@
     </ul>
 
     <script>
-       
+       const $room302 = document.getElementsByClassName('room302');
+       console.log($room302.item(0));
+
+
+       const $teacherRoom = document.querySelector('.teacher-room');
+       console.log($teacherRoom);
+       //이전형제노드탐색
+       console.log($teacherRoom.previousSibling,'이전형제노드탐색');
+       //이전형제요소노드탐색
+       console.log($teacherRoom.previousElementSibling,'이전형제요소노드탐색');
+       //이후형제노드탐색
+       console.log($teacherRoom.nextSibling,'이후형제노드탐색');
+       //이후형제요소노드탐색
+       console.log($teacherRoom.nextElementSibling,'이후형제요소노드탐색');
     </script>
 
 </body>

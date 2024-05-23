@@ -43,47 +43,37 @@
       memberList.push(memberInfo);
     }
     console.log(memberList);
-/*
-    const addMember = function(memberId, memberName, memberPhone) {
-      // 현재 객체의 키 개수를 기준으로 인덱스를 계산
-      let curIdx = Object.keys(memberList).length + 1;
-      let key = curIdx;
-      memberList[key] = {
-        '회원아이디': memberId,
-        '회원이름': memberName,
-        '회원연락처': memberPhone
-      };
-    }
-    const createMember = function(num) {
-      for (let i = 1; i <= num; i++) {
-        addMember(`id${String(i).padStart(3,0)}`, `홍${String(i).padStart(2,0)}`, `010-${String(i).padStart(4,i)}-${String(i).padStart(4,i)}`);
-      }
-    }
-    let num = 5;
-    createMember(num);
-    console.log(memberList);*/
-    
-    //div의 요소 취득
-    const $memberList = document.querySelector('#memberList');
-    console.log($memberList);
-    //div에 테이블 추가하기
-
-    const createTable = (selector,list) => {
-    const $targetEle = document.querySelector(selector);
-    const $table = document.createElement('table');
-    const $thead = document.createElement('thead');
-    const $tbody = document.createElement('tbody');
-    const $theadTr = document.createElement('tr');
-    //머릿글 thead
-    for(title in list[0]){
-      const $th = document.createElement('th');
-      $th.textContent = title;
-      $thead.appendChild($th)
-    }
-    $thead.appendChild($theadTr);
-
-    //테이블 내용 tbdoy
-    list.forEach((data, idx)=>{
+    /*html*/
+    `<table>
+        <thead>
+          <tr>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+          </tr>
+        </tbody>
+     </table>`
+    const $memberList = document.getElementById('memberList');
+    // createTable(추가할 요소에 selector, 자료형[{}])
+    const createTable = (selector, list) => {
+      const $targetEle = document.querySelector(selector);
+      const $table = document.createElement('table');
+      const $thead = document.createElement('thead');
+      const $tbody = document.createElement('tbody');
+      const $theadTr = document.createElement('tr');
+      // 머릿글 thead
+      for( title in list[0] ){
+        const $th = document.createElement('th');
+        $th.textContent = title;
+        $theadTr.appendChild($th);
+      } 
+      $thead.appendChild($theadTr);
+      
+      // 테이블 내용 tbody
+      list.forEach((data, idx)=>{
         const $tbodyTr = document.createElement('tr');
         for(prop in data){
           const $td = document.createElement('td');
@@ -95,21 +85,14 @@
   
       $table.append($thead, $tbody);
       $targetEle.appendChild($table);
-
-
-
-    $table.appendChild($thead,$tbody);
-    $targetEle.appendChild($table);
-
-  }
-
-  createTable('#memberList',memberList);
+    }
+    
+    createTable('#memberList', memberList);
 
 	</script>
   <h1>DOM조작 실습</h1>
   <input type="number" min="2" max="9" value="2"/>
   <button type="button" id="guguBtn">구구단 출력</button>
-  
   <br><br>
   <div id="resultGugu"></div>
   <br><br><br><br>
@@ -132,31 +115,13 @@
   </table> -->
   실습2. tbody 영역에 구구단 테이블을 삽입하시오.
   <script type="text/javascript">
-      const $guguBtn = document.querySelector('#guguBtn');
-      // 특정요소의 자식도드중 테이블일 경우 제거하는 함수
-      const removeTb = selector => {
-        const $targetEle = document.querySelector(selector);
-        const $tables = $targetEle.querySelectorAll('table');
-        $tables.forEach(element => element.remove());
+    const $guguBtn = document.querySelector('#guguBtn');
+    $guguBtn.onclick = function(){
+      const $numEle = document.querySelector('input[type="number"]');
+      const value = $numEle.value;
 
-      }
-      const guguList = [];
-      $guguBtn.onclick = function(){
-        const $numEle = document.querySelector('input[type="number"]');
-        const value = $numEle.value;
-        const guguValue = Number(value);
-        for (let i = 1; i < 10; i++) {
-          const gugudanInfo = {};
-          for (let j = 2; j <=guguValue; j++) {
-            let re = i * j;
-            gugudanInfo[`${j}단`] = `${j} X ${i} = ${String(re).padStart(2, '0')}`;
-          }
-          guguList.push(gugudanInfo);
-        }
-        removeTb('#resultGugu');
-        createTable('#resultGugu',guguList);
-        
-      }
+
+    }
         /**
          * 4단 입력시 자료형 예시)
          * {'2단': '2 X 1 = 02','3단': '3 X 1 = 03','4단': '4 X 1 = 04'}
@@ -166,11 +131,9 @@
          *                      .................
          * {'2단': '2 X 9 = 18','3단': '3 X 9 = 27','4단': '4 X 9 = 36'}
          */ 
-        
 
-     
+       
 
-      
   </script>
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
