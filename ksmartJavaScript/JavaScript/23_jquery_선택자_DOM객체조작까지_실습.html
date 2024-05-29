@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery 실습</title>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+	<h1>인접관계 선택자 실습</h1>
+	<h2>실습1</h2>
+	실습. 아래의 버튼 클릭시 클릭한 대상의 행을 제거하도록 하시오.
+	<ul>
+		<li>
+			<button type="button" class="delBtn">행제거</button>
+		</li>
+		<li>
+			<button type="button" class="delBtn">행제거</button>
+		</li>
+		<li>
+			<button type="button" class="delBtn">행제거</button>
+		</li>
+	</ul>
+	<script type="text/javascript">
+
+	</script>
+	
+	<h2>실습2</h2>
+	실습. .cBtn 클릭시 해당 행의 .text 객체에 텍스트 요소를 ksmart 로 변경하도록 하시오. 
+	innerText - > .text(); > (인수가 있다면 인수로 하위요소 교체, 없다면 하위 요소값 가지고 오기) <br>
+	innerHTML - > .html(); > (인수가 있다면 인수로 하위요소 교체, 없다면 하위 요소값 가지고 오기) <br>
+	
+	<ul>
+		<li>
+			<div class="text">클릭해주세요.</div>
+			<div>
+				<button type="button" class="cBtn">클릭</button>
+			</div>
+		</li>
+		<li>
+			<div class="text">클릭해주세요.</div>
+			<div>
+				<button type="button" class="cBtn">클릭</button>
+			</div>
+		</li>
+		<li>
+			<div class="text">클릭해주세요.</div>
+			<div>
+				<button type="button" class="cBtn">클릭</button>
+			</div>
+		</li>
+	</ul>
+	
+	<script type="text/javascript">
+
+	</script>
+	
+    <h2>실습3</h2>
+	실습. #allCheck 클릭시 선택이 되었다면 .checks 요소 전체 선택, 해제가 되었다면
+	.checks 요소 전체 선택 해제 되도록 하여라. 또한 #delCheckBtn 클릭시
+	선택된 .checks 요소의 행을 전체 제거 하도록 하여라. 
+	
+	<table border="1">
+		<thead>
+			<tr>
+				<th>
+					<input type="checkbox" id="allCheck">전체체크
+				</th>
+			</tr>
+		</thead>	
+		<tbody>
+			<tr>
+				<td>
+					<input type="checkbox" class="checks">행1
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" class="checks">행2
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" class="checks">행3
+				</td>
+			</tr>
+		</tbody>	
+	</table>
+	<button type="button" id="delCheckBtn">선택된 대상 행 제거</button>
+	
+	<script type="text/javascript">
+
+	</script>
+	
+	<h2>실습4</h2>
+	실습. 아래의 버튼 클릭시 body 의 배경색이 빨강, 파랑, 초록으로 순환되도록 하여라.
+	<br>
+	<button type="button" id="bgChange">배경색 변환</button>
+	<script>
+
+	</script>
+	
+    <h2>실습5</h2>
+    실습. 아래의 화면을 보고 기능을 완성하시오. <br>
+    - 기능 1: 숫자 입력 후 다중행추가 버튼 클릭 시 숫자만큼 다중행 추가 <br>
+    - 기능 2: 구분 체크 후 선택삭제 버튼 클릭 시 선택된 행 삭제 <br>
+    - 기능 3: 추가 버튼 클릭 후 새롭게 추가된 행은 추가 기존 행은 삭제 버튼으로 변경( 삭제 버튼 클릭시 삭제) <br>
+    - 기능 4: 구분 체크 후 선택 등록 버튼 클릭 시 유효성 검사 진행 후 json 형태로 console.log() 로 출력 형식 {name: value} <br>
+    - 기능 5: 다중 등록 클릭 시 유효성 검사 진행 후 json 형태로 console.log() 로 출력 형식 {name: value} <br>
+    - JSON 포맷 방식  :  JSON.stringify(객체 혹은 배열);
+	- JSON 변환 :  JSON.parse('문자열');
+	<style>
+        .memberDiv{
+            margin-top: 20px;
+            width: 900px;
+            padding-bottom: 10px;
+        }
+        .memberDiv input{
+            width: 45px;
+        }
+        .memberDiv > #addCheckedMembers{
+            float: right;
+            margin-right: 10px;
+        }
+        .memberDiv > #addMembers{
+            float: right;
+        }
+        #addMemberForm{
+            width: 900px;
+        }
+        #addMemberForm > table{
+            border: 1px solid black;
+            width: 900px;
+            table-layout: auto;
+            text-align: center;
+        }
+        #addMemberForm > table th{
+            border: 1px solid black;
+            background-color: cornflowerblue;
+            color: azure;
+            height: 30px;
+        }
+       
+        #addMemberForm > table td {
+            border: 1px solid black;
+            height: 30px;
+        }
+	</style>
+	<div class="memberDiv">	
+		<input type="number" id="trCount" min="0" value="0"/>
+		<button id="addRows">다중행추가</button>
+		<button id="removeRows">선택삭제</button>
+		<button id="addMembers">다중등록</button>
+		<button id="addCheckedMembers" >선택등록</button>
+	</div>
+	<form id="addMemberForm">
+		<table>
+            <colgroup>
+                <col width="10%" />
+                <col width="16%"/>
+                <col width="16%"/>
+                <col width="16%"/>
+                <col width="16%"/>
+                <col width="16%"/>
+                <col width="10%" />
+              </colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>아이디</th>
+					<th>비밀번호</th>
+					<th>이름</th>
+					<th>주소</th>
+					<th>이메일</th>
+					<th>추가</th>
+				</tr>
+			</thead>
+			<tbody id="addMemberBody">
+				<tr>
+					<td>
+						<input type="checkbox" class="memberCheck"/>
+					</td>
+					<td>
+						<input type="text" name="memberId" />
+					</td>
+					<td>
+						<input type="text" name="memberPw" />				
+					</td>
+					<td>
+						<input type="text" name="memberName" />
+					</td>
+					<td>
+						<input type="text" name="memberAddr" />
+					</td>
+					<td>
+						<input type="text" name="memberEmail" />
+					</td>
+					<td>
+						<button class="delButton" type="button">삭제</button>
+					</td>
+				</tr>
+        		<tr>
+					<td>
+						<input type="checkbox" class="memberCheck"/>
+					</td>
+					<td>
+						<input type="text" name="memberId" />
+					</td>
+					<td>
+						<input type="text" name="memberPw" />				
+					</td>
+					<td>
+						<input type="text" name="memberName" />
+					</td>
+					<td>
+						<input type="text" name="memberAddr" />
+					</td>
+					<td>
+						<input type="text" name="memberEmail" />
+					</td>
+					<td>
+						<button class="addButton" type="button">추가</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	<script>
+		
+	</script>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

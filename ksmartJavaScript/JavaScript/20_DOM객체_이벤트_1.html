@@ -503,6 +503,35 @@
         })
       })
     </script>
+    <h2>디바운스</h2>
+    - 자바스크립 이벤트핸들러(함수)를 지연시키는 기법<br>
+    - 연속적으로 이벤트콜백함수가 호출되는 것이 아니라
+      일정시간을 지연시킨 후에 함수가 호출되는 기법(api 호출시 사용)<br>
+    <br>
+    <input type="text" id="exText" />
+    <script>
+      const $exText1 = document.getElementById('exText');
+      // 디바운스 적용전
+      $exText1.addEventListener('input',(e)=>{
+        console.log(e.target.value + ' <- 디바운스 적용 전');
+      })
+
+      // 디바운스 적용함수 정의
+      const debounce = (callback,delay=500) => {
+        let timer;
+        return event => {
+          if(timer) clearTimeout;
+          timer = setTimeout(callback, delay, event);
+        }
+      }
+      //디바운스 적용
+      const $exText2 = document.getElementById('exText');
+      $exText2.addEventListener('input',debounce((e) => {
+        console.log(e.target.value + ' < - 디바운스 적용 후');
+      }));
+
+
+    </script>
 
     <h2>동적바인딩</h2>
     - 이벤트에 의하여 생성된 요소에 이벤트 부여 (이벤트 버블링 활용)

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>제이쿼리</title>
+	<link rel="shortcut icon" href="#" type="image/x-icon">
+	<!-- 다운로드방식 -->
+	
+	<!-- CDN방식 -->
+	
+	<script>
+	</script>
+</head>
+<body>
+	<h1>제이쿼리</h1>
+	- 경량화, 호환성, 애니메이션 효과등 포함된 자바스크립트 라이브러리 <br>
+	- css 선택자를 활용하여 dom 객체를 쉽게 접근 할 수 있도록 만들어 졌다. <br>
+	- 기본 자바스크립트를 가지고 만들어진 라이브러리임으로 제이쿼리 외부파일을 로드 시켜야한다. <br>
+	
+	<script type="text/javascript">
+	</script>
+
+	<h2>onload -> ready 메서드</h2>
+	- 문서 로딩 완료 이후에 실행되는 메서드
+
+	<script type="text/javascript">
+
+	</script>
+	
+	<h2> 직접 선택자 </h2>
+	- 제이쿼리 함수를 실행시키면서 css 선택자를 인수로 삽입 <br>
+	- css 선택자에 해당되는 객체가 있던 없던 제이쿼리 객체는 무조건 반환 <br>
+	- 체이닝 기법으로 쓰일 메서드는 직접 선택자에서 검색된 기준으로 
+	  메서드(이벤트, 객체조작, 속성조작, 인접관계선택자) 호출 할 수 있다. <br>
+	([body, h1, div] -> 클릭 -> 검색된 모든 대상에 click 이벤트가 등록)
+	
+	<script type="text/javascript">
+
+	</script>
+	
+	<h3> 직접 선택자로 찾아진 객체에 이벤트 걸어보기</h3>
+	<button type="button" id="testBtn">테스트버튼</button>
+	
+	<button type="button" class="myBtn">버튼1</button>
+	<button type="button" class="myBtn">버튼2</button>
+	<button type="button" class="myBtn">버튼3</button>
+	<button type="button" class="myBtn">버튼4</button>
+	<button type="button" class="myBtn">버튼5</button>
+	
+	<script type="text/javascript">
+
+	</script>
+	
+	<h2>이벤트 메서드</h2>
+	- 검색된 모든 대상에 이벤트 등록이 된다. <br>
+	- 이벤트 등록은 이벤트 관련 메서드 혹은 on 메서드로 할 수 있다. <br>
+	- 많이 쓰이는 이벤트 종류 : click, change, blur, keyup, keydown, keypress... 등 <br>
+	
+	<button type="button" id="myBtn01">버튼</button>
+	<input type="text" id="myInput">
+	
+	<script type="text/javascript">
+		
+	</script>
+	
+	<h2>인접 관계 선택자</h2>
+	- 상하요소 검색 <br>
+	- parentElement -> .parent(), .parents('부요 요소 선택자') <br>
+	- querySelector, querySelectorAll -> .find('선택자'), .children() <br>
+	<ul class="ul1">
+		<li>
+			<ul class="ul2">
+				<li class="li1">
+					<button type="button" class="liBtn">클릭1</button>
+				</li>
+				<li class="li2">
+					<button type="button" class="liBtn">클릭2</button>
+				</li>
+				<li class="li3">
+					<button type="button" class="liBtn">클릭3</button>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<ul>
+		<li class="cLi">
+			<span>
+				안녕하세요.
+					<small>ksmart</small>
+			</span>
+		</li>
+		<li class="cLi">
+			<span>
+				안녕하세요.
+					<small>ksmart</small>
+			</span>
+		</li>
+	</ul>
+	
+	<h3 class="title">실습h3</h3>
+	<p>내용1</p>
+	<p>내용2</p>
+	<p class="txt3">내용3</p>
+	<p>내용4</p>
+	<p>내용5</p>
+	<p class="txt6">내용6</p>
+
+	<script type="text/javascript">
+
+	</script>
+	
+	<h2>배열관련 메서드</h2>
+	- 검색된 요소들을 .each 메서드 활용하여 요소 하나씩 순차적으로 접근 한다.
+	
+	<ul id="myUl">
+		<li>안녕하세요1.</li>
+		<li>안녕하세요2.</li>
+		<li>안녕하세요3.</li>
+		<li>안녕하세요4.</li>
+		<li>안녕하세요5.</li>
+	</ul>
+	<button type="button" id="ulBtn">클릭</button>
+	
+	<script type="text/javascript">
+		
+	</script>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

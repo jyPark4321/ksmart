@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>속성 및 요소 조작</title>
+<script type="text/javascript" src="./js/jquery-3.7.1.js"></script>
+</head>
+<body>
+	<h1>속성 및 요소 조작</h1>
+	
+	<h2>요소 조작 메서드</h2>
+	- 선택된 대상의 하위 요소 조작(변경) <br>
+	innerText - > .text(); > (인수가 있다면 인수로 하위요소 교체, 없다면 하위 요소값 가지고 오기) <br> 
+	innerHTML - > .html(); > (인수가 있다면 인수로 하위요소 교체, 없다면 하위 요소값 가지고 오기) <br>
+	<div id="myDiv">
+		<!-- <label id="myLabel" style="color:crimson">ksmart51</label> -->
+	</div>
+	<script>
+
+	</script>
+
+	<h2>속성 조작 메서드</h2>
+	- 선택된 대상의 속성을 생성, 소멸, 변경 시킬 수 있다. <br>
+	- 속성 > 상태 속성(:checked, :selected, :hidden, :visible), 속성 <br>
+	- 주로 자주 다루는 속성들은 별도의 메서드가 제공된다.(class) <br>
+	<select class="ksmart51">
+		<option value="박중연">박중연</option>
+		<option value="송영호">송영호</option>
+		<option value="길범진">길범진</option>
+		<option value="최성식">최성식</option>
+		<option value="박은수">박은수</option>
+		<option value="송재익">송재익</option>
+		<option value="한송이">한송이</option>
+		<option value="고윤영" selected>고윤영</option>
+		<option value="이희상">이희상</option>
+		<option value="오민호">오민호</option>
+		<option value="전우석">전우석</option>
+		<option value="한동환">한동환</option>
+	</select>
+
+	<input type="checkbox" name="kor" checked>송재익
+	<input type="checkbox" name="ksmart">힘내요
+
+	<script>
+
+	</script>
+	
+	<h3>attr, removeAttr</h3>
+	getAttribute, setAttribute  : attr('속성명', '속성값') -> 
+	첫번째 인수만 있다면 첫번째 인수에 해당되는 속성의 값만 가지고 온다.
+	인수가 2개라면 첫번째 인수값에 해당되는  속성을 2번째 인수값으로 삽입 <br>
+	removeAttribute : removeAttr('제거 할 속성') -> 
+	첫번째 인수에 해당되는 속성을 찾아 제거<br>
+	
+	<label>
+		<input type="radio" class="userList" name="userList" value="0001"
+		data-user-name="홍길동"
+		data-user-age="20"
+		>
+	</label>
+	<label>
+		<input type="radio" class="userList" name="userList" value="0002"
+		data-user-name="이순신"
+		data-user-age="25"
+		>
+	</label>
+	<input type="text" id="memberName" value="이희상" />
+	<button type="button" id="exAttr">attr실습</button>
+	
+	<script type="text/javascript">
+
+	</script>
+	
+	<h3>prop</h3>
+	- 상태 속성(가상선택자 - :checked, :selected, :hidden) 조작<br>
+	
+	<input type="checkbox" id="allCheck"> 전체 선택 <br>
+	<input type="checkbox" class="checks">선택1<br>
+	<input type="checkbox" class="checks">선택2<br>
+	<input type="checkbox" class="checks">선택3
+	
+	<script type="text/javascript">
+
+	</script>
+	
+	<h3>val</h3>
+	- value 속성(DOM Propertie)을 다루는 메서드 > form 요소 <br>
+	- 인수가 없다면 value 속성값을 가지고 온다. <br>
+	- 인수가 있다면 value 속성에 값을 대입한다.	<br>
+
+	<form id="addMemberForm" action="#" method="get">
+		<table border="1">
+			<tbody>
+				<tr>
+					<td>
+						<label for="memberId">회원아이디</label>
+					</td>
+					<td>
+						<input type="text" id="memberId" name="memberId"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="memberLevel">회원등급</label>
+					</td>
+					<td>
+						<select id="memberLevel" name="memberLevel" style="width: 100%;">
+							<option value="">===회원등급을 선택하시오===</option>
+							<option value="1">관리자</option>
+							<option value="2">회원</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align: center;">
+						<button type="button">회원가입</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	<script>
+
+	</script>
+
+	<h3>css</h3>
+	- style 속성을 조작하는 메서드 <br>
+	- 인수가 1개 일 경우 해당 인수에 해당되는 css 속성의 값을 가지고 온다. <br>
+	- 인수가 2개 일 경우 첫번째 인수에 해당되는 css 속성에 2번째 인수의 값을 대입한다. <br>
+	<!-- <style>
+		body{
+			background-color: darkcyan;
+			color: darkorange;
+		}
+	</style> -->
+	<button type="button" id="bgChange">배경색</button>	
+	<script type="text/javascript">
+
+	</script>
+	
+	<h2>addClass, removeClass, hasClass, toggleClass</h2>
+	- 선택된 대상의 클래스 속성을 조작하는 메서드들 <br>
+	targetEle.classList.add -> $(targetEle).addClass('클래스명') <br>
+	targetEle.classList.remove - > $(targetEle).removeClass('제거할 클래스') <br>
+	targetEle.classList.contains -> $(targetEle).hasClass('확인할 클래스') <br>
+	targetEle.classList.toggle -> $(targetEle).toggleClass('토글할 클래스') <br>
+	
+	<button type="button" id="classTarget" class="my-re01">클래스 메서드 확인</button>
+	
+	<script type="text/javascript">
+
+	</script>
+	
+	<h2>html() vs append()</h2>
+	- html() 및 append() 활용해서 동적으로 요소 추가<br>
+	
+	<!-- --before(생성된 DOM객체)-- -->
+	<div id="ksmartDiv">
+		<!-- --prepend(생성된 DOM객체)--  -->
+		<!-- --append(생성된 DOM객체)--  -->
+	</div>
+	<!-- --after(생성된 DOM객체)-- -->
+
+	<button type="button" id="insertEleBtn">동적 요소 추가</button>
+	<script>
+
+	</script>
+
+	<h2>clone()</h2>
+	- 선택된 대상을 복제한다.(요소선택)<br>
+	- 인수 true -> 이벤트까지 복제<br>
+	<ul id="ulEle">
+		<li>
+			<button type="button" class="add">추가</button>
+			<button type="button" class="del">삭제</button>
+		</li>
+	</ul>
+	<script>
+
+	</script>
+
+	<h2>동적이벤트 바인딩</h2>
+	- 동적으로 생성된 객체에 이벤트를 등록하는 방법<br>
+	- 문법 : $(document).on('click', 'css선택자', function(){})<br>
+	<div id="btnGroup" style="margin-bottom: 20px; margin-top: 20px;">
+
+	</div>
+	<button type="button" id="addBtn">버튼요소추가</button>
+
+	<script>
+		
+	</script>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

@@ -12,7 +12,10 @@
 	
 	<script src="js/common.js" type="text/javascript"></script>
 	<script type="text/javascript">
-		
+		const popupClose = getCookie('popupClose');
+		if(popupClose != 'Y'){
+			open('21_cookie_myPopup.html','_blank','width=400,height=400,left=100,top=100');
+		}
 	</script>
 	
 </body>
