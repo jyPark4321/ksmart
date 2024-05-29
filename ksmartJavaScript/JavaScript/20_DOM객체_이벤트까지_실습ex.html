@@ -15,16 +15,31 @@
 		<input type="text" name="n1"> x
 		<input type="text" name="n2"> =
 		<input type="text" name="result" readonly>
-		<button type="button">계산하기</button>
+		<button type="button" >계산하기</button>
 	</form>
 	
 	<script type="text/javascript">
-        const $n1 = document.querySelector('input[name="n1"]');
-        const $n2 = document.querySelector('input[name="n2"]');
-        const $result = document.querySelector('input[name="result"]');
-        const $btn = document.querySelector('button[type="button"]');
-        $btn.onclick(e => {
+        // 폼 내부의 버튼 요소먼저 취득하기
+        const $btn = document.querySelector('form[name="myNum"] button[type="button"]');
+        
+        // 버튼 클릭시 이벤트 핸들러 추가
+        $btn.addEventListener('click', function() {
+            // 폼 내부의 n1, n2, result input요소 취득
+            const $n1 = document.querySelector('input[name="n1"]');
+            const $n2 = document.querySelector('input[name="n2"]');
+            const $result = document.querySelector('input[name="result"]');
             
+            // 각 input요소의 value를 곱해서 result의 value값으로 전달
+
+            // $result.value = Number($n1.value) * Number($n2.value);
+
+            //숫자가 아닌 값이 입력된다면? 정수가아닌 실수가 입력된다면?
+            //숫자인지 확인하는 메서드 isNaN(), trim()<--공백제거
+            if(!isNaN($n1.value) && !isNaN($n1.value)){
+                $result.value = parseFloat($n1.value) * parseFloat($n2.value);
+            } else {
+                $result.value = '올바른 값을 입력하지 않았습니다.'
+            }
         });
       
 	</script>
@@ -54,7 +69,56 @@
     <input type="number" id="times" value="2" min="2" max="9" placeholder="단을 입력하시오"/> 
     <button id="guguBtn">구구단 출력</button>
     <script type="text/javascript">
-       
+        const createTable = (selector,list) => {
+            const $targetEle = document.querySelector(selector);
+            const $table = document.createElement('table');
+            const $thead = document.createElement('thead');
+            const $tbody = document.createElement('tbody');
+            const $theadTr = document.createElement('tr');
+            //머릿글 thead
+            for(title in list[0]){
+                const $th = document.createElement('th');
+                $th.textContent = title;
+                $thead.appendChild($th)
+            }
+            $thead.appendChild($theadTr);
+
+            //테이블 내용 tbdoy
+            list.forEach((data, idx)=>{
+                const $tbodyTr = document.createElement('tr');
+                for(prop in data){
+                    const $td = document.createElement('td');
+                    $td.textContent = data[prop];
+                    $tbodyTr.appendChild($td);
+                }
+                $tbody.appendChild($tbodyTr);
+            });
+        
+            $table.append($thead, $tbody);
+            $targetEle.appendChild($table);
+
+
+
+            $table.appendChild($thead,$tbody);
+            $targetEle.appendChild($table);
+
+        };
+        // 버튼 클릭 시 이벤트리스터등록
+
+            const $guguBtn = document.getElementById('guguBtn');
+            $guguBtn.addEventListener('click', function() {
+            const times = 2; // 2단을 출력
+            const section = document.querySelector('section'); // 결과를 출력할 요소 선택
+
+            // 표 생성
+            const gugudanData = [];
+            for (let i = 1; i <= 9; i++) {
+                gugudanData.push({'2단' : `2  X   ${i} = ${2 * i}`});
+            }
+
+            section.innerHTML = ''; //section영역 초기화
+            createTable('section', gugudanData); // 기존의 테이블 생성 함수 호출하여 섹션에 추가
+        });
 	</script>
 
     <h2>실습3</h2>
@@ -124,7 +188,21 @@
       </div>
     </div>
     <script type="text/javascript">
-        
+        /*
+            1.전체선택 요소 취득하기
+            2.취득한요소에 이벤트리스너등록
+            3.나머지 아래에있는 요소전체를 취득방법에 따라 nodelist나 htmlcollection에 담기
+            4.유사배열이므로 forEach못사용하니까 배열로 옮겨서 forEach돌면서 체크상태 맞추기
+        */
+        const $allCheck = document.getElementById('allCheck');
+        console.log(typeof $allCheck.checked);
+        $allCheck.addEventListener('change',function(){
+            const $mCheck = document.getElementsByClassName('mCheck');
+            const isCheck = $allCheck.checked;
+            [...$mCheck].forEach(function(mCheck){
+                mCheck.checked = isCheck;
+            })
+        })
     </script>
 
     <h2>실습5</h2>
@@ -145,7 +223,15 @@
     <span id="totalPriceText" style="color: #f00; font-size: 25px">0</span>원
 
     <script type="text/javascript">
-        
+        const $goodsPrice = document.getElementById('goodsPrice');
+        const $totalPrice = document.getElementById('totalPrice');
+        const $totalPriceText = document.getElementById('totalPriceText');
+        const $num = document.getElementById('num');
+        $num.addEventListener('change',function(){
+            const qty = $num.value;
+            $totalPrice.value = Number($goodsPrice.value) * Number(qty);
+            $totalPriceText.textContent = $totalPrice.value;
+        })
     </script>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
