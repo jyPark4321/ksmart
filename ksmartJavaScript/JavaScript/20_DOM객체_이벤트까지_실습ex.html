@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:,">
+    <title>DOM객체 이벤트까지 실습</title>
+    <link rel="stylesheet" type="text/css" href="css/modal.css"/>
+</head>
+<body>
+    <h2>실습1</h2>
+	실습. 버튼 클릭시 n1요소와 n2요소의 값을 곱하여 result 요소에 결괏값을 
+    출력하도록하시오.
+	<br>	
+	<form name="myNum">
+		<input type="text" name="n1"> x
+		<input type="text" name="n2"> =
+		<input type="text" name="result" readonly>
+		<button type="button">계산하기</button>
+	</form>
+	
+	<script type="text/javascript">
+        const $n1 = document.querySelector('input[name="n1"]');
+        const $n2 = document.querySelector('input[name="n2"]');
+        const $result = document.querySelector('input[name="result"]');
+        const $btn = document.querySelector('button[type="button"]');
+        $btn.onclick(e => {
+            
+        });
+      
+	</script>
+
+    <h2>실습2</h2>
+    실습. section 영역에 구구단 2단이 표형태로 출력되도록 하시오.
+    -----------------<br>
+    |      2단       |<br>
+    -----------------<br>
+    |   2 X 1 = 2   |<br>
+    -----------------<br>
+    |   2 X 2 = 4   |<br>
+    -----------------<br>      
+    <style>
+        table {
+            border: 1px solid black;
+            width: 200px;
+            table-layout: fixed; /* 테이블레이아웃 셀 가로 균등 배분 */
+            text-align: center;
+        }
+        th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <section>
+    </section><br><br>
+    <input type="number" id="times" value="2" min="2" max="9" placeholder="단을 입력하시오"/> 
+    <button id="guguBtn">구구단 출력</button>
+    <script type="text/javascript">
+       
+	</script>
+
+    <h2>실습3</h2>
+    실습. 아래의 버튼 클릭시 아래의 div 배경 색상이 빨강 파랑 초록으로 순환되도록하시오.
+    <br>
+    <button type="button" id="bgChangeBtn">배경색전환</button>	
+    <div id="bgDiv" style="height: 100px; width: 100px;"></div>
+
+    <script type="text/javascript">
+        
+    </script>
+
+    <h2>실습4</h2>
+    실습. #allCheck 클릭시 체크가 되었다면 .mCheck 요소 전체는 체크되도록
+    체크가 안되어있다면 .mCheck 요소 전체가 체크가 해제되도록 하시오.
+    <style>
+        #addCateBtn{
+            width:100%;
+            background-color: #3b5fbf; 
+            color: white; 
+            font-weight: bolder;
+        }
+    </style>
+    <table>
+        <thead>
+            <tr>
+                <td>
+                    <button type="button" id="addCateBtn">
+                        항목추가
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="allCheck">전체체크</td>
+            </tr>
+        </thead>
+        <tbody id="checkTbody">
+            <tr>
+                <td><input type="checkbox" class="mCheck">체크1</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="mCheck">체크2</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="mCheck">체크3</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="container"> 
+        <div class="popup-wrap" id="popup"> 
+          <div class="popup">	
+            <div class="popup-body">	
+              <div class="body-content">
+                <div class="body-titlebox">
+                  <h1>항목추가</h1>
+                </div>
+                <div class="body-contentbox">
+                  <input type="text" class="cateContent"/>
+                </div>
+              </div>
+            </div>
+            <div class="popup-foot"> 
+              <button class="pop-btn confirm" id="confirm">추가</button>
+              <button class="pop-btn close" id="close">취소</button>
+            </div>
+          </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+        
+    </script>
+
+    <h2>실습5</h2>
+    실습. 상품의 가격을 선택된 수량의 갯수만큽 곱하여 상품가격을 출력하도록 하시오.
+    <br><br><br>
+    <input type="hidden" id="goodsPrice" value="10000">
+    <input type="hidden" id="totalPrice" value="0">
+    상품 기본 가격 : <span style="color: #f00;">10,000</span>원 <br><br>
+    <select id="num" style="width: 150px; text-align: center;">
+        <option value="0"> :: 선택 :: </option>
+        <option value="5"> 5 개 </option>
+        <option value="10"> 10 개 </option>
+        <option value="15"> 15 개 </option>
+        <option value="20"> 20 개 </option>
+    </select>	
+    <br><br>
+    총 합산 가격 : 
+    <span id="totalPriceText" style="color: #f00; font-size: 25px">0</span>원
+
+    <script type="text/javascript">
+        
+    </script>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

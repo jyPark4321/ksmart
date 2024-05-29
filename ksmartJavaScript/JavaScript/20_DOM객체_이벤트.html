@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:,">
+    <title>DOM객체 이벤트</title>
+    <style>
+      table{
+        width: 500px;
+        border: 1px solid black;
+        table-layout: auto;
+      }
+      tbody tr td:first-child{
+        text-align: center;
+        border: 1px solid black;
+        width: 150px;
+      }
+      tbody tr td:last-child{
+        text-align: left;
+        border: 1px solid black;
+      }
+      tbody tr td input {
+        width: 300px;
+      }
+      tbody tr td p {
+        color: red;
+        margin: 0;
+      }
+      tfoot tr{
+        text-align: center; 
+      }
+      tfoot tr button {
+        width: calc(470px/2);
+        margin-left: 3px;
+        margin-right: 3px;
+      }
+      #dynamicTb tr input {
+        width: calc(470px/3);
+      }
+      #dynamicTb tr button {
+        width: calc(470px/3);
+      }
+      
+    </style>
+</head>
+<body>
+    <h1>이벤트</h1>
+    - 브라우저는 처리해야 할 특정사건이 발생하면 이를 감지하여 이벤트를 발생<br>
+    - 클릭, 키보드입력, 마우스 이동 등이 일어나면 특정한 타입의 이벤트 발생<br>
+    - 이벤트 핸들러: 특정한 이벤트가 발생했을 호출될 함수<br>
+    - 이벤트 핸들러 등록: 특정이벤트가 발생 시 이벤트 핸들러의 호출을 위임하는 것<br>
+
+    <h2>자바스크립트의 이벤트 등록 방식</h2>
+    1) html 요소의 속성을 통해 이벤트 등록하는 방식(이벤트핸들러 어트리뷰트 방식) <br>
+    2) css 선택자로 객체를 선택하여 이벤트를 등록하는 방식(이벤트 핸들러 프로퍼티 방식) <br>
+    3) css 선택자로 객체를 선택하여 addEventListener 메소드로 이벤트를 등록하는 방식 <br>
+    
+    <h2>html 요소 이벤트 (on 접두사)</h2>
+    - 모든 테그는 on이라는 접두사를 가진 속성을 가지고 있다. <br>
+    - on 접두사 속성은 이벤트에 관련된 속성이다. <br>
+    - on 접두사 속성은 자바스크립트 코드가 문자열로 등록이 가능하다.  <br>
+
+    <h1>이벤트의 종류</h1>
+    <h2>마우스 이벤트</h2>
+    - click : 마우스 버튼을 클릭했을 때<br>
+    - dbclick : 마우스 버튼을 더블 클릭했을 때<br>
+    - mousedown : 마우스 버튼을 누르고 있을 때<br>
+    - mouseup : 누르고 있던 마우스 버튼을 뗄 때<br>
+    - mousemove : 마우스를 움직일 때 (터치스크린에서 동작하지 않는다)<br>
+    <div id="btnGroup">
+        <button type="button" onclick="">어트리뷰트방식1</button>
+        <button type="button" onclick="">어트리뷰트방식2</button>
+        <button type="button" id="proBtn">프로퍼티방식</button>
+        <button type="button" id="methodBtn">핸들러메소드방식</button>
+        <button type="button" id="methodBtn2">핸들러메소드방식2</button>
+    </div>
+    <script>
+
+    </script>
+
+    <h2>event</h2>
+    -preventDefault() : 태그가 가진 기본동작(이벤트)를 중단하는 메소드<br>
+    
+    <!-- <button type="button" id="eventBtn" onclick="thisBind(this);">이벤트 객체 확인</button> -->
+    <button type="button" id="eventBtn">이벤트 객체 확인</button>
+    <a href="http://www.ksmart.or.kr" id="ksmartA">한국스마트정보교육원</a>
+
+    <script type="text/javascript">
+       
+    </script>
+
+    <h2>자주 쓰이는 이벤트</h2>
+    <!-- 키보드 -->
+    - keydown: 모든 키를 눌렀을 때 발생<br>
+    - keyup : 누르고 있는 키를 뗄 때<br>
+    - keypress : 키를 누르고 뗏을 때<br>
+    <!-- 포커스 -->
+    - focus : 요소가 포커스를 얻었을 때<br>
+    - blur : 요소가 포커스를 잃었을 때<br>
+    <!-- form 요소 이벤트 -->
+    - input : input 또는 textarea 요소의 값이 변경되었을 때<br>
+    - change : select box, checkbox, radio button의 상태가 변경되었을 때<br>
+    - submit : form을 전송할 때 <br>
+    - reset : reset 버튼을 클릭할 때<br>
+
+    <form id="myForm" action="#" method="get">
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <label for="memberId">회원아이디</label>
+            </td>
+            <td>
+              <input type="text" id="memberId" name="memberId" placeholder="회원아이디를 입력해주세요"/>
+              <p></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="memberPw">회원비밀번호</label>
+            </td>
+            <td>
+              <input type="text" id="memberPw" name="memberPw" placeholder="회원비밀번호를 입력해주세요"/>
+              <p></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="checkPw">회원비밀번호확인</label>
+            </td>
+            <td>
+               <!-- <input type="text" 
+                     id="checkPw" 
+                     placeholder="다시 한 번 비밀번호를 입력해주세요"
+                     onkeydown="check()"
+                     onkeypress="check()"
+                     onkeyup="check()"
+                     oninput="check()"/> -->
+              <input type="text" id="checkPw" placeholder="다시 한 번 비밀번호를 입력해주세요"/>
+              <p></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="memberName">회원이름</label>
+            </td>
+            <td>
+              <input type="text" id="memberName" name="memberName" placeholder="회원이름을 입력해주세요"/>
+              <p></p>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2">
+              <button type="button" id="confirmBtn" class="btn">확인</button>
+              <button type="button" id="resetBtn" class="btn">취소</button>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </form>
+    
+    <script>
+      
+    </script>
+
+    <h2>이벤트 객체</h2>
+    - 이벤트가 발생하면 이벤트에 관련한 다양한 정보를 담고 있는 
+      이벤트 객체가 동적으로 생성<br>
+    - 생성된 객체는 이벤트 핸들러의 첫 번째 인수로 전달
+
+    <div>
+      <h3>이벤트 객체 확인</h3>
+      <button type="button" id="btn">버튼</button>
+    </div>
+
+    <script>
+      
+    </script>
+
+    <style>
+      #divP{
+        width: 500px;
+        height: 150px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color:aqua;
+      }
+      #divG{
+        width: 450px;
+        height: 120px;
+        display: grid;
+        grid-template-columns: 90px 90px 90px 90px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-color: darkgoldenrod;
+      }
+      #divG div{
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #divG div a{
+        text-decoration: none;
+      }
+      #divG div{
+        background-color: white;
+      }
+      #divG div a:link{
+        color: black;
+      }
+      #divG div.red{
+        background-color: red;
+      }
+      #divG div.red a:link{
+        color: white;
+      }
+      #divG div.green{
+        background-color: green;
+      }
+      #divG div.green a:link{
+        color: white;
+      }
+      #divG div.yellow{
+        background-color: yellow;
+      }
+      #divG div.yellow a:link{
+        color: blue;
+      }
+      #divG div.blueviolet{
+        background-color: blueviolet;
+      }
+      #divG div.blueviolet a:link{
+        color: white;
+      }
+    </style>
+
+    <h2>이벤트 버블링</h2>
+    - 이벤트가 하위요소에서 상위요소로 전파되는 것<br>
+    - event.prenventDefault() 메소드: DOM 요소의 기본동작 방지하기<br>
+                                   ex: a 태그 클릭시 href 주소이동방지<br>
+    - event.stopPropagation() 메소드: 이벤트 전파 방지하기<br>
+
+    <div id="divP">
+      <div id="divG">
+        <div class=""><a href="#">red</a></div>
+        <div class=""><a href="#">green</a></div>
+        <div class=""><a href="#">yellow</a></div>
+        <div class="blueviolet"><a href="#">blueviolet</a></div>
+      </div>
+    </div>
+    
+    <script>
+       
+
+    </script>
+
+    <h2>동적바인딩</h2>
+    - 이벤트에 의하여 생성된 요소에 이벤트 부여 (이벤트 버블링 활용)
+    <table>
+      <tbody id="dynamicTb">
+        <tr>
+          <td>
+            <input type="text" name="contents"/>
+            <button type="button" class="copy-btn">카피</button>
+            <button type="button" class="del-btn">제거</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <script>
+     
+    </script>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
