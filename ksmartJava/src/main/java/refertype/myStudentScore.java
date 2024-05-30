@@ -18,7 +18,7 @@ public class myStudentScore {
 			break;
 		case 2 : break;
 		//TODO 여기서부터 작성해야함
-			for()
+
 		case 3 : break;
 		case 4 : break;
 		case 5 : break;
