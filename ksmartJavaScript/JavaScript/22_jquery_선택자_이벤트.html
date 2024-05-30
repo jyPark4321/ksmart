@@ -9,8 +9,10 @@
 	<!-- CDN방식 -->
 <!--	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
 	<script>
-		console.log(jQuery);
+		console.log(jQuery());
 		console.log($());
+
+
 	</script>
 </head>
 <body>
@@ -26,7 +28,13 @@
 	- 문서 로딩 완료 이후에 실행되는 메서드
 
 	<script type="text/javascript">
-
+		// 문서가 최종 랜더링 후 에 실행하는 함수
+		// $(document).ready(function (){
+		// 	console.log($('h2'));
+		// });
+		// $(function (){
+		// 	console.log($('h2'));
+		// })
 	</script>
 	
 	<h2> 직접 선택자 </h2>
@@ -37,7 +45,10 @@
 	([body, h1, div] -> 클릭 -> 검색된 모든 대상에 click 이벤트가 등록)
 	
 	<script type="text/javascript">
-
+		console.log($('body')); //jquery 객체
+		console.log($('body')[0]); // javascript HTMLElement 상속 받은 객체
+		console.log($('body123'));
+		console.log($('h2'));
 	</script>
 	
 	<h3> 직접 선택자로 찾아진 객체에 이벤트 걸어보기</h3>
@@ -50,6 +61,16 @@
 	<button type="button" class="myBtn">버튼5</button>
 	
 	<script type="text/javascript">
+		$('testBtn').click(function(){
+			console.log(this.textContent);
+			console.log($(this).text());
+		});
+		console.log($('.myBtn'));
+		$('.myBtn').click(e => {
+			const target = e.target;
+			const textNodeValue = $(target).text();
+			console.log(textNodeValue);
+		});
 
 	</script>
 	
@@ -62,7 +83,44 @@
 	<input type="text" id="myInput">
 	
 	<script type="text/javascript">
-		
+		$('#myBtn01').on('click',function(){
+			console.log($(this).text());
+		});
+		$('#myInput').on('input',function(){
+			console.log($(this).val());
+		})
+		/* 1. on(이벤트 타입1 이벤트 타입2.....n,callbackFn())*/
+		$('#myInput').on('input blur',function (){
+			console.log($(this).val());
+		})
+		/* 2. on({
+				"이벤트 타입1 이벤트 타입2...n" : function(){}
+				})*/
+		const inputEventInfo = {
+			"input blur" : function (){
+			console.log($(this).val());
+			}
+		}
+		$('#myInput').on(inputEventInfo);
+		/* 3. on({
+		  		"이벤트 타입1" : function(){},
+		  		"이벤트 타입2" : function(){}
+			  )}*/
+		const inputEventInfo2 = {
+			"input" : function (){
+				console.log('input 이벤트 : ',$(this).val());
+			},
+			"blur" : function (){
+				console.log('input 이벤트 : ',$(this).val());
+			},
+		}
+		$('#myInput').on(inputEventInfo2);
+		$('#myBtn01').click(function (){
+			console.log('클릭이벤트발생');
+		});
+		$('#myBtn01').click();
+		$('#myBtn01').trigger('click');
+
 	</script>
 	
 	<h2>인접 관계 선택자</h2>
@@ -108,6 +166,19 @@
 	<p class="txt6">내용6</p>
 
 	<script type="text/javascript">
+		// 부모 노드 탐색
+		$('.liBtn').click(function (){
+			// 부모노드 탐색
+			const $li = $(this).parent();
+			console.log($li[0].className);
+		// parents('css선택자') 조상 노드 탐색
+			const $ulEles = $(this).parents('ul');
+			console.log($ulEles);
+		// closest('css선택자')	조상 노드 중 가장 인접한 노드 탐색
+			const $ul = $(this).closest('ul');
+			console.log($ul);
+		});
+
 
 	</script>
 	
