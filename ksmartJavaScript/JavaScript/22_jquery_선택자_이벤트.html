@@ -177,7 +177,24 @@
 		// closest('css선택자')	조상 노드 중 가장 인접한 노드 탐색
 			const $ul = $(this).closest('ul');
 			console.log($ul);
+		// children() 자식노드 취득
+			console.log($ul.children());
+		// children('css선택자') : 자식 노드 중 css선택자에 해당하는 요소 취득
+			console.log($ul.children('.li2'));
+		// find('css선택자') 자손 노드 중 css선택자에 해당하는 요소 취득
+			console.log($ul.find('button'));
+
+		// 형제 노드
+			const $li2 = $ul.find('.li2');
+		// prev(): 이전 형제 노드 취득
+			console.log($li2.prev());
+		// next(): 이후 형제 노드 취득
+			console.log($li2.next());
+		// siblings(): 형제노드 전체 취득
+			console.log($li2.siblings());
 		});
+
+
 
 
 	</script>
