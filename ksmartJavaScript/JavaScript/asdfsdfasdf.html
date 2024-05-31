@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>jquery 실습</title>
+<link rel="shortcut icon" href="#" type="image/x-icon">
 <script  src="js/jquery-3.7.1.js"></script>
 </head>
 <body>
@@ -21,16 +22,10 @@
 		</li>
 	</ul>
 	<script type="text/javascript">
-		//마지막 행은 살아있어야해용?
-
-		$('.delBtn').click(function (){
-			const liLenght = $('.delBtn').parent().length;
-			console.log(liLenght);
-			if(liLenght>1) {
-				$(this).parent().remove();
-			}
+		$('.delBtn').click(function(){
+			const length = $(this).closest('ul').children().length;
+			if(length > 1) $(this).parent().remove();
 		});
-
 	</script>
 	
 	<h2>실습2</h2>
@@ -60,13 +55,9 @@
 	</ul>
 	
 	<script type="text/javascript">
-		//클릭을 했을때 ksmart로 바뀌게 만들어주세용?
-		$('.cBtn').click(function (){
-
-				const $targetDiv = $(this).parent().siblings();
-				$targetDiv.text('ksmat');
-
-		})
+		$('.cBtn').click(function(){
+			$(this).closest('li').find('.text').text('ksmart');
+		});
 	</script>
 	
     <h2>실습3</h2>
@@ -108,17 +99,11 @@
 	<button type="button" id="delCheckBtn">선택된 대상 행 제거</button>
 	
 	<script type="text/javascript">
-		// 기능1 전체제크 하고 삭제 or 선택하고 삭제
-		$('#allCheck').click(function (){
+		$('#allCheck').click(function(){
 			const isChecked = $(this).prop('checked');
-			$('.checks').prop('checked',isChecked);
-		})
-		$(document).on('click','.checks',function(){
-			$('#allCheck').prop('checked',
-					$('.checks').length === $('.checks:checked').length);
-		})
+			$('.checks').prop('checked', isChecked);
+		});
 
-		//기능 2 항목 추가
 		$('#addCate').click(function(){
 			const $tbody = $(this).closest('table').find('tbody');
 			const length = $tbody.children().length;
@@ -126,28 +111,34 @@
 			if(length > 0){
 				cnt = Number($tbody.find('input:last')[0].nextSibling.nodeValue.substring(1));
 			}
-			const $tr = $('<tr></tr>').text(`행${cnt + 1}`);
-			const $td = $('<td></td>');
-			const $input = $('<input />',{'type' : "checkbox", 'class' : "checks"});
+			const $tr = $('<tr></tr>');
+			const $td = $('<td></td>').text(`행${cnt + 1}`);
+			const $input = $('<input />', { 'type':"checkbox", 'class' : "checks" });
 			$td.prepend($input);
 			$tr.append($td);
 			$tbody.append($tr);
-			// 카테항목 초기화
-			/*$tbody.find('tr').each((idx,item) => {
-				const text = $(item).find('input')[0].nextSibling.nodeValue = `행${idx + 1}`;
+			// 1. 카테항목 초기화
+			/*
+			$tbody.find('tr').each((idx, item)=>{
+				$(item).find('input')[0].nextSibling.nodeValue = `행${idx + 1}`;
+			});
+			*/
 
-			})*/
-			$('#allCheck').prop('checked',false);
+			// 항목 추가 후 전체체크 해제
+			$('#allCheck').prop('checked', false);
 		});
 
+		// 생성된 요소 checks 동적이벤트 바인딩
+		$(document).on('click', '.checks', function(){
+			$('#allCheck').prop('checked',
+													 $('.checks').length == $('.checks:checked').length);
+		});
 
-
-		//기능 3 선택된 대상 행 제거
-		$('#delCheckBtn').click(function (){
+		// 항목 삭제
+		$('#delCheckBtn').click(function(){
 			$('.checks:checked').closest('tr').remove();
-			$('#allCheck').prop('checked',false);
+			$('#allCheck').prop('checked', false);
 		})
-
 	</script>
 	
 	<h2>실습4</h2>
@@ -155,11 +146,12 @@
 	<br>
 	<button type="button" id="bgChange">배경색 변환</button>
 	<script>
-		const colorArr = ['red','green','darkcyan'];
-		const cnt2 = (num => () => num++)(0);
+		const colorArr = ['gray', 'white', 'darkcyan'];
+		const cnt = (num => () => num++)(0);
 		$('#bgChange').click(function(){
-			$('body').css('background-color',colorArr[cnt2() % colorArr.length]);
+			$('body').css('background-color', colorArr[cnt() % colorArr.length]);
 		});
+
 	</script>
 	
     <h2>실습5</h2>
@@ -261,7 +253,30 @@
 						<button class="delButton" type="button">삭제</button>
 					</td>
 				</tr>
-        		<tr>
+				<tr>
+					<td>
+						<input type="checkbox" class="memberCheck"/>
+					</td>
+					<td>
+						<input type="text" name="memberId" />
+					</td>
+					<td>
+						<input type="text" name="memberPw" />				
+					</td>
+					<td>
+						<input type="text" name="memberName" />
+					</td>
+					<td>
+						<input type="text" name="memberAddr" />
+					</td>
+					<td>
+						<input type="text" name="memberEmail" />
+					</td>
+					<td>
+						<button class="addButton" type="button">추가</button>
+					</td>
+				</tr>
+				<tr>
 					<td>
 						<input type="checkbox" class="memberCheck"/>
 					</td>
@@ -288,18 +303,43 @@
 		</table>
 	</form>
 	<script>
-
-		// 기능 1: 숫자 입력 후 다중행추가 버튼 클릭 시 숫자만큼 다중행 추가
 		const createRow = () => {
 			const content = [
-				{ 'tagName': 'input', 'type': 'checkbox', 'class': 'memberCheck' },
-				{ 'tagName': 'input', 'type': 'text', 'name': 'memberId' },
-				{ 'tagName': 'input', 'type': 'text', 'name': 'memberPw' },
-				{ 'tagName': 'input', 'type': 'text', 'name': 'memberName' },
-				{ 'tagName': 'input', 'type': 'text', 'name': 'memberAddr' },
-				{ 'tagName': 'input', 'type': 'text', 'name': 'memberEmail' },
-				{ 'tagName': 'button', 'type': 'button', 'class': 'addButton', 'text': '추가' }
-			];
+													{
+														'tagName' : 'input',
+														'type' : 'checkbox',
+														'class' : 'memberCheck'
+													},							
+													{
+														'tagName' : 'input',
+														'type' : 'text',
+														'name' : 'memberId'
+													},							
+													{
+														'tagName' : 'input',
+														'type' : 'text',
+														'name' : 'memberPw'
+													},							
+													{
+														'tagName' : 'input',
+														'type' : 'text',
+														'name' : 'memberName'
+													},							
+													{
+														'tagName' : 'input',
+														'type' : 'text',
+														'name' : 'memberAddr'
+													},							
+													{
+														'tagName' : 'input',
+														'type' : 'text',
+														'name' : 'memberEmail'
+													},							
+													{
+														'tagName' : 'button',
+														'type' : 'button'
+													}						
+											];
 			const $tr = $('<tr></tr>');
 			content.forEach(item => {
 				const $td = $('<td></td>');
@@ -308,122 +348,9 @@
 				const $element = $('<' + tagName + ' />', item);
 				$td.append($element);
 				$tr.append($td);
-			});
+			})
 			return $tr;
 		}
-
-		$('#addRows').click(function() {
-			const inputNum = Number($('#trCount').val());
-			$('#addMemberBody').find('button').last()
-					.removeClass('addButton')
-					.addClass('delButton')
-					.text('삭제');
-
-			for (let i = 0; i < inputNum; i++) {
-				const $tr = createRow();
-				$('#addMemberBody').append($tr);
-			}
-			updateButtons();
-		});
-
-		// 기능 2: 구분 체크 후 선택삭제 버튼 클릭 시 선택된 행 삭제
-		$('#removeRows').click(function() {
-			$('.memberCheck:checked').closest('tr').remove();
-		});
-
-		// 기능 3: 추가 버튼 클릭 후 새롭게 추가된 행은 추가 기존 행은 삭제 버튼으로 변경
-		$('#addMemberBody').on('click', '.addButton', function() {
-			$(this).removeClass('addButton').addClass('delButton').text('삭제');
-		});
-
-		// 기능 4: 구분 체크 후 선택 등록 버튼 클릭 시 유효성 검사 진행 후 json 형태로 console.log() 로 출력
-		$('#addCheckedMembers').click(function() {
-			var selectedRows = $('.memberCheck:checked').closest('tr');
-			var valid = true;
-			var data = [];
-			var ids = {};
-
-			selectedRows.each(function() {
-				var memberId = $(this).find('input[name="memberId"]').val().trim();
-				var memberPw = $(this).find('input[name="memberPw"]').val().trim();
-				var memberName = $(this).find('input[name="memberName"]').val().trim();
-				var memberAddr = $(this).find('input[name="memberAddr"]').val().trim();
-				var memberEmail = $(this).find('input[name="memberEmail"]').val().trim();
-
-				if (memberId && memberPw && memberName && memberAddr && memberEmail) {
-					if (ids[memberId]) {
-						valid = false;
-						alert('중복된 아이디가 있습니다: ' + memberId);
-						return false;
-					}
-					ids[memberId] = true;
-					data.push({
-						memberId: memberId,
-						memberPw: memberPw,
-						memberName: memberName,
-						memberAddr: memberAddr,
-						memberEmail: memberEmail
-					});
-				} else {
-					valid = false;
-					alert('모든 필드를 입력하세요.');
-					return false;
-				}
-			});
-
-			if (valid) {
-				console.log(JSON.stringify(data));
-			}
-		});
-
-		// 기능 5: 다중 등록 클릭 시 유효성 검사 진행 후 json 형태로 console.log() 로 출력
-		$('#addMembers').click(function() {
-			var rows = $('#addMemberBody tr');
-			var valid = true;
-			var data = [];
-			var ids = {};
-
-			rows.each(function() {
-				var memberId = $(this).find('input[name="memberId"]').val().trim();
-				var memberPw = $(this).find('input[name="memberPw"]').val().trim();
-				var memberName = $(this).find('input[name="memberName"]').val().trim();
-				var memberAddr = $(this).find('input[name="memberAddr"]').val().trim();
-				var memberEmail = $(this).find('input[name="memberEmail"]').val().trim();
-
-				if (memberId && memberPw && memberName && memberAddr && memberEmail) {
-					if (ids[memberId]) {
-						valid = false;
-						alert('중복된 아이디가 있습니다: ' + memberId);
-						return false;
-					}
-					ids[memberId] = true;
-					data.push({
-						memberId: memberId,
-						memberPw: memberPw,
-						memberName: memberName,
-						memberAddr: memberAddr,
-						memberEmail: memberEmail
-					});
-				} else {
-					valid = false;
-					alert('모든 필드를 입력하세요.');
-					return false;
-				}
-			});
-
-			if (valid) {
-				console.log(JSON.stringify(data));
-			}
-		});
-
-		function updateButtons() {
-			const buttons = $('#addMemberBody').find('button');
-			buttons.removeClass('addButton').addClass('delButton').text('삭제');
-			buttons.last().removeClass('delButton').addClass('addButton').text('추가');
-		}
-
-		updateButtons();
-
 	</script>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
