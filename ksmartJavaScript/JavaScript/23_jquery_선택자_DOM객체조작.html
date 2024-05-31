@@ -16,7 +16,13 @@
 		<!-- <label id="myLabel" style="color:crimson">ksmart51</label> -->
 	</div>
 	<script>
-
+		let html = `<label id="myLabel" style="color:crimson">`;
+			html += `ksmart51`;
+			html += `</label>`;
+		$('#myDiv').html(html);
+		$('#myLabel').text('한국스마트정보교육원 개발자 51기');
+		console.log($('#myDiv').html());
+		console.log($('#myLabel').text());
 	</script>
 
 	<h2>속성 조작 메서드</h2>
@@ -38,10 +44,17 @@
 		<option value="한동환">한동환</option>
 	</select>
 
-	<input type="checkbox" name="kor" checked>송재익
+	<input type="checkbox" name="kor" value="다리우스" checked>송재익
 	<input type="checkbox" name="ksmart">힘내요
 
 	<script>
+		// .ksmart51요소의 자손노드 중 selected 되어 있는 요소의 값을 반환
+		// .ksmart51 :selected 한칸 띄어 쓰기의 의미 : 해당 요소의 자식노드 중 고르는것
+		console.log($('.ksmart51 :selected').val());
+
+		// input요소중 checked 되어있는 요소의 값을 반환
+		console.log($('input:checked').val());
+
 
 	</script>
 	
