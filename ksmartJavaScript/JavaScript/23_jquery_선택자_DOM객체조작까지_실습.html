@@ -21,7 +21,10 @@
 		</li>
 	</ul>
 	<script type="text/javascript">
-
+		$('.delBtn').click(function (){
+			console.log('클릭왜함?');
+			$(this).closest('li').remove();
+		});
 	</script>
 	
 	<h2>실습2</h2>

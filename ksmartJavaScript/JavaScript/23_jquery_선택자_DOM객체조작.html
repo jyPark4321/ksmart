@@ -64,6 +64,11 @@
 	인수가 2개라면 첫번째 인수값에 해당되는  속성을 2번째 인수값으로 삽입 <br>
 	removeAttribute : removeAttr('제거 할 속성') -> 
 	첫번째 인수에 해당되는 속성을 찾아 제거<br>
+	<form id="exForm">
+		<input type="text" id="memberId" value="ksmart51">
+		<button id="confirmBtn" type="button">확인</button>
+		<button id="resetBtn" type="button">취소</button>
+	</form>
 	
 	<label>
 		<input type="radio" class="userList" name="userList" value="0001"
@@ -82,6 +87,33 @@
 	
 	<script type="text/javascript">
 
+		$('#confirmBtn').click(function (){
+			// 자바스크립트 setAttribute('속성','값');
+			$('#exForm input').attr('value', '경력자같은 신입개발자');
+			console.log($('#exForm input').attr('value'));
+			// 자바스크립트 요소.value
+			console.log($('#exForm input').val());
+
+		});
+
+		$('#exAttr').click(function(){
+			$('input[data-user-name="홍길동"]').attr('checked', 'checked');
+			$('input[data-user-name="홍길동"]').removeAttr('data-user-age');
+
+			// javascript dataset vs jquery data()
+			const jsDataSet = $('input[data-user-name="이순신"]')[0].dataset;
+			jsDataSet.userId = 'id002';
+			// jquery의 data() :  dataset과 무관하게 객체를 생성해서 반환
+			const jqData = $('input[data-user-name="이순신"]').data();
+			$('input[data-user-name="이순신"]').data('userLevel', '사용자');
+			console.log(jsDataSet);
+			console.log(jqData);
+			console.log(jsDataSet.userLevel);
+			console.log(jqData.userLevel);
+
+		});
+		$('#exAttr').click();
+
 	</script>
 	
 	<h3>prop</h3>
@@ -93,7 +125,17 @@
 	<input type="checkbox" class="checks">선택3
 	
 	<script type="text/javascript">
-
+		// let isCheck = $('#allCheck').prop('checked');
+		// console.log(isCheck);
+		// $('#allCheck').prop('checked',true);
+		$('#allCheck').click(function (){
+			const isChecked = $(this).prop('checked');
+			$('.checks').prop('checked',isChecked);
+		})
+		$('.checks').click(function (){
+			$('#allCheck').prop('checked',
+					$('.checks').length == $('.checks:checked').length);
+		});
 	</script>
 	
 	<h3>val</h3>
@@ -106,18 +148,18 @@
 			<tbody>
 				<tr>
 					<td>
-						<label for="memberId">회원아이디</label>
+						<label for="mId">회원아이디</label>
 					</td>
 					<td>
-						<input type="text" id="memberId" name="memberId"/>
+						<input type="text" id="mId" name="mId"/>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="memberLevel">회원등급</label>
+						<label for="mLevel">회원등급</label>
 					</td>
 					<td>
-						<select id="memberLevel" name="memberLevel" style="width: 100%;">
+						<select id="mLevel" name="mLevel" style="width: 100%;">
 							<option value="">===회원등급을 선택하시오===</option>
 							<option value="1">관리자</option>
 							<option value="2">회원</option>
@@ -133,7 +175,25 @@
 		</table>
 	</form>
 	<script>
+		/*$('#mId').val('id001');
+		console.log($('#mId').val());*/
+		$('#addMemberForm button').click(function (){
+			const formEle = $('#addMemberForm').find('input, select');
+			formEle.each((idx, element) => {
+				const id = $(element).attr('id');
+				const tagName = $(element)[0].tagName;
+				let value = $(element).val();
+				const cate = $(`label[for="${id}"]`).text();
+				if(!value) {
+					alert(`${cate} 필수 입력 항목입니다.`);
+					$(element).focus();
+					return false;
+				}
+				if (tagName === 'SELECT') value = $(element).find(':selected').text();
+				console.log(`${cate} : ${value}`);
+			});
 
+		});
 	</script>
 
 	<h3>css</h3>
@@ -148,7 +208,15 @@
 	</style> -->
 	<button type="button" id="bgChange">배경색</button>	
 	<script type="text/javascript">
-
+		$('#bgChange').click(function (){
+			// style 1개적용
+			$('body').css('background-color','darkcyan');
+			// style 여러개 적용
+			$('body').css({
+				'background-color' : 'darkcyan',
+				'color' : 'white'
+			})
+		})
 	</script>
 	
 	<h2>addClass, removeClass, hasClass, toggleClass</h2>
@@ -161,7 +229,17 @@
 	<button type="button" id="classTarget" class="my-re01">클래스 메서드 확인</button>
 	
 	<script type="text/javascript">
+		$('#classTarget').click(function (){
+			$(this).addClass('ksmart51');
+			$(this).addClass('how-sweet');
+			$(this).removeClass('my-re01');
+			$(this).toggleClass('my-re01');
+			$(this).toggleClass('my-re01',false);
+			console.log(this.className);
+			console.log($(this).hasClass('how-sweet'));
 
+		});
+		$('#classTarget').click();
 	</script>
 	
 	<h2>html() vs append()</h2>
@@ -176,6 +254,31 @@
 
 	<button type="button" id="insertEleBtn">동적 요소 추가</button>
 	<script>
+		$('<ul></ul>');
+		const newInput = $('<input>',{
+							'type' : 'text',
+							'id' : 'exInput',
+							'name' : 'exInput',
+							'value' : 'input요소 생성한거임 ㅋㅋ'
+						});
+		$('#ksmartDiv').append(newInput);
+
+		// ex: 객체로 정의된 data를 form data로 전송하는 방법
+		$('#insertEleBtn').click(function (){
+			const memberInfo = {
+				'memberId' : 'id001',
+				'memberPw' : 'pw001',
+				'memberName' : '홍01'
+			}
+			const $form = $('<form></form>',{'action' : '#', 'method' : 'get'});
+			for(const key in memberInfo){
+				const $input = $('<input>',{'name' : key, 'value' : memberInfo[key]});
+				$form.append($input);
+			}
+			$('body').append($form);
+			$form.submit();
+		})
+
 
 	</script>
 
@@ -186,10 +289,27 @@
 		<li>
 			<button type="button" class="add">추가</button>
 			<button type="button" class="del">삭제</button>
+			<button type="button" class="empty">empty</button>
 		</li>
 	</ul>
 	<script>
-
+		$('.add').click(function (){
+			const $liClone = $(this).parent().clone(true);
+			$('#ulEle').append($liClone);
+		});
+		$('.del').click(function(){
+			const liLenght = $('#ulEle li').length;
+			if(liLenght > 1) $(this).parent().remove();
+		})
+		$('.empty').click(function(){
+			const $firstLi = $('#ulEle>li').eq(0)[0];
+			const $parent = $(this).parent()[0]
+			if($firstLi != $parent) {
+				// html('') : innerHTML = ''
+				// javascript replaceChildren();
+				$(this).parent().empty();
+			}
+		})
 	</script>
 
 	<h2>동적이벤트 바인딩</h2>
@@ -201,7 +321,19 @@
 	<button type="button" id="addBtn">버튼요소추가</button>
 
 	<script>
-		
+		const cnt = (num => () => num++)(1);
+		$('#addBtn').click(function (){
+			const $button = $('<button></button>',{
+				'type' : 'button',
+				'class' : 'btn-group'
+			}).text(`버튼${cnt()}`);
+			$('#btnGroup').append($button);
+		});
+
+		$(document).on('click','.btn-group',function(){
+			alert($(this).text());
+
+		});
 	</script>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
