@@ -273,7 +273,7 @@
 						<input type="text" name="memberEmail" />
 					</td>
 					<td>
-						<button class="addButton" type="button">추가</button>
+						<button class="delButton" type="button">삭제</button>
 					</td>
 				</tr>
 				<tr>
@@ -351,6 +351,29 @@
 			})
 			return $tr;
 		}
+		$('#addRows').click(function(){
+			const cnt = Number($('#trCount').val());
+			if(cnt < 1) return;
+			$('#addMemberBody').find('button:last')
+												 .addClass('delButton')
+												 .removeClass('addButton')
+												 .text('삭제');
+			const rows = [];
+			for(let i=0; i<cnt; i+=1){
+				const $tr = createRow();
+				let className = 'delButton';
+				let text = '삭제';
+				if(i == (cnt - 1)) {
+					className = 'addButton';
+					text = '추가' 
+				}
+				$tr.find('button:last')
+					 .addClass(className)
+					 .text(text);
+				rows.push($tr);
+			}
+			$('#addMemberBody').append(rows);
+		});
 	</script>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>

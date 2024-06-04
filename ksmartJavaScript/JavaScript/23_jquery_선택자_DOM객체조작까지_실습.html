@@ -289,16 +289,17 @@
 	</form>
 	<script>
 
+
 		// 기능 1: 숫자 입력 후 다중행추가 버튼 클릭 시 숫자만큼 다중행 추가
 		const createRow = () => {
 			const content = [
-				{ 'tagName': 'input', 'type': 'checkbox', 'class': 'memberCheck' },
-				{ 'tagName': 'input', 'type': 'text', 'name': 'memberId' },
-				{ 'tagName': 'input', 'type': 'text', 'name': 'memberPw' },
-				{ 'tagName': 'input', 'type': 'text', 'name': 'memberName' },
-				{ 'tagName': 'input', 'type': 'text', 'name': 'memberAddr' },
-				{ 'tagName': 'input', 'type': 'text', 'name': 'memberEmail' },
-				{ 'tagName': 'button', 'type': 'button', 'class': 'addButton', 'text': '추가' }
+				{'tagName' : 'input', 'type' : 'checkbox', 'class' : 'memberCheck'},
+				{'tagName' : 'input', 'type' : 'text', 'name' : 'memberId'},
+				{'tagName' : 'input', 'type' : 'text', 'name' : 'memberPw'},
+				{'tagName' : 'input', 'type' : 'text', 'name' : 'memberName'},
+				{'tagName' : 'input', 'type' : 'text', 'name' : 'memberAddr'},
+				{'tagName' : 'input', 'type' : 'text', 'name' : 'memberEmail'},
+				{'tagName' : 'button', 'type' : 'button'}
 			];
 			const $tr = $('<tr></tr>');
 			content.forEach(item => {
@@ -308,121 +309,132 @@
 				const $element = $('<' + tagName + ' />', item);
 				$td.append($element);
 				$tr.append($td);
-			});
+			})
 			return $tr;
 		}
-
-		$('#addRows').click(function() {
-			const inputNum = Number($('#trCount').val());
-			$('#addMemberBody').find('button').last()
-					.removeClass('addButton')
+		$('#addRows').click(function(){
+			const cnt = Number($('#trCount').val());
+			if(cnt < 1) return;
+			$('#addMemberBody').find('button:last')
 					.addClass('delButton')
+					.removeClass('addButton')
 					.text('삭제');
-
-			for (let i = 0; i < inputNum; i++) {
+			const rows = [];
+			for(let i=0; i<cnt; i+=1){
 				const $tr = createRow();
-				$('#addMemberBody').append($tr);
+				let className = 'delButton';
+				let text = '삭제';
+				if(i == (cnt - 1)) {
+					className = 'addButton';
+					text = '추가'
+				}
+				$tr.find('button:last')
+						.addClass(className)
+						.text(text);
+				rows.push($tr);
 			}
-			updateButtons();
+			$('#addMemberBody').append(rows);
+			$('#trCount').val(0); // 다중행 추가후 trCount초기화
 		});
 
 		// 기능 2: 구분 체크 후 선택삭제 버튼 클릭 시 선택된 행 삭제
-		$('#removeRows').click(function() {
+		$('#removeRows').click(function () {
 			$('.memberCheck:checked').closest('tr').remove();
+			const trCnt = $('#addMemberBody').children().length;
+			if (trCnt > 1) {
+			$('#addMemberBody button:last').addClass('addButton')
+											.removeClass('delButton')
+											.text('추가');
+			}
 		});
 
-		// 기능 3: 추가 버튼 클릭 후 새롭게 추가된 행은 추가 기존 행은 삭제 버튼으로 변경
-		$('#addMemberBody').on('click', '.addButton', function() {
-			$(this).removeClass('addButton').addClass('delButton').text('삭제');
+		// 기능 3-1 : 추가 버튼 클릭 후 새롭게 추가된 행은 추가 기존 행은 삭제 버튼으로 변경
+		$(document).on('click', '.addButton', function () {
+			$('#addMemberBody button:last').addClass('delButton')
+											.removeClass('addButton')
+											.text('삭제');
+			const $row = createRow();
+			$row.find('button').addClass('addButton')
+								.text('추가');
+			$('#addMemberBody').append($row);
+		});
+		// 기능 3-2 : 삭제 버튼을 클릭 후 삭제된 행은 추가 버튼으로 변경
+		$(document).on('click', '.delButton', function () {
+			$(this).closest('tr').remove();
+
 		});
 
 		// 기능 4: 구분 체크 후 선택 등록 버튼 클릭 시 유효성 검사 진행 후 json 형태로 console.log() 로 출력
-		$('#addCheckedMembers').click(function() {
-			var selectedRows = $('.memberCheck:checked').closest('tr');
-			var valid = true;
-			var data = [];
-			var ids = {};
+			//내가만든 방법
+			/*const isValidMember = (member) => {
+				return member.memberId && member.memberPw && member.memberName && member.memberAddr && member.memberEmail;
+			};
 
-			selectedRows.each(function() {
-				var memberId = $(this).find('input[name="memberId"]').val().trim();
-				var memberPw = $(this).find('input[name="memberPw"]').val().trim();
-				var memberName = $(this).find('input[name="memberName"]').val().trim();
-				var memberAddr = $(this).find('input[name="memberAddr"]').val().trim();
-				var memberEmail = $(this).find('input[name="memberEmail"]').val().trim();
+			$('#addCheckedMembers').click(function () {
+				const selectedRows = $('.memberCheck:checked').closest('tr');
+				const members = [];
 
-				if (memberId && memberPw && memberName && memberAddr && memberEmail) {
-					if (ids[memberId]) {
-						valid = false;
-						alert('중복된 아이디가 있습니다: ' + memberId);
-						return false;
+				selectedRows.each(function () {
+					const member = {
+						memberId: $(this).find('input[name="memberId"]').val(),
+						memberPw: $(this).find('input[name="memberPw"]').val(),
+						memberName: $(this).find('input[name="memberName"]').val(),
+						memberAddr: $(this).find('input[name="memberAddr"]').val(),
+						memberEmail: $(this).find('input[name="memberEmail"]').val()
+					};
+
+					if (isValidMember(member)) {
+						members.push(member);
+					} else {
+						alert('모든 필드를 올바르게 입력해 주세요.');
+						return false;  // 유효성 검사 실패 시 멈춤
 					}
-					ids[memberId] = true;
-					data.push({
-						memberId: memberId,
-						memberPw: memberPw,
-						memberName: memberName,
-						memberAddr: memberAddr,
-						memberEmail: memberEmail
-					});
-				} else {
-					valid = false;
-					alert('모든 필드를 입력하세요.');
-					return false;
-				}
-			});
+				});
 
-			if (valid) {
-				console.log(JSON.stringify(data));
-			}
+				console.log(JSON.stringify(members));
+			});*/
+
+			//선생님 풀이 방법
+		$('#addCheckedMembers').click(function () {
+			const $trEles = $('.memberCheck:checked').closest('tr');
+			const addMemberList = []
+			$trEles.each((idx, element) => {
+				const memberInfo = {};
+				const $inputEles = $(element).find('input').not('.memberCheck');
+				$inputEles.each((idx,element) => {
+					const name = $(element).attr('name');
+					const value = $(element).val();
+					memberInfo[name] = value;
+				});
+				addMemberList.push(memberInfo);
+			});
+			console.log(addMemberList);
 		});
 
 		// 기능 5: 다중 등록 클릭 시 유효성 검사 진행 후 json 형태로 console.log() 로 출력
-		$('#addMembers').click(function() {
-			var rows = $('#addMemberBody tr');
-			var valid = true;
-			var data = [];
-			var ids = {};
+		$('#addMembers').click(function () {
+			const rows = $('#addMemberBody').children('tr');
+			const members = [];
 
-			rows.each(function() {
-				var memberId = $(this).find('input[name="memberId"]').val().trim();
-				var memberPw = $(this).find('input[name="memberPw"]').val().trim();
-				var memberName = $(this).find('input[name="memberName"]').val().trim();
-				var memberAddr = $(this).find('input[name="memberAddr"]').val().trim();
-				var memberEmail = $(this).find('input[name="memberEmail"]').val().trim();
+			rows.each(function () {
+				const member = {
+					memberId: $(this).find('input[name="memberId"]').val(),
+					memberPw: $(this).find('input[name="memberPw"]').val(),
+					memberName: $(this).find('input[name="memberName"]').val(),
+					memberAddr: $(this).find('input[name="memberAddr"]').val(),
+					memberEmail: $(this).find('input[name="memberEmail"]').val()
+				};
 
-				if (memberId && memberPw && memberName && memberAddr && memberEmail) {
-					if (ids[memberId]) {
-						valid = false;
-						alert('중복된 아이디가 있습니다: ' + memberId);
-						return false;
-					}
-					ids[memberId] = true;
-					data.push({
-						memberId: memberId,
-						memberPw: memberPw,
-						memberName: memberName,
-						memberAddr: memberAddr,
-						memberEmail: memberEmail
-					});
+				if (isValidMember(member)) {
+					members.push(member);
 				} else {
-					valid = false;
-					alert('모든 필드를 입력하세요.');
-					return false;
+					alert('모든 필드를 올바르게 입력해 주세요.');
+					return false;  // 유효성 검사 실패 시 멈춤
 				}
 			});
 
-			if (valid) {
-				console.log(JSON.stringify(data));
-			}
+			console.log(JSON.stringify(members));
 		});
-
-		function updateButtons() {
-			const buttons = $('#addMemberBody').find('button');
-			buttons.removeClass('addButton').addClass('delButton').text('삭제');
-			buttons.last().removeClass('delButton').addClass('addButton').text('추가');
-		}
-
-		updateButtons();
 
 	</script>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

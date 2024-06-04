@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>비동기통신</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    
+</head>
+<body>
+    <h1>비동기통신</h1>
+
+    <h2>jQuery - Ajax</h2>
+    - jQuery에서도 비동기 통신을 위한 메소드가 존재<br>
+    - 별도의 라이브러리가 필요<br>
+    - 요청 후 성공 및 실패에 관하여 메소드 체이닝 제공<br>
+    - 문법: $.ajax({ 옵션 }) or $.ajax({ 옵션 }).done().fail().always()<br>
+      - 대표적인 속성 <br>
+      - method : 요청방식(기본값:get)<br>
+      - url: 서버주소<br>
+      - data: 요청시 쿼리파라미터 ex: data: { '키' : 값 , '키' : 값 ...}<br>
+      - dataType : 서버가 응답해주는 데이터의 타입 지정 (arraybuffer, document, json(기본값), text, stream, blob)<br>
+      - success : function(data){} , 요청 성공시 이벤트 핸들러<br>
+      - error : function(jqXHR, textStatus){}, 요청 실패시 이벤트 핸들러<br><br><br>
+
+    - 관련 메소드 체이닝 <br>
+    - done :  http 요청 성공하면 요청한 데이터 done(data)메소드에 전달<br>
+    - fail :  http 요청 실패하면 오류와 상태에 관한 정보가 fail(jqXHR, textStatus)메소드에 전달<br>
+    - always :  http 요청 성공하거나 실패하는 것에 상관없이 always()메소드 항상실행<br><br><br>
+    
+    - 공공 API <br>
+      - 사이트 : https://www.data.go.kr<br>
+      - data: 기상청_단기예보 ((구)_동네예보) 조회서비스<br>
+
+	<div class="container-fluid mt-5 ml-5">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <h5 class="card-header">
+                        <button type="button" id="exAjax" class="btn btn-success btn-lg btn-block">예보 날씨 확인</button>
+                    </h5>
+                    <div class="card-body text-center">
+                        <h3 class="card-title">날씨정보</h3>
+                        <div class="card-text">
+                            <form>
+                                <div class="form-group row justify-content-center">
+                                    <div class="col-sm-12">
+                                        <input type="text" readonly class="form-control-plaintext text-center text-primary" id="curDate" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group row justify-content-center">
+                                    <label for="curTemp" class="col-sm-4 col-form-label">현재기온</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" readonly class="form-control-plaintext text-center text-info font-weight-bolder" id="curTemp" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group row justify-content-center">
+                                    <label for="curSky" class="col-sm-4 col-form-label">하늘상태</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" readonly class="form-control-plaintext text-center text-info font-weight-bolder" id="curSky" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group row justify-content-center">
+                                    <label for="proRain" class="col-sm-4 col-form-label">강수확률</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" readonly class="form-control-plaintext text-center text-info font-weight-bolder" id="proRain" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group row justify-content-center">
+                                    <label for="humidity" class="col-sm-4 col-form-label">습도</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" readonly class="form-control-plaintext text-center text-info font-weight-bolder" id="humidity" value="">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+	<script type="text/javascript">
+        /*
+            POP	강수확률	%	8
+            PTY	강수형태	코드값	4
+            PCP	1시간 강수량	범주 (1 mm)	8
+            REH	습도	%	8
+            SNO	1시간 신적설	범주(1 cm)	8
+            SKY	하늘상태	코드값	4
+            TMP	1시간 기온	℃	10
+            TMN	일 최저기온	℃	10
+            TMX	일 최고기온	℃	10
+            UUU	풍속(동서성분)	m/s	12
+            VVV	풍속(남북성분)	m/s	12
+            WAV	파고	M	8
+            VEC	풍향	deg	10
+            WSD	풍속	m/s	10
+            
+            하늘상태	전운량
+            맑음	     1
+            구름많음	  3
+            흐림	     4
+            ['POP','REH','SKY','TMP','TMN','TMX']
+            - Base_time : 0200, 0500, 0800, 1100, 1400, 1700, 2000, 2300 (1일 8회)
+            - API 제공 시간(~이후) : 02:10, 05:10, 08:10, 
+                                11:10, 14:10, 17:10, 20:10, 23:10
+        */
+        
+	</script>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
