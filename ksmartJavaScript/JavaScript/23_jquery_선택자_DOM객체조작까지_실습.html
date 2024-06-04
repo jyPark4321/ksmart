@@ -409,6 +409,52 @@
 					if(!value){
 						const cate = $('#addMemberForm th').eq(idx+1).text();
 						alert(`${cate}는 필수 입력 항목입니다.`);
+						$(element).blur().css('border-color','red');
+						isSubmit = false;
+						return false;
+					}
+					// 아이디 중복 유효성 검증
+					if(name === 'memberId'){
+						if(idCheck.includes(value)){
+							alert('중복된아이디입니다.');
+							$(element).val('');
+							$(element).focus();
+
+
+							isSubmit = false;
+							return false;
+						}
+						idCheck.push(value);
+					}
+					memberInfo[name] = value;
+				});
+				if(!isSubmit) return false;
+				addMemberList.push(memberInfo);
+			});
+			if (isSubmit) {
+				const jsonFormat = JSON.stringify(addMemberList);
+				console.log(addMemberList,'<--객체데이터');
+				console.log(jsonFormat,'<--JSON포멧형태');
+				const jsonObject = JSON.parse(jsonFormat);
+				console.log(jsonObject,'<--JSONOBJECT');
+			}
+		});
+
+		// 기능 5: 다중 등록 클릭 시 유효성 검사 진행 후 json 형태로 console.log() 로 출력
+		$('#addMembers').click(function () {
+			const $trEles = $('.memberCheck').closest('tr');
+			const addMemberList = [];
+			const idCheck = [];
+			let isSubmit = true;
+			$trEles.each((idx,element) => {
+				const memberInfo = {};
+				const $inputEles = $(element).find('input').not('.memberCheck');
+				$inputEles.each((idx,element) => {
+					const name = $(element).attr('name');
+					const value = $(element).val().trim();
+					if(!value){
+						const cate = $('#addMemberForm th').eq(idx+1).text();
+						alert(`${cate}는 필수 입력 항목입니다.`);
 						$(element).focus();
 						isSubmit = false;
 						return false;
@@ -436,32 +482,8 @@
 				const jsonObject = JSON.parse(jsonFormat);
 				console.log(jsonObject,'<--JSONOBJECT');
 			}
-		});
-
-		// 기능 5: 다중 등록 클릭 시 유효성 검사 진행 후 json 형태로 console.log() 로 출력
-		$('#addMembers').click(function () {
-			const rows = $('#addMemberBody').children('tr');
-			const members = [];
-
-			rows.each(function () {
-				const member = {
-					memberId: $(this).find('input[name="memberId"]').val(),
-					memberPw: $(this).find('input[name="memberPw"]').val(),
-					memberName: $(this).find('input[name="memberName"]').val(),
-					memberAddr: $(this).find('input[name="memberAddr"]').val(),
-					memberEmail: $(this).find('input[name="memberEmail"]').val()
-				};
-
-						if (isValidMember(member)) {
-					members.push(member);
-				} else {
-					alert('모든 필드를 올바르게 입력해 주세요.');
-					return false;  // 유효성 검사 실패 시 멈춤
-				}
 			});
 
-			console.log(JSON.stringify(members));
-		});
 
 	</script>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc093754-908d-4310-8372-607e0550e9f4" name="Changes" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;ksmartJavaScript/JavaScript/23_하sdfasdf.html">
+    <list default="true" id="dc093754-908d-4310-8372-607e0550e9f4" name="Changes" comment="24-06-04 JQUERY 오전수업2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ksmartJavaScript/JavaScript/23_jquery_선택자_DOM객체조작까지_실습.html" beforeDir="false" afterPath="$PROJECT_DIR$/ksmartJavaScript/JavaScript/23_jquery_선택자_DOM객체조작까지_실습.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ksmartJavaScript/JavaScript/24_비동기통신_fetch.html" beforeDir="false" afterPath="$PROJECT_DIR$/ksmartJavaScript/JavaScript/24_비동기통신_fetch.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +75,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717459800673</updated>
       <workItem from="1717459801674" duration="238000" />
-      <workItem from="1717460047594" duration="7775000" />
+      <workItem from="1717460047594" duration="16383000" />
     </task>
     <task id="LOCAL-00001" summary="24-06-04 오전수업">
       <option name="closed" value="true" />
@@ -99,7 +101,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717465896355</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="24-06-04 JQUERY 오전수업2">
+      <option name="closed" value="true" />
+      <created>1717468568114</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717468568114</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,6 +130,7 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;ksmartJavaScript/JavaScript/23_jquery_선택자_DOM객체조작까지_실습.html" />
     <MESSAGE value="24-06-04 오전수업" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;ksmartJavaScript/JavaScript/23_하sdfasdf.html" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;ksmartJavaScript/JavaScript/23_하sdfasdf.html" />
+    <MESSAGE value="24-06-04 JQUERY 오전수업2" />
+    <option name="LAST_COMMIT_MESSAGE" value="24-06-04 JQUERY 오전수업2" />
   </component>
 </project>
