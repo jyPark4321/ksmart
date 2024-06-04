@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc093754-908d-4310-8372-607e0550e9f4" name="Changes" comment="24-06-04 오전수업">
-      <change afterPath="$PROJECT_DIR$/ksmartJavaScript/JavaScript/23_하sdfasdf.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ksmartJavaScript/JavaScript/24_비동기통신_fetch.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ksmartJavaScript/JavaScript/24_비동기통신_fetch_ex.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ksmartJavaScript/JavaScript/25_비동기통신_axios.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ksmartJavaScript/JavaScript/26_비동기통신_jquery_ajax.html" afterDir="false" />
+    <list default="true" id="dc093754-908d-4310-8372-607e0550e9f4" name="Changes" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;ksmartJavaScript/JavaScript/23_하sdfasdf.html">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ksmartJavaScript/JavaScript/23_jquery_선택자_DOM객체조작까지_실습.html" beforeDir="false" afterPath="$PROJECT_DIR$/ksmartJavaScript/JavaScript/23_jquery_선택자_DOM객체조작까지_실습.html" afterDir="false" />
     </list>
@@ -41,21 +36,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/parkjungyeon/51기한국스마트정보교육원/02_홍승윤선생님/02_javascript/gitclone/ksmart",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/parkjungyeon/51기한국스마트정보교육원/02_홍승윤선생님/02_javascript/gitclone/ksmart&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\parkjungyeon\51기한국스마트정보교육원\02_홍승윤선생님\02_javascript\gitclone\ksmart\ksmartJavaScript\JavaScript" />
@@ -78,7 +73,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717459800673</updated>
       <workItem from="1717459801674" duration="238000" />
-      <workItem from="1717460047594" duration="5415000" />
+      <workItem from="1717460047594" duration="7775000" />
     </task>
     <task id="LOCAL-00001" summary="24-06-04 오전수업">
       <option name="closed" value="true" />
@@ -88,15 +83,43 @@
       <option name="project" value="LOCAL" />
       <updated>1717460187198</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="24-06-04 오전수업">
+      <option name="closed" value="true" />
+      <created>1717465868846</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1717465868846</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;ksmartJavaScript/JavaScript/23_하sdfasdf.html">
+      <option name="closed" value="true" />
+      <created>1717465896355</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717465896355</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;ksmartJavaScript/JavaScript/23_jquery_선택자_DOM객체조작까지_실습.html" />
     <MESSAGE value="24-06-04 오전수업" />
-    <option name="LAST_COMMIT_MESSAGE" value="24-06-04 오전수업" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;ksmartJavaScript/JavaScript/23_하sdfasdf.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;ksmartJavaScript/JavaScript/23_하sdfasdf.html" />
   </component>
 </project>
