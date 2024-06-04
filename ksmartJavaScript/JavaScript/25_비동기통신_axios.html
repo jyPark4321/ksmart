@@ -77,7 +77,41 @@
     </div>
     
 	<script type="text/javascript">
-        
+        const $exAxios = document.querySelector('#exAxios');
+        $exAxios.addEventListener('click',function(){
+            let isBreake = false;
+            const $inputEles = document.querySelectorAll('form input');
+            const loginInfo = {};
+            [...$inputEles].some(element => {
+                const id = element.id;
+                const value = element.value.trim();
+                if(!value) {
+                    const cate = document.querySelector(`label[for="${id}"]`).textContent;
+                    alert(`${cate} 필수 입력해라.`);
+                    element.focus();
+                    isBreake = true;
+                    return true;
+                }
+                loginInfo[id] = value;
+            })
+            if(isBreake) return;
+
+            axios.get('./24_비동기통신_fetch_ex.json')
+                .then(response => {
+                    const memberInfo = response.data;
+                    console.log(response);
+                    console.log(memberInfo);
+                    let loginResult = '로그인 실패';
+                    if(     loginInfo.memberId === memberInfo.memberId
+                        &&  loginInfo.memberPw === memberInfo.memberPw){
+                        loginResult = '로그인 성공';
+                    }
+                    alert(loginResult);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        });
 	</script>
 </body>
 </html>

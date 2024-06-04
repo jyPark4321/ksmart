@@ -115,22 +115,51 @@
     </div>
 
 	<script type="text/javascript">
-       fetch('주소',{
-           method: 'POST', // 또는 'PUT'
-           headers: {
-               'Content-Type': 'application/json',
-           },
-           body: JSON.stringify(data),
-       })
-           .then((response) => response.json())
-           .then((data) => {
-               console.log('성공: ',data);
-           })
-           .catch((error) => {
-               console.error('실패:',error);
-           })
+        const $exAjax1 = document.querySelector('#exAjax1');
+        const request = {
+            get(url){
+                url = encodeURIComponent(url);
+                return fetch(url).then(response => response.json());
+            },
+            post(url, payload){
+                url = encodeURIComponent(url);
+                return fetch(url, {
+                    method : 'POST',
+                    headers : {'content-Type' : 'application/json'},
+                    body : JSON.stringify(payload)
+                }).then(response => response.json());
+            }
+        }
+        const $ = cssSelector => document.querySelector(cssSelector);
+        $exAjax1.addEventListener('click', function(){
+            request.get('./24_비동기통신_fetch_ex.json')
+                .then(memberInfo => {
+                    console.log(memberInfo);
+                    for(const key in memberInfo){
+                        $(`#${key}`).value = memberInfo[key]
+                    }
+                })
+                .catch(error => console.log(error))
+
+        });
 
 
+        async function ajaxRequest(url){
+            const response  = await fetch(url);
+            const memberInfo = await response.json();
+            return memberInfo;
+        }
+
+        $('#exAjax2').addEventListener('click', function(){
+            ajaxRequest('./24_비동기통신_fetch_ex.json')
+                .then(memberInfo => {
+                    console.log(memberInfo);
+                    for(const key in memberInfo){
+                        $(`#${key}`).value = memberInfo[key]
+                    }
+                })
+                .catch(error => console.log(error))
+        })
     </script>
 </body>
 </html>

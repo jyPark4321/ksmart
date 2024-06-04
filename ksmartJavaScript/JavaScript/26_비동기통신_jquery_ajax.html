@@ -108,7 +108,79 @@
             - API 제공 시간(~이후) : 02:10, 05:10, 08:10, 
                                 11:10, 14:10, 17:10, 20:10, 23:10
         */
-        
+
+        //문법: $.ajax({ 옵션 }) or $.ajax({ 옵션 }).done().fail().always()
+        //응답시 데이터 어떻게오는지
+        /*
+           "response": {
+                "header": {
+                    "resultCode": "00",
+                    "resultMsg": "NORMAL_SERVICE"
+            },
+                "body": {
+                    "dataType": "JSON",
+                    "items": {
+                     "item": [
+                        {
+                            "baseDate": "20240604",
+                            "baseTime": "0600",
+                            "category": "PTY",
+                            "nx": 55,
+                            "ny": 127,
+                            "obsrValue": "0"
+                       }
+                그러면 데이터 꺼내올때 어떻게 ? response.body.items.item.obsrValue
+         */
+        //필수입력항목 작성
+
+        const getWeatherData = () => {
+            return {
+                serviceKey: 'NmuFdnggsQuJ6G4f8u39rhz2A6a%2FEe9uJhvSadb2YL7MjpOZnuicxKm7%2FILNLQrLpnDixuWlILcAwIU5l2asVw%3D%3D',
+                pageNo: '1',
+                numOfRows: '1000',
+                dataType: 'JSON',
+                base_date: '20240604',
+                base_time: '0600',
+                nx: '55',
+                ny: '127'
+            };
+        };
+
+
+        const updateWeatherInfo = (weatherInfo) => {
+            const curDate = new Date().toLocaleString();
+            $('#curDate').val(curDate);
+            $('#curTemp').val(weatherInfo['TMP']);
+            $('#curSky').val(weatherInfo['SKY']);
+            $('#proRain').val(weatherInfo['POP']);
+            $('#humidity').val(weatherInfo['REH']);
+        };
+
+
+        $('#exAjax').click(function () {
+            //기본형태 $ajax({옵션}).done().fail().always()
+            $.ajax({
+                method : 'GET',
+                url : 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst',
+                data : getWeatherData(),
+                dataType: 'json'
+            })
+                .done(function(data) {
+                    const items = data.response.body.items.item;
+                    let weatherInfo = {};
+                    items.forEach(item => {
+                        if (['TMP', 'SKY', 'POP', 'REH'].includes(item.category)) {
+                            weatherInfo[item.category] = item.obsrValue;
+                        }
+                    });
+                    updateWeatherInfo(weatherInfo);
+                    console.log(weatherInfo);
+                })
+                .fail(() => console.log('실패함 ㅋㅋ'))
+                .always(() => console.log('오 성공함 ㅋㅋ'));
+        });
+
+
 	</script>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
