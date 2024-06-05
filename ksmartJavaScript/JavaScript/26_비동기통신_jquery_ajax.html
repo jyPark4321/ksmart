@@ -171,57 +171,98 @@
                             "ny": 127,
                             "obsrValue": "0"
                        }
-                그러면 데이터 꺼내올때 어떻게 ? response.body.items.item.obsrValue
+                그러면 데이터 꺼내올때 어떻게 ? response.body.items.item
          */
         //필수입력항목 작성
 
-        const getWeatherData = () => {
-            return {
-                serviceKey: "NmuFdnggsQuJ6G4f8u39rhz2A6a%2FEe9uJhvSadb2YL7MjpOZnuicxKm7%2FILNLQrLpnDixuWlILcAwIU5l2asVw%3D%3D",
-                pageNo: "1",
-                numOfRows: "1000",
-                dataType: "JSON",
-                base_date: "20240605",
-                base_time: "0800",
-                nx: "63",
-                ny: "89"
-            };
-        };
-
-
-        const updateWeatherInfo = (weatherInfo) => {
-            const curDate = new Date().toLocaleString();
-            $('#curDate').val(curDate);
-            $('#curTemp').val(weatherInfo['TMP']);
-            $('#curSky').val(weatherInfo['SKY']);
-            $('#proRain').val(weatherInfo['POP']);
-            $('#humidity').val(weatherInfo['REH']);
-        };
-
-
         $('#exAjax').click(function () {
+            const nowDate = moment();
+            let baseDate = nowDate.format('YYYYMMDD');
+            let baseTime = Number(nowDate.format('HHmm'));
+            if(baseTime > 2310){
+                baseTime = '2300';
+            } else if(baseTime > 2010){
+                baseTime = '2000';
+            } else if(baseTime > 1710){
+                baseTime = '1700';
+            } else if(baseTime > 1410){
+                baseTime = '1400';
+            } else if(baseTime > 1110){
+                baseTime = '1100';
+            } else if(baseTime > 810){
+                baseTime = '0800';
+            } else if(baseTime > 510){
+                baseTime = '0500';
+            } else if(baseTime > 210){
+                baseTime = '0200';
+            } else {
+                baseDate = nowDate.subtract(1,'d').format('YYYYMMDD');
+                baseTime =  '2300'
+            }
+            const param ={
+                'serviceKey': 'NmuFdnggsQuJ6G4f8u39rhz2A6a/Ee9uJhvSadb2YL7MjpOZnuicxKm7/ILNLQrLpnDixuWlILcAwIU5l2asVw==',
+                'pageNo': '1',
+                'numOfRows': '60',
+                'dataType': 'JSON',
+                'base_date': baseDate,
+                'base_time': baseTime,
+                'nx': '63',
+                'ny': '89'
+            }
             //기본형태 $ajax({옵션}).done().fail().always()
-            $.ajax({
-                method : "GET",
-                url : "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst",
-                data : getWeatherData(),
-                dataType: "json"
+            const request = $.ajax({
+                method : 'GET',
+                url : 'https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst',
+                data : param,
+                dataType: 'json'
 
             })
-                .done(function(data) {
-                    const items = data.response.body.items.item;
-                    let weatherInfo = {};
-                    items.forEach(item => {
-                        if (['TMP', 'SKY', 'POP', 'REH'].includes(item.category)) {
-                            weatherInfo[item.category] = item.obsrValue;
+                request.done(data => {
+                    console.log(data.response.body.items.item);
+                    console.log(moment().add(1,'h').format('YYYYMMDD'));
+                    console.log(moment().add(1,'h').format('HH00'));
+                    const fcstList = data.response.body.items.item;
+                    const fcstCate = data.response.body.items.item.category;
+                    const fcstDate = moment().add(1,'h').format('YYYYMMDD');
+                    const fcstTime = moment().add(1,'h').format('HH00');
+                    const fcstInfo = {};
+                    fcstList.reduce((acc, cur) => {
+                        const fcstObj = cur;
+                        if(  fcstObj.fcstDate === fcstDate
+                          && fcstObj.fcstTime === fcstTime ){
+                            const cate = fcstObj.category;
+                            const value = fcstObj.fcstValue;
+                            switch (cate){
+                                case 'POP':
+                                    acc.proRain = `${value}%`;
+                                    break;
+                                case 'REH':
+                                    acc.humidity = `${value}%`;
+                                    break;
+                                case 'SKY':
+                                    const idx = (value - 2 <= 0) ? 0 : (value - 2);
+                                    const status = ['맑음','구름많음','흐림'];
+                                    acc.curSky = status[idx];
+                                    break;
+                                case 'TMP':
+                                    acc.curTemp = `${value}℃`
+                            }
                         }
-                    });
-                    updateWeatherInfo(weatherInfo);
+                        return acc;
+                    },fcstInfo);
+                    fcstInfo.curDate = moment(`${fcstDate} ${fcstTime}`)
+                        .format('YYYY년 MM월 DD일 HH시 mm분 예보');
+                    for(const key in fcstInfo){
+                        $(`#${key}`).val(fcstInfo[key]);
+                    }
+                    console.log(fcstInfo);
+
 
                 })
                 .fail(() => console.log('실패함 ㅋㅋ'))
-                .always(() => console.log('오 성공함 ㅋㅋ'));
+                .always(() => console.log('무조건 하이요 성공 성공함 ㅋㅋ'));
         });
+        $('#exAjax').click();
 
 	</script>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
