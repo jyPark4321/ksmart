@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="dc093754-908d-4310-8372-607e0550e9f4" name="Changes" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;ksmartJavaScript/JavaScript/26_비동기통신_jquery_ajax.html">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ksmartJavaScript/JavaScript/26_비동기통신_jquery_ajax.html" beforeDir="false" afterPath="$PROJECT_DIR$/ksmartJavaScript/JavaScript/26_비동기통신_jquery_ajax.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +143,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717550578538</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;ksmartJavaScript/JavaScript/26_비동기통신_jquery_ajax.html">
+      <option name="closed" value="true" />
+      <created>1717562927351</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1717562927351</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;ksmartJavaScript/JavaScript/26_비동기통신_jquery_ajax.html">
+      <option name="closed" value="true" />
+      <created>1717562942741</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1717562942741</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
