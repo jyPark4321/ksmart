@@ -87,7 +87,7 @@
                 const value = element.value.trim();
                 if(!value) {
                     const cate = document.querySelector(`label[for="${id}"]`).textContent;
-                    alert(`${cate} 필수 입력해라.`);
+                    alert(`${cate} 필수 입력.`);
                     element.focus();
                     isBreake = true;
                     return true;
