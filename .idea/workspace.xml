@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc093754-908d-4310-8372-607e0550e9f4" name="Changes" comment="24-06-04 JQUERY 오후수업 복습">
-      <change afterPath="$PROJECT_DIR$/ksmartJavaScript/JavaScript/api/기상청41_단기예보 조회서비스_오픈API활용가이드_격자_위경도(20240101).xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ksmartJavaScript/JavaScript/api/기상청41_단기예보 조회서비스_오픈API활용가이드_최종.docx" afterDir="false" />
+    <list default="true" id="dc093754-908d-4310-8372-607e0550e9f4" name="Changes" comment="24-06-05 JQUERY 오전수업">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ksmartJavaScript/JavaScript/26_비동기통신_jquery_ajax.html" beforeDir="false" afterPath="$PROJECT_DIR$/ksmartJavaScript/JavaScript/26_비동기통신_jquery_ajax.html" afterDir="false" />
     </list>
@@ -30,9 +28,6 @@
     &quot;accountId&quot;: &quot;0cf6a888-09e6-4953-a4b0-fe171c56afcf&quot;
   }
 }</component>
-  <component name="PerforceDirect.Settings">
-    <option name="CHARSET" value="없음" />
-  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -41,23 +36,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JavaScript 디버그.26_비동기통신_jquery_ajax.html.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/parkjungyeon/51기한국스마트정보교육원/02_홍승윤선생님/02_javascript/gitclone/ksmart",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.sync",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript 디버그.26_비동기통신_jquery_ajax.html.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/parkjungyeon/51기한국스마트정보교육원/02_홍승윤선생님/02_javascript/gitclone/ksmart&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\parkjungyeon\intelijworksapce\ksmart\ksmartJavaScript\JavaScript\api" />
@@ -125,7 +120,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717506966455</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="24-06-05 JQUERY 오전수업">
+      <option name="closed" value="true" />
+      <created>1717546087158</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1717546087158</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,7 +151,8 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;ksmartJavaScript/JavaScript/23_하sdfasdf.html" />
     <MESSAGE value="24-06-04 JQUERY 오전수업2" />
     <MESSAGE value="24-06-04 JQUERY 오후수업 복습" />
-    <option name="LAST_COMMIT_MESSAGE" value="24-06-04 JQUERY 오후수업 복습" />
+    <MESSAGE value="24-06-05 JQUERY 오전수업" />
+    <option name="LAST_COMMIT_MESSAGE" value="24-06-05 JQUERY 오전수업" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

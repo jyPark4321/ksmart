@@ -34,6 +34,48 @@
     - 공공 API <br>
       - 사이트 : https://www.data.go.kr<br>
       - data: 기상청_단기예보 ((구)_동네예보) 조회서비스<br>
+    <button id="jqAjx" type="button" class="btn btn-success ml-3">ajax 실습</button>
+    <script>
+        $('#jqAjx').click(function () {
+            $.ajax({
+                method: 'GET',  // http 요청 방식
+                url: './24_비동기통신_fetch_ex.json',    // 요청주소
+                dataType: 'json', //응답시의 데이터타입
+                success: function (data){
+                    console.log(data);
+                    for(key in data){
+                        console.log(`${key}: ${data[key]}`);
+                    }
+                },
+                error: function (jqXHR,status,error){
+                    console.log(jqXHR);
+                    console.log(status);
+                    console.log(error);
+                }
+
+            });
+            const request = $.ajax({
+                method : 'GET',
+                url: './24_비동기통신_fetch_ex.json',
+                dataType: 'json'
+            });
+            //요청 성공시
+            request.done(function (data) {
+                console.log(data);
+            });
+            //요청 실패시
+            request.fail(function (jqXHR, testStatus, error) {
+                console.log(jqXHR);
+                console.log(testStatus);
+                console.log(error);
+            });
+            request.always(function () {
+                console.log('얘는 무적권 실행임 ㅋ');
+            });
+        });
+    </script>
+    <br>
+    <br>
 
 	<div class="container-fluid mt-5 ml-5">
         <div class="row">
@@ -135,14 +177,14 @@
 
         const getWeatherData = () => {
             return {
-                serviceKey: 'NmuFdnggsQuJ6G4f8u39rhz2A6a%2FEe9uJhvSadb2YL7MjpOZnuicxKm7%2FILNLQrLpnDixuWlILcAwIU5l2asVw%3D%3D',
-                pageNo: '1',
-                numOfRows: '1000',
-                dataType: 'JSON',
-                base_date: '20240604',
-                base_time: '0600',
-                nx: '55',
-                ny: '127'
+                serviceKey: "NmuFdnggsQuJ6G4f8u39rhz2A6a%2FEe9uJhvSadb2YL7MjpOZnuicxKm7%2FILNLQrLpnDixuWlILcAwIU5l2asVw%3D%3D",
+                pageNo: "1",
+                numOfRows: "1000",
+                dataType: "JSON",
+                base_date: "20240605",
+                base_time: "0800",
+                nx: "63",
+                ny: "89"
             };
         };
 
@@ -160,10 +202,11 @@
         $('#exAjax').click(function () {
             //기본형태 $ajax({옵션}).done().fail().always()
             $.ajax({
-                method : 'GET',
-                url : 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst',
+                method : "GET",
+                url : "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst",
                 data : getWeatherData(),
-                dataType: 'json'
+                dataType: "json"
+
             })
                 .done(function(data) {
                     const items = data.response.body.items.item;
@@ -174,12 +217,11 @@
                         }
                     });
                     updateWeatherInfo(weatherInfo);
-                    console.log(weatherInfo);
+
                 })
                 .fail(() => console.log('실패함 ㅋㅋ'))
                 .always(() => console.log('오 성공함 ㅋㅋ'));
         });
-
 
 	</script>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
